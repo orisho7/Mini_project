@@ -88,30 +88,7 @@ body {
 }
 
 
-.navbar ul li text {
-    color: #ffffff;
 
-}
-
-.navbar ul {
-    list-style-type: none;
-    padding: 0px;
-    margin: 0px;
-    overflow: hidden;
-    width: 100%;
-    height: 120px;
-    background-color: #0000000e;
-
-
-}
-
-.navbar ul img {
-    padding: 20px;
-
-    height: 70px;
-    float: left;
-
-}
 
 
 .mos {
@@ -155,25 +132,11 @@ body {
     }
 }
 
-.navbar a {
-    text-align: center;
-    text-decoration: none;
-    position: relative;
-    color: white;
-    display: block;
-    font-size: 20px;
-    transition: all 0.5s;
-    margin: 10px;
-    padding-top: 30px;
-    margin-right: 50px;
-    text-transform: capitalize;
-
-}
 
 .button {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-color: #d54d48;
-    border-radius: 20px;
+    border-radius: 25px;
     color: #ffffff;
     padding: 15px 32px;
     text-align: center;
@@ -184,7 +147,7 @@ body {
     display: inline-block;
     cursor: pointer;
     transition: all 0.5s;
-    margin: auto;
+    margin: 300px;
 
 
 }
@@ -221,18 +184,6 @@ body {
     right: 0;
 }
 
-.navbar a::after {
-    content: '';
-    height: 2px;
-    width: 100%;
-    background-color: white;
-    position: absolute;
-    left: 0;
-    bottom: -10px;
-    opacity: 0;
-    transition: all 0.5s;
-    pointer-events: none;
-}
 
 @property --angle {
     syntax: "<angle>";
@@ -253,7 +204,7 @@ body {
     translate: -50% -50%;
     z-index: -1;
     padding: 3px;
-    border-radius: 20px;
+    border-radius: 25px;
     animation: 3s spin linear infinite;
 }
 
@@ -291,23 +242,4 @@ body {
     color: white;
 
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-.navbar a:hover::after {
-    opacity: 1;
-}
-
-a:hover .border-text {
-    border-color: #ffb27b;
-    /* Optional: Background color on hover */
-    color: #ffb27b;
-    /* Optional: Change text color on hover */
-}
-
-.navbar a:hover {
-    color: #ffb27b;
-}
-
-.navbar li {
-    float: right;
 }
