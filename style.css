@@ -1,26 +1,30 @@
+html,
 body {
+    margin: 0;
+    padding: 0;
     margin: 0px;
     font-family: 'roboto', sans-serif;
 
 }
 
 #myVideo {
-    background-repeat: no-repeat;
-    position: absolute;
-    right: 0;
-    bottom: 0;
+    position: fixed;
+    /* Ensures it covers the whole page */
+    top: 0;
+    left: 0;
+    /* Makes sure it stretches to the bottom */
+    object-fit: cover;
+    /* Ensures the video fills the space without distortion */
     z-index: -1;
-    background-color: rgba(0, 0, 0, 0, 4);
-
+    /* Keeps it behind the content */
 
 }
 
 .container {
     /* Border width is already included */
-    width: 98%;
+    width: 100%;
     height: 80vh;
     /* Adjust as needed */
-
     /* Centering */
     display: flex;
     justify-content: center;
@@ -39,6 +43,7 @@ body {
     background-size: cover;
     /* Ensure the image covers the whole container */
     overflow: hidden;
+    margin-bottom: 50px;
     /* Prevents the video from overflowing the container */
 }
 
@@ -62,6 +67,7 @@ body {
     /* Ensures the video covers the whole container */
     z-index: -1;
     /* Puts the video behind the text */
+
 }
 
 .description {
@@ -107,17 +113,46 @@ body {
 
 }
 
+
 .mos {
-    margin: 70px;
+    margin: 30px;
     position: absolute;
-    color: rgb(209, 205, 205);
+    color: rgb(255, 255, 255);
     /* White color text for visibility */
     font-family: "Pixelify Sans", sans-serif;
     font-size: 3rem;
     /* Adjust text size */
     z-index: 1;
     /* Makes sure the text stays on top of the video */
-    text-shadow: rgb(112, 106, 106) 1px 0 10px;
+    text-shadow: rgb(129, 63, 32) 0px 0 10px;
+
+}
+
+.mos pre {
+    overflow: hidden;
+    /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orange;
+    /* The typwriter cursor */
+    white-space: nowrap;
+    /* Keeps the content on a single line */
+    margin: 0 auto;
+    /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em;
+    /* Adjust as needed */
+    animation:
+        typing 3.5s steps(40, end),
+        blink-caret .75s step-end infinite;
+}
+
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
 }
 
 .navbar a {
@@ -135,11 +170,55 @@ body {
 
 }
 
+.button {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #d54d48;
+    border-radius: 20px;
+    color: #ffffff;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 32px;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.5s;
+    margin: auto;
+
+
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
 .border-text {
     border: 2px solid #ffffff;
     padding: 5px 30px;
     border-radius: 3px;
 
+}
+
+.button:hover span {
+    padding-right: 25px;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
 }
 
 .navbar a::after {
@@ -155,7 +234,64 @@ body {
     pointer-events: none;
 }
 
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
 
+.button::after,
+.button::before {
+    --angle: 0deg;
+    content: '';
+    height: 100%;
+    width: 100%;
+    background-image: conic-gradient(from var(--angle), transparent 50%, #ffffff);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 3px;
+    border-radius: 20px;
+    animation: 3s spin linear infinite;
+}
+
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    }
+
+    to {
+        --angle: 360deg;
+    }
+}
+
+.button::before {
+    filter: blur(1.5rem);
+    opacity: 0.8;
+}
+
+.winnerbox {
+    background-color: rgba(255, 94, 0, 0.384);
+    border-radius: 40px;
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    /* Remove margin, as we are centering it with flexbox */
+}
+
+.winners {
+
+    text-align: center;
+    color: white;
+
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
 
 .navbar a:hover::after {
     opacity: 1;
