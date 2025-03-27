@@ -1,4 +1,9 @@
 /* Navigation bar */
+.navbar{
+    background: #f26249;
+    display: flex;
+}
+
 .navbar ul {
     list-style-type: none;
     padding: 0;

@@ -243,3 +243,39 @@ body {
 
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
+.footer{
+    color: #ffffff;
+    font-size: 30px;
+    padding-top: 10px;
+    font-family: "tahooma";
+    text-shadow: #ffb27b 5px 0 20px;
+    text-align: center;
+    background: #f26249;
+}
+
+.icon2{
+   width: 25px;
+   height: auto;
+}
+
+.footer .box{
+
+}
+
+.footer ul{
+    list-style: none; 
+    
+}
+
+.footer ul li{
+margin-top: 5px;
+margin-bottom: 5px;
+}
+
+.footer ul li a{
+  color: #ffffff;
+  text-decoration: none;
+
+}
+
