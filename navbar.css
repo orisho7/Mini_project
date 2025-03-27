@@ -5,8 +5,8 @@
     margin: 0;
     overflow: hidden;
     width: 100%;
-    height: 120px;
-    background-color: #0000000e;
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.014);
 }
 
 .navbar ul img {
@@ -19,7 +19,7 @@
     color: #ffffff;
 }
 
-.navbar a {
+.navbar a.links {
     text-align: center;
     text-decoration: none;
     position: relative;
@@ -33,11 +33,22 @@
     text-transform: capitalize;
 }
 
-.navbar a:hover {
+.navbar a.icon {
+    text-decoration: none;
+    color: #ffffff;
+    text-shadow: rgb(236, 128, 5) 0px 7px 1px;
+    margin: auto;
+    padding: auto;
+    padding-left: 20px;
+}
+
+
+
+.navbar a.links:hover {
     color: #ffb27b;
 }
 
-.navbar a::after {
+.navbar a.links::after {
     content: '';
     height: 2px;
     width: 100%;
@@ -50,7 +61,7 @@
     pointer-events: none;
 }
 
-.navbar a:hover::after {
+.navbar a.links:hover::after {
     opacity: 1;
 }
 
