@@ -25,41 +25,18 @@
         <source src="photos/27669-365224683_small.mp4" type="video/mp4">
     </video>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <ul>
-            <li class="login">
-                <a href="file:///C:/Users/apood/Desktop/Mini_project/index.html">
-                    <b><span class="border-text">Login</span></b>
-                </a>
-            </li>
-            <li>
-                <a href="file:///C:/Users/apood/Desktop/Mini_project/index.html">
-                    <b>About us</b>
-                </a>
-            </li>
-            <li>
-                <a href="file:///C:/Users/apood/Desktop/Mini_project/index.html">
-                    <b>home</b>
-                </a>
-            </li>
-            <li>
-                <a href="file:///C:/Users/apood/Desktop/Mini_project/index.html">
-                    <b>About us</b>
-                </a>
-            </li>
-            <li>
-                <a href="file:///C:/Users/apood/Desktop/Mini_project/index.html">
-                    <b>home</b>
-                </a>
-            </li>
+    <!-- Navigation Bar fetching -->
+    <div id="navbar"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
 
-            <div class="site-name">
-                <img src="photos/4.png" alt="Website Logo" class="icon">
-                GameRank
-            </div>
-        </ul>
-    </nav>
+
+    </script>
+
 
     <!-- Main Container -->
     <div class="container">
