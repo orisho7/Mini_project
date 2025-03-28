@@ -1,7 +1,12 @@
 /* Navigation bar */
-.navbar{
-    background: #f26249;
+.navbar {
+    background: #f26135;
+    border-bottom: #ffffff 5px solid;
     display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
 }
 
 .navbar ul {

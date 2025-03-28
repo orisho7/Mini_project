@@ -1,0 +1,41 @@
+.footer p {
+    text-align: center;
+    font-size: 20px;
+    width: 50%;
+    margin: auto;
+
+}
+
+.box ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+
+}
+
+.btn-W,
+.btn-X,
+.btn-E {
+    background-color: rgb(255, 94, 0);
+    border: 1px solid rgb(255, 94, 0);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.btn-W:hover,
+.btn-X:hover,
+.btn-E:hover {
+    background-color: #fff;
+    color: rgb(255, 94, 0);
+    cursor: pointer;
+}
+
+.bi-whatsapp,
+.bi-twitter-x,
+.bi-envelope-plus {
+    font-size: 24px;
+}

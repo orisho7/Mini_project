@@ -15,6 +15,16 @@
     justify-content: center;
     align-items: center;
     margin: 50px 50px;
+
+}
+
+.winners {
+    text-align: center;
+    color: white;
+
+    font-family: "Black Ops One", system-ui;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .card {
@@ -27,7 +37,8 @@
     align-items: flex-end;
     padding: 0 36px;
     perspective: 2500px;
-    margin: 0 50px;
+    margin: 10px 10px;
+
 }
 
 .cover-image {
