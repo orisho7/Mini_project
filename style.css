@@ -84,13 +84,6 @@ body {
 
 }
 
-.description {
-    color: #ffffff;
-    font-size: 20px;
-    padding-top: 30px;
-    text-shadow: #ff0000 1px 0 10px;
-}
-
 
 
 
@@ -236,26 +229,6 @@ body {
     opacity: 0.8;
 }
 
-.winnerbox {
-    background-color: rgba(255, 94, 0, 0.384);
-    border-radius: 40px;
-    width: 40%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    /* Remove margin, as we are centering it with flexbox */
-}
-
-.winners {
-
-    text-align: center;
-    color: white;
-
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
 
 .footer {
     background-color: #111;
