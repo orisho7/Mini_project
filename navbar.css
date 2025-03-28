@@ -6,25 +6,21 @@
 
 .navbar ul {
     list-style-type: none;
-    padding: 0;
-    margin: 0;
+    padding: auto;
+    margin-bottom: 20px;
     overflow: hidden;
     width: 100%;
-    height: 120px;
-    background-color: #0000000e;
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.014);
 }
 
-.navbar ul img {
-    padding: 20px;
-    height: 70px;
-    float: left;
-}
+
 
 .navbar ul li text {
     color: #ffffff;
 }
 
-.navbar a {
+.navbar a.links {
     text-align: center;
     text-decoration: none;
     position: relative;
@@ -33,16 +29,35 @@
     font-size: 20px;
     transition: all 0.5s;
     margin: 10px;
-    padding-top: 30px;
+    padding-top: 12px;
     margin-right: 50px;
     text-transform: capitalize;
 }
 
-.navbar a:hover {
+
+
+.navbar a.icon {
+    text-decoration: none;
+    color: #ffffff;
+    text-shadow: rgb(236, 128, 5) 0px 7px 1px;
+
+}
+
+.site-name {
+    color: #ffffff;
+    font-size: 55px;
+    font-family: "Pixelify Sans", sans-serif;
+    text-shadow: #ffb27b 5px 0 20px;
+
+}
+
+
+
+.navbar a.links:hover {
     color: #ffb27b;
 }
 
-.navbar a::after {
+.navbar a.links::after {
     content: '';
     height: 2px;
     width: 100%;
@@ -55,7 +70,7 @@
     pointer-events: none;
 }
 
-.navbar a:hover::after {
+.navbar a.links:hover::after {
     opacity: 1;
 }
 

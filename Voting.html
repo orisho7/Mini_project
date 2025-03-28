@@ -2,10 +2,26 @@
 
 <head>
 
+    <link rel="stylesheet" href="style.css">
+
+
+
 </head>
 
 <body>
+    <video autoplay muted loop id="myVideo">
+        <source src="photos/27669-365224683_small.mp4" type="video/mp4">
+    </video>
+    <div id="navbar"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
 
+
+    </script>
 </body>
 
 </html>
