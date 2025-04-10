@@ -1,4 +1,5 @@
 /* Navigation bar */
+
 .navbar {
     background: #f26135;
     border-bottom: #ffffff 5px solid;
@@ -6,7 +7,7 @@
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1;
+    z-index: 2;
 }
 
 .navbar ul {
@@ -39,14 +40,23 @@
     text-transform: capitalize;
 }
 
-
-
 .navbar a.icon {
     text-decoration: none;
+    opacity: 100;
     color: #ffffff;
     text-shadow: rgb(236, 128, 5) 0px 7px 1px;
+}
+
+.navbar a.icon:hover {
+
+    text-decoration: none;
+    color: #ffffffab;
+    text-shadow: rgb(236, 128, 5) 0px 7px 1px;
+
 
 }
+
+
 
 .site-name {
     color: #ffffff;
