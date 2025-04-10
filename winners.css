@@ -15,7 +15,17 @@
     justify-content: center;
     align-items: center;
     margin: 50px 50px;
+    transform: translateY(-80px);
+    opacity: 0;
+    animation: slideDown 5s ease-out forwards;
 
+}
+
+@keyframes slideDown {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .winners {
