@@ -1,4 +1,13 @@
-/* From Uiverse.io by juan-sued */
+.cards {
+    display: flex;
+    gap: 20px;
+    /* space between cards */
+    justify-content: center;
+    /* or space-between / space-around etc. */
+    flex-wrap: wrap;
+    /* optional: wraps on small screens */
+}
+
 .cardo {
     position: relative;
     width: 250px;
@@ -9,7 +18,6 @@
     padding: 12px;
     gap: 12px;
     border-radius: 8px;
-    margin: auto;
     margin-top: 150px;
 
     overflow: hidden;
