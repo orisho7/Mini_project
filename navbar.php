@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <link rel="stylesheet" href="navbar.css">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     rel="stylesheet">
@@ -8,22 +5,22 @@ session_start();
 <div class="navcontainer">
     <nav class="navbar">
         <ul> <?php
-        if (!isset($_SESSION['username'])) {
-            // User not logged in, show Login
-            echo '
-    <li class="login">
-        <a href="login.html" class="links">
-            <b><span class="border-text">Login</span></b>
-        </a>
-    </li>';
-        } else {
-            // User is logged in, show Signout
+        session_start();
+        if (isset($_SESSION['username'])) {
             echo '
     <li class="login">
         <a href="logout.php" class="links">
             <b><span class="border-text">Signout</span></b>
         </a>
     </li>';
+        } else {
+            echo '
+    <li class="login">
+        <a href="Login.php" class="links">
+            <b><span class="border-text">Login</span></b>
+        </a>
+    </li>
+   ';
         }
         ?>
 

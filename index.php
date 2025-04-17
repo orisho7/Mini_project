@@ -1,19 +1,12 @@
 <?php
 session_start();
 
-// If user is not logged in, redirect to login
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <script>
-        // Prevent going back to login after logout
-        if (window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.href);
-        }
-    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameRank</title>
