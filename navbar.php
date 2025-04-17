@@ -1,15 +1,33 @@
+<?php
+session_start();
+?>
 <link rel="stylesheet" href="navbar.css">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
 <div class="navcontainer">
     <nav class="navbar">
-        <ul>
-            <li class="login">
-                <a href="Login.php" class="links">
-                    <b><span class="border-text">Login</span></b>
-                </a>
-            </li>
+        <ul> <?php
+        if (!isset($_SESSION['username'])) {
+            // User not logged in, show Login
+            echo '
+    <li class="login">
+        <a href="login.html" class="links">
+            <b><span class="border-text">Login</span></b>
+        </a>
+    </li>';
+        } else {
+            // User is logged in, show Signout
+            echo '
+    <li class="login">
+        <a href="logout.php" class="links">
+            <b><span class="border-text">Signout</span></b>
+        </a>
+    </li>';
+        }
+        ?>
+
+
             <li>
                 <a href="file:///C:/Users/apood/Desktop/Mini_project/index.html" class="links">
                     <b>Contact</b>

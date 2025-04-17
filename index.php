@@ -1,7 +1,19 @@
+<?php
+session_start();
+
+// If user is not logged in, redirect to login
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <script>
+        // Prevent going back to login after logout
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameRank</title>
@@ -28,13 +40,11 @@
     <!-- Navigation Bar fetching -->
     <div id="navbar"></div>
     <script>
-        fetch('navbar.html')
+        fetch('navbar.php')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('navbar').innerHTML = data;
             });
-
-
     </script>
 
     <div class="content">
@@ -63,8 +73,6 @@
                 .then(data => {
                     document.getElementById('winners').innerHTML = data;
                 });
-
-
         </script>
 
         <footer class="footer">
