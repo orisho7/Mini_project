@@ -132,6 +132,16 @@ header("Expires: 0");
 </head>
 
 <body>
+    <?php if (isset($_GET['error'])): ?>
+        <div style="color: red; text-align:center;">
+            <?php
+            if ($_GET['error'] == 'invalid_password')
+                echo "⚠️ Invalid password!";
+            elseif ($_GET['error'] == 'invalid_username')
+                echo "⚠️ Invalid username!";
+            ?>
+        </div>
+    <?php endif; ?>
 
     <video autoplay muted loop id="myVideo">
         <source src="photos/27669-365224683_small.mp4" type="video/mp4">

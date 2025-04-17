@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <link rel="mark" href="">
+    <link rel="stylesheet" href="voting.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+
+    <div id="navbar"></div>
+    <script>
+        fetch('navbar.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+
+
+
+    </script>
+
+
+</head>
+
+<body>
+    <video autoplay muted loop id="myVideo">
+        <source src="photos/27669-365224683_small.mp4" type="video/mp4">
+    </video>
+
+
+</body>
+
+</html>

@@ -52,7 +52,7 @@ session_start();
                 <pre>GameRank</pre>
                 <pre>A ranking website for gamers</pre>
 
-                <button class="button" onclick="window.location.href='Voting.html'">
+                <button class="button" onclick="window.location.href='Voting.php'">
                     <span>Vote Now</span>
                 </button>
             </div>

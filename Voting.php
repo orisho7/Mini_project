@@ -1,3 +1,6 @@
+<?php
+include("count.php");
+?>
 <html>
 
 <head>
@@ -11,16 +14,36 @@
 
 
     <div id="navbar"></div>
+
     <script>
         fetch('navbar.php')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('navbar').innerHTML = data;
             });
+        let score = 0;
 
 
+        function addScore(gameName, buttonElement) {
+            if (score == 0) {
+                score += 1;
+                buttonElement.textContent = "✓ Voted";
+                buttonElement.style.backgroundColor = "#4CAF50"; // Green color
+                buttonElement.disabled = true;
+            }
+            document.getElementById("score").textContent = score;
 
+            // Send the score and game name to PHP
+            fetch("count.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "score=" + score + "&game=" + encodeURIComponent(gameName)
+            });
+        }
     </script>
+
 
 
 </head>
@@ -38,9 +61,10 @@
                 <div>
                     <p class="catog">Sports</p>
                     <p class="catog">Race</p>
-                </div>
-                <button class="btn-donate">Vote now</button>
+                    <h2>Score: <span id="score">0</span></h2>
 
+                </div>
+                <button onclick="addScore('Rocket League' , this)" class="btn-donate">Vote now</button>
             </div>
             <div class="cardo">
                 <img class="photoG"
@@ -50,7 +74,7 @@
                     <p class="catog">Sports</p>
                     <p class="catog">Race</p>
                 </div>
-                <button class="btn-donate">Vote now</button>
+                <button onclick="addScore('CyberPunk' , this)" class="btn-donate" id="vote">Vote now</button>
 
             </div>
         </div>

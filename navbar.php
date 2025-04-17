@@ -48,7 +48,7 @@
 
             <div class="site-name">
 
-                <a href="index.html" class="icon">GameRank</a>
+                <a href="index.php" class="icon">GameRank</a>
             </div>
         </ul>
     </nav>

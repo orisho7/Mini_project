@@ -159,6 +159,13 @@
         0 0 0 6px var(--btn-bg-2);
 }
 
+.btn-donate {
+    background-color: #4CAF50;
+    /* Green */
+    color: white;
+    cursor: not-allowed;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .btn-donate {
         transition: linear;

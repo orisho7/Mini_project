@@ -24,16 +24,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = mysqli_fetch_assoc($result);
 
         if (password_verify($password, $user['password'])) {
-            $_SESSION['username'] = $username;
+            if ($username == "admin") {
+                $_SESSION['username'] = $username;
+                header("Location: admin.html");
+                exit();
+            } else
+                $_SESSION['username'] = $username;
             header("Location: index.php");
             exit();
         } else {
-            echo "Invalid password!";
+            header("Location: login.php?error=invalid_password");
         }
     } else {
-        echo "Invalid username!";
+        header("Location: login.php?error=invalid_username");
     }
 } else {
-    echo "Invalid request.";
+    header("Location: login.php?error=invalid");
 }
 ?>
