@@ -1,5 +1,9 @@
 <?php
 include("count.php");
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php"); // Redirect to login page
+    exit();
+}
 ?>
 <html>
 
@@ -22,7 +26,6 @@ include("count.php");
                 document.getElementById('navbar').innerHTML = data;
             });
         let score = 0;
-
 
         function addScore(gameName, buttonElement) {
             if (score == 0) {
