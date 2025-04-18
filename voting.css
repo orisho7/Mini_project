@@ -160,6 +160,7 @@
 }
 
 
+
 @media (prefers-reduced-motion: reduce) {
     .btn-donate {
         transition: linear;

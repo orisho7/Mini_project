@@ -1,9 +1,16 @@
 <?php
-session_start();
+// Include the connection
+include("count.php");
 if (!isset($_SESSION['username'])) {
     header("Location: login.php"); // Redirect to login page
     exit();
 }
+$query_rocket = "SELECT * FROM votes WHERE username = '$_SESSION[username]' AND game_name = 'Rocket League'";
+$query_rocket = mysqli_query($conn, $query_rocket);
+$query_cyber = "SELECT * FROM votes WHERE username = '$_SESSION[username]' AND game_name = 'Cyberpunk'";
+$query_cyber = mysqli_query($conn, $query_cyber);
+$voted = (mysqli_num_rows($query_rocket) > 0 || mysqli_num_rows($query_cyber) > 0) ? 'true' : 'false';
+
 ?>
 <html>
 
@@ -25,17 +32,20 @@ if (!isset($_SESSION['username'])) {
             .then(data => {
                 document.getElementById('navbar').innerHTML = data;
             });
+    </script>
+    <script>
         let score = 0;
+        let hasVoted = <?php echo $voted; ?>;
 
         function addScore(gameName, buttonElement) {
-            if (score === 0) {
-                score += 1;
+            if (!hasVoted) {
+                ++score;
                 buttonElement.textContent = "✓ Voted";
-
-                // Update the score display
+                buttonElement.disabled = true;
                 document.getElementById("score").textContent = score;
 
-                // Send the score and game name to PHP
+
+                hasVoted = true; // Prevent further votes
                 fetch("count.php", {
                     method: "POST",
                     headers: {
@@ -43,20 +53,15 @@ if (!isset($_SESSION['username'])) {
                     },
                     body: "score=" + score + "&game=" + encodeURIComponent(gameName)
                 });
+            } else {
+                alert("You already voted!");
+
             }
+
+
         }
     </script>
-    <script>
-        fetch('count.php')
-            .then(response => response.json())
-            .then(data => {
-                if (data.hasvoted === true) {
-                    buttonElement.textContent = "✓ Voted";
 
-                }
-
-            })
-    </script>
 
 
 
@@ -75,10 +80,9 @@ if (!isset($_SESSION['username'])) {
                 <div>
                     <p class="catog">Sports</p>
                     <p class="catog">Race</p>
-                    <h2>Score: <span id="score">0</span></h2>
 
                 </div>
-                <button onclick=" addScore('Rocket League' , this)" class="btn-donate">Vote now</button>
+                <button id="vote" onclick=" addScore('Rocket League' , this)" class="btn-donate">Vote now</button>
             </div>
             <div class="cardo">
                 <img class="photoG"
