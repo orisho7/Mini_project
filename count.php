@@ -3,7 +3,7 @@
 include("db.php");
 
 if (!isset($_SESSION['username'])) {
-    die(json_encode(['status' => 'error', 'message' => 'Please log in to vote']));
+    header("Location: login.php");
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
