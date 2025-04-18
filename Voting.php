@@ -1,10 +1,7 @@
 <?php
 // Include the connection
 include("count.php");
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php"); // Redirect to login page
-    exit();
-}
+
 $query_rocket = "SELECT * FROM votes WHERE username = '$_SESSION[username]' AND game_name = 'Rocket League'";
 $query_rocket = mysqli_query($conn, $query_rocket);
 $query_cyber = "SELECT * FROM votes WHERE username = '$_SESSION[username]' AND game_name = 'Cyberpunk'";

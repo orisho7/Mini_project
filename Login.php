@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 // Prevent going to login page if already logged in
 if (isset($_SESSION['username'])) {
     header("Location: index.php");
@@ -139,6 +138,10 @@ header("Expires: 0");
                 echo "⚠️ Invalid password!";
             elseif ($_GET['error'] == 'invalid_username')
                 echo "⚠️ Invalid username!";
+            elseif (isset($_GET["error"]) && str_contains($_GET["error"], "Duplicate entry")) {
+                echo "⚠️ This username is already taken.";
+            }
+
             ?>
         </div>
     <?php endif; ?>
@@ -160,7 +163,7 @@ header("Expires: 0");
             <input class="name" type="text" name="username" placeholder="👤 Username" required>
             <input type="password" name="password" placeholder="🛑 Password" required>
             <a class="login" href="#" onclick="showLogin()">Login</a>
-            <input class="submit" type="submit" value="Login">
+            <input class="submit" type="submit" value="Signup">
         </form>
     </div>
 

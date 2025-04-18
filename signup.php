@@ -32,6 +32,6 @@ if ($result) {
     exit();
 } else {
     // Show error (you can improve this with better messages/logging)
-    echo "Signup failed: " . mysqli_error($conn);
+    header("Location: login.php?error=Signup failed: Duplicate entry '$username' for key 'username'");
 }
 ?>
