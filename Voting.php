@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 // Include the connection
 include("count.php");
@@ -7,12 +6,17 @@ if (!isset($_SESSION['username'])) {
     header("Location: login.php"); // Redirect to login page
     exit();
 }
-$query_rocket = "SELECT * FROM votes WHERE username = '$_SESSION[username]' AND game_name = 'Rocket League'";
-$query_rocket = mysqli_query($conn, $query_rocket);
-$query_cyber = "SELECT * FROM votes WHERE username = '$_SESSION[username]' AND game_name = 'Cyberpunk'";
-$query_cyber = mysqli_query($conn, $query_cyber);
-$voted_cyber = (mysqli_num_rows($query_cyber) > 0) ? 'true' : 'false';
-$voted_rocket = (mysqli_num_rows($query_rocket) > 0) ? 'true' : 'false';
+$username = $_SESSION['username'];
+
+// Check for Rocket League votes
+$query_rocket = "SELECT * FROM votes WHERE username = '$username' AND game_name = 'Rocket League'";
+$result_rocket = mysqli_query($conn, $query_rocket);
+$voted_rocket = (mysqli_num_rows($result_rocket) > 0) ? 'true' : 'false';
+
+// Check for Cyberpunk votes
+$query_cyber = "SELECT * FROM votes WHERE username = '$username' AND game_name = 'Cyberpunk'";
+$result_cyber = mysqli_query($conn, $query_cyber);
+$voted_cyber = (mysqli_num_rows($result_cyber) > 0) ? 'true' : 'false';
 
 ?>
 <html>
@@ -38,16 +42,16 @@ $voted_rocket = (mysqli_num_rows($query_rocket) > 0) ? 'true' : 'false';
     </script>
     <script>
         let score = 0;
-        let hasVoted_cyber = <?php echo $voted_cyber; ?>;
-        let hasVoted_rocket = <?php echo $voted_rocket; ?>;
+        let hasVoted_cyber = <?php echo ($voted_cyber === 'true') ? 'true' : 'false'; ?>;
+        let hasVoted_rocket = <?php echo ($voted_rocket === 'true') ? 'true' : 'false'; ?>;
+
 
 
         function addScore(gameName, buttonElement) {
-            if (gameName == "Rocket League" && !hasVoted_rocket) {
+            if (gameName == "Rocket League" && !hasVoted_rocket && !hasVoted_cyber) {
                 score += 1;
                 buttonElement.textContent = "✓ Voted";
                 buttonElement.disabled = true;
-                document.getElementById("score").textContent = score;
 
 
                 hasVoted_rocket = true;
@@ -56,21 +60,22 @@ $voted_rocket = (mysqli_num_rows($query_rocket) > 0) ? 'true' : 'false';
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"
                     },
-                    body: "score=" + score + "&game=" + encodeURIComponent(gameName)
+                    body: "score=" + score + "&game_name=" + encodeURIComponent(gameName)
                 });
-            } else if (gameName == "Cyberpunk" && !hasVoted_cyber) {
+
+            } else if (gameName == "Cyberpunk" && !hasVoted_cyber && !hasVoted_rocket) {
                 score += 1;
                 buttonElement.textContent = "✓ Voted";
                 buttonElement.disabled = true;
-                document.getElementById("score").textContent = score;
                 hasVoted_cyber = true;
                 fetch("count.php", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"
                     },
-                    body: "score=" + score + "&game=" + encodeURIComponent(gameName)
+                    body: "score=" + score + "&game_name=" + encodeURIComponent(gameName)
                 });
+
             } else {
                 alert("You already voted!");
             }
@@ -86,10 +91,17 @@ $voted_rocket = (mysqli_num_rows($query_rocket) > 0) ? 'true' : 'false';
 
             if (hasVoted_rocket && rocketButtons) {
                 rocketButtons.disabled = true;
+                cyberButtons.disabled = true;
+                cyberButtons.textContent = "Didn't Vote";
                 rocketButtons.textContent = "✓ Voted";
+
             }
             if (hasVoted_cyber && cyberButtons) {
                 cyberButtons.disabled = true;
+                rocketButtons.disabled = true;
+
+                rocketButtons.textContent = "Didn't Vote";
+
                 cyberButtons.textContent = "✓ Voted";
             }
 
@@ -124,13 +136,13 @@ $voted_rocket = (mysqli_num_rows($query_rocket) > 0) ? 'true' : 'false';
             </div>
             <div class="cardo">
                 <img class="photoG"
-                    src="photos/rocket_league__2015__folder_icon_v2_by_foldericonboy_djculhc-375w-2x_2.png" alt="">
-                <p class="name">Rocket League</p>
+                    src="https://www.dolby.com/siteassets/xf-site/content-detail-pages/cyberpunk-2077.jpg" alt="">
+                <p class="name">Cyberpunk 2077</p>
                 <div>
-                    <p class="catog">Sports</p>
-                    <p class="catog">Race</p>
+                    <p class="catog">Open-world</p>
+                    <p class="catog">RPG</p>
                 </div>
-                <button onclick="addScore('CyberPunk' , this)" class="btn-donate" id="vote">Vote now</button>
+                <button onclick="addScore('Cyberpunk' , this)" class="btn-donate" id="vote">Vote now</button>
 
             </div>
         </div>
