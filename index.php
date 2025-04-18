@@ -1,6 +1,10 @@
 <?php
 session_start();
-
+if (isset($_SESSION["username"])) {
+    $username = $_SESSION["username"];
+} else {
+    $username = "Newcomer";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,14 +48,16 @@ session_start();
         <!-- Main Container -->
         <div class="container">
             <video autoplay muted loop id="background-video">
-                <source src="photos/sunset-over-mountain-forest-moewalls-com.mp4" type="video/mp4">
+                <source src="photos/90346-619556734_small.mp4" type="video/mp4">
+                <source src="" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
 
             <div class="mos">
+                <pre>Welcome <?php echo $username; ?> to  </pre>
+
                 <pre>GameRank</pre>
                 <pre>A ranking website for gamers</pre>
-
                 <button class="button" onclick="window.location.href='Voting.php'">
                     <span>Vote Now</span>
                 </button>

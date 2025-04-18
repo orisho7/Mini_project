@@ -62,6 +62,13 @@ $voted = (mysqli_num_rows($query_rocket) > 0 || mysqli_num_rows($query_cyber) > 
 
         }
     </script>
+    <script>
+        if (score > 0):
+            document.getElementById("btn-donate").textContent = "✓ Voted";
+        document.getElementById("btn-donate").disabled = true;
+    </script>
+
+
 
 
 
@@ -83,7 +90,7 @@ $voted = (mysqli_num_rows($query_rocket) > 0 || mysqli_num_rows($query_cyber) > 
                     <p class="catog">Race</p>
 
                 </div>
-                <button onclick=" addScore('Rocket League' , this)" class="btn-donate">Vote now</button>
+                <button id="btn-donate" onclick=" addScore('Rocket League' , this)" class="btn-donate">Vote now</button>
             </div>
             <div class="cardo">
                 <img class="photoG"
