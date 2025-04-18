@@ -10,6 +10,7 @@ if (!isset($_SESSION['username'])) {
 
 // Check if the form was submitted (POST method)
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    echo "hello";
     // Getting the username and game from the session and POST data, respectively
     $username = mysqli_real_escape_string($conn, $_SESSION['username']);
     $game = mysqli_real_escape_string($conn, $_POST['game']);
@@ -21,6 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // If the user has voted already, show an error message
     if (mysqli_num_rows($result) > 0) {
         die(json_encode([
+            json_encode(["hasvoted" => true]),
+
             'status' => 'error',
             'message' => 'You can only vote for one game total!'
         ]));

@@ -1,5 +1,5 @@
 <?php
-include("count.php");
+session_start();
 if (!isset($_SESSION['username'])) {
     header("Location: login.php"); // Redirect to login page
     exit();
@@ -28,23 +28,34 @@ if (!isset($_SESSION['username'])) {
         let score = 0;
 
         function addScore(gameName, buttonElement) {
-            if (score == 0) {
+            if (score === 0) {
                 score += 1;
                 buttonElement.textContent = "✓ Voted";
-                buttonElement.style.backgroundColor = "#4CAF50"; // Green color
-                buttonElement.disabled = true;
-            }
-            document.getElementById("score").textContent = score;
 
-            // Send the score and game name to PHP
-            fetch("count.php", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                body: "score=" + score + "&game=" + encodeURIComponent(gameName)
-            });
+                // Update the score display
+                document.getElementById("score").textContent = score;
+
+                // Send the score and game name to PHP
+                fetch("count.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: "score=" + score + "&game=" + encodeURIComponent(gameName)
+                });
+            }
         }
+    </script>
+    <script>
+        fetch('count.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.hasvoted === true) {
+                    buttonElement.textContent = "✓ Voted";
+
+                }
+
+            })
     </script>
 
 
@@ -67,7 +78,7 @@ if (!isset($_SESSION['username'])) {
                     <h2>Score: <span id="score">0</span></h2>
 
                 </div>
-                <button onclick="addScore('Rocket League' , this)" class="btn-donate">Vote now</button>
+                <button onclick=" addScore('Rocket League' , this)" class="btn-donate">Vote now</button>
             </div>
             <div class="cardo">
                 <img class="photoG"
