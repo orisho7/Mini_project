@@ -11,7 +11,8 @@ $query_rocket = "SELECT * FROM votes WHERE username = '$_SESSION[username]' AND 
 $query_rocket = mysqli_query($conn, $query_rocket);
 $query_cyber = "SELECT * FROM votes WHERE username = '$_SESSION[username]' AND game_name = 'Cyberpunk'";
 $query_cyber = mysqli_query($conn, $query_cyber);
-$voted = (mysqli_num_rows($query_rocket) > 0 || mysqli_num_rows($query_cyber) > 0) ? 'true' : 'false';
+$voted_cyber = (mysqli_num_rows($query_cyber) > 0) ? 'true' : 'false';
+$voted_rocket = (mysqli_num_rows($query_rocket) > 0) ? 'true' : 'false';
 
 ?>
 <html>
@@ -37,17 +38,32 @@ $voted = (mysqli_num_rows($query_rocket) > 0 || mysqli_num_rows($query_cyber) > 
     </script>
     <script>
         let score = 0;
-        let hasVoted = <?php echo $voted; ?>;
+        let hasVoted_cyber = <?php echo $voted_cyber; ?>;
+        let hasVoted_rocket = <?php echo $voted_rocket; ?>;
+
 
         function addScore(gameName, buttonElement) {
-            if (!hasVoted) {
+            if (gameName == "Rocket League" && !hasVoted_rocket) {
                 score += 1;
                 buttonElement.textContent = "✓ Voted";
                 buttonElement.disabled = true;
                 document.getElementById("score").textContent = score;
 
 
-                hasVoted = true; // Prevent further votes
+                hasVoted_rocket = true;
+                fetch("count.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: "score=" + score + "&game=" + encodeURIComponent(gameName)
+                });
+            } else if (gameName == "Cyberpunk" && !hasVoted_cyber) {
+                score += 1;
+                buttonElement.textContent = "✓ Voted";
+                buttonElement.disabled = true;
+                document.getElementById("score").textContent = score;
+                hasVoted_cyber = true;
                 fetch("count.php", {
                     method: "POST",
                     headers: {
@@ -58,14 +74,27 @@ $voted = (mysqli_num_rows($query_rocket) > 0 || mysqli_num_rows($query_cyber) > 
             } else {
                 alert("You already voted!");
             }
-
-
         }
     </script>
     <script>
-        if (score > 0):
-            document.getElementById("btn-donate").textContent = "✓ Voted";
-        document.getElementById("btn-donate").disabled = true;
+        // Check if user has already voted when page loads
+        window.onload = function () {
+
+            // Disable all vote buttons and update their text
+            const rocketButtons = document.getElementById("btn-donate_R");
+            const cyberButtons = document.getElementById("vote");
+
+            if (hasVoted_rocket && rocketButtons) {
+                rocketButtons.disabled = true;
+                rocketButtons.textContent = "✓ Voted";
+            }
+            if (hasVoted_cyber && cyberButtons) {
+                cyberButtons.disabled = true;
+                cyberButtons.textContent = "✓ Voted";
+            }
+
+
+        };
     </script>
 
 
@@ -90,7 +119,8 @@ $voted = (mysqli_num_rows($query_rocket) > 0 || mysqli_num_rows($query_cyber) > 
                     <p class="catog">Race</p>
 
                 </div>
-                <button id="btn-donate" onclick=" addScore('Rocket League' , this)" class="btn-donate">Vote now</button>
+                <button id="btn-donate_R" onclick=" addScore('Rocket League' , this)" class="btn-donate">Vote
+                    now</button>
             </div>
             <div class="cardo">
                 <img class="photoG"
