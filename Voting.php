@@ -1,7 +1,12 @@
 <?php
+session_start();
+
 // Include the connection
 include("count.php");
-
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php"); // Redirect to login page
+    exit();
+}
 $query_rocket = "SELECT * FROM votes WHERE username = '$_SESSION[username]' AND game_name = 'Rocket League'";
 $query_rocket = mysqli_query($conn, $query_rocket);
 $query_cyber = "SELECT * FROM votes WHERE username = '$_SESSION[username]' AND game_name = 'Cyberpunk'";
@@ -36,7 +41,7 @@ $voted = (mysqli_num_rows($query_rocket) > 0 || mysqli_num_rows($query_cyber) > 
 
         function addScore(gameName, buttonElement) {
             if (!hasVoted) {
-                ++score;
+                score += 1;
                 buttonElement.textContent = "✓ Voted";
                 buttonElement.disabled = true;
                 document.getElementById("score").textContent = score;
@@ -52,7 +57,6 @@ $voted = (mysqli_num_rows($query_rocket) > 0 || mysqli_num_rows($query_cyber) > 
                 });
             } else {
                 alert("You already voted!");
-
             }
 
 
@@ -79,7 +83,7 @@ $voted = (mysqli_num_rows($query_rocket) > 0 || mysqli_num_rows($query_cyber) > 
                     <p class="catog">Race</p>
 
                 </div>
-                <button id="vote" onclick=" addScore('Rocket League' , this)" class="btn-donate">Vote now</button>
+                <button onclick=" addScore('Rocket League' , this)" class="btn-donate">Vote now</button>
             </div>
             <div class="cardo">
                 <img class="photoG"

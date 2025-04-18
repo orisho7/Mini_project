@@ -1,15 +1,12 @@
 <?php
-session_start();
+
 include("db.php");
 
 if (!isset($_SESSION['username'])) {
-    header("Location: login.php"); // Redirect to login page
-    exit();
+    die(json_encode(['status' => 'error', 'message' => 'Please log in to vote']));
 }
 
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    echo "hello";
     $username = mysqli_real_escape_string($conn, $_SESSION['username']);
     $game = mysqli_real_escape_string($conn, $_POST['game']);
 
