@@ -5,7 +5,7 @@ include("db.php"); // Including the database connection file
 // Check if the user is logged in
 if (!isset($_SESSION['username'])) {
     // If not logged in, show an error message
-    die(json_encode(['status' => 'error', 'message' => 'Please log in to vote']));
+    header("Location: login.php"); // Redirect to login page
 }
 
 // Check if the form was submitted (POST method)

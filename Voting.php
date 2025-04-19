@@ -1,24 +1,23 @@
 <?php
-
 // Include the connection
 include("count.php");
 if (!isset($_SESSION['username'])) {
     header("Location: login.php"); // Redirect to login page
     exit();
 }
+
+
 $username = $_SESSION['username'];
 
-// Check for Rocket League votes
 $query_rocket = "SELECT * FROM votes WHERE username = '$username' AND game_name = 'Rocket League'";
 $result_rocket = mysqli_query($conn, $query_rocket);
 $voted_rocket = (mysqli_num_rows($result_rocket) > 0) ? 'true' : 'false';
 
+
 // Check for Cyberpunk votes
 $query_cyber = "SELECT * FROM votes WHERE username = '$username' AND game_name = 'Cyberpunk'";
 $result_cyber = mysqli_query($conn, $query_cyber);
-$voted_cyber = (mysqli_num_rows($result_cyber) > 0) ? 'true' : 'false';
-
-?>
+$voted_cyber = (mysqli_num_rows($result_cyber) > 0) ? 'true' : 'false'; ?>
 <html>
 
 <head>
@@ -121,6 +120,10 @@ $voted_cyber = (mysqli_num_rows($result_cyber) > 0) ? 'true' : 'false';
         <source src="photos/27669-365224683_small.mp4" type="video/mp4">
     </video>
     <div class="content">
+
+
+
+
         <div class="cards">
             <div class="cardo">
                 <img class="photoG"

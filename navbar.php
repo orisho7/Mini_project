@@ -27,21 +27,21 @@
 
             <li>
                 <a href="file:///C:/Users/apood/Desktop/Mini_project/index.html" class="links">
-                    <b>Contact</b>
-                </a>
-            </li>
-            <li>
-                <a href="file:///C:/Users/apood/Desktop/Mini_project/index.html" class="links">
                     <b>About us</b>
                 </a>
             </li>
             <li>
                 <a href="file:///C:/Users/apood/Desktop/Mini_project/index.html" class="links">
-                    <b>Awards</b>
+                    <b>Contact</b>
                 </a>
             </li>
             <li>
-                <a href="file:///C:/Users/apood/Desktop/Mini_project/index.html" class="links">
+                <a href="http://localhost/Mini_project/Awards.php" class="links">
+                    <b>Most voted</b>
+                </a>
+            </li>
+            <li>
+                <a href="file:///C:/Users/apood/Desktop/Mini_project/index.php" class="links">
                     <b>home</b>
                 </a>
             </li>
