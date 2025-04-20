@@ -83,12 +83,46 @@ $voted_games_json = json_encode($voted_games);
 
     </script>
     <script>
+       function reset() {
+    // Make an AJAX call to a PHP reset script
+    fetch("reset.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            // Reset the UI
+            hasVoted = false;
+            votedGames = [];
+            
+            // Re-enable all vote buttons
+            const voteButtons = document.querySelectorAll('.btn-donate');
+            voteButtons.forEach(button => {
+                button.disabled = false;
+                button.textContent = "Vote now";
+            });
+            
+            alert("Your votes have been reset!");
+            // Optionally refresh the page
+            location.reload();
+        } else {
+            alert("Error resetting votes: " + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while resetting votes.');
+    });
+}
         // Check if user has already voted when page loads
         window.onload = function () {
 
             // Disable all vote buttons and update their text
 
-            if (hasVoted) {
+            if (hasVoted == true) {
                 const voteButtons = document.querySelectorAll('.btn-donate');
                 voteButtons.forEach(button => {
                     button.disabled = true;
@@ -97,6 +131,7 @@ $voted_games_json = json_encode($voted_games);
             }
 
         }
+       
 
     </script>
 
@@ -128,6 +163,8 @@ $voted_games_json = json_encode($voted_games);
                 </div>
             <?php endforeach; ?>
         </div>
+        <button onclick="window.location.href='Awards.php'">See the winner</button>
+        <button onclick="reset();">Reset</button>
 
 
 
