@@ -1,7 +1,6 @@
 <?php
 // Check for Rocket League vote if the user did vote indeed
 include("db.php");
-include("import_games.php");
 
 // Get the most voted game with its URL
 $query = "SELECT g.game_name, g.game_url,g.info, COUNT(*) as vote_count 

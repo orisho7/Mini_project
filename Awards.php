@@ -1,6 +1,5 @@
 <?php session_start();
 include("db.php");
-include("import_games.php");
     include("gameo.php");
 ?>
 <html>

@@ -3,8 +3,8 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "login_db";
+$dbname = "login_db2";
 
-$conn = mysqli_connect("localhost", "root", "", "login_db");
+$conn = mysqli_connect("localhost", "root", "", "login_db2");
 
 ?>

@@ -16,12 +16,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $game_name = mysqli_real_escape_string($conn, $_POST['game_name']);
     $score = (int) $_POST['score']; // Ensure the score is an integer
 
+    // Check if votes table exists, if not create it
+    $create_votes = "CREATE TABLE IF NOT EXISTS `votes` (
+        `vote_id` INT AUTO_INCREMENT PRIMARY KEY,
+        `username` VARCHAR(255) NOT NULL,
+        `game_id` INT NOT NULL,
+        `game_name` VARCHAR(255) NOT NULL,
+        `score` INT NOT NULL DEFAULT 0,
+        `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (`game_id`) REFERENCES `games`(`game_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
+    
+    mysqli_query($conn, $create_votes);
+
     // SQL query to check if the user has already voted
     $check_sql = "SELECT id FROM votes WHERE username = '$username' AND game_id = '$game_id'";
     $result = mysqli_query($conn, $check_sql);
 
     // If the user has voted already, show an error message
-    if (mysqli_num_rows($result) > 0) {
+    if ($result && mysqli_num_rows($result) > 0) {
         echo json_encode(['status' => 'error', 'message' => 'You have already voted for this game']);
     } else {
         // If not voted yet, insert the vote into the database
@@ -31,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo json_encode(['status' => 'success', 'message' => 'Your vote has been cast!']);
         } else {
             // Error message if the insert failed
-            echo json_encode(['status' => 'error', 'message' => 'Failed to record vote']);
+            echo json_encode(['status' => 'error', 'message' => 'Failed to record vote: ' . mysqli_error($conn)]);
         }
     }
 } else {
