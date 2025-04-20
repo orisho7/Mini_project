@@ -1,12 +1,12 @@
 .footer_container {
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .footer {
     background-color: #111;
     color: white;
     text-align: center;
-    padding: 20px;
+    padding: 10px;
 }
 
 .icon2 {

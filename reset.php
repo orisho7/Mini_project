@@ -6,8 +6,6 @@ $query_reset = "DELETE FROM votes WHERE username = '$username'";
 $result_reset = mysqli_query($conn, $query_reset);
 if ($result_reset) {
     echo "Votes reset successfully.";
-} else {
-    echo "Error resetting votes.";
 }
 
 ?>

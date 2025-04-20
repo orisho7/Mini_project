@@ -1,6 +1,6 @@
 <?php session_start();
 include("db.php");
-    include("gameo.php");
+include("gameo.php");
 ?>
 <html>
 
@@ -19,23 +19,23 @@ include("db.php");
     <div id="navbar"></div>
 
     <script>
-        fetch('navbar.php')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar').innerHTML = data;
-            });
+    fetch('navbar.php')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar').innerHTML = data;
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
-        confetti(text: "🔥🔥🔥" {
+    confetti(text: "🔥🔥🔥" {
 
-            particleCount: 100,
-            startVelocity: 30,
-            spread: 360,
-            origin: {
-                x: 0
-            }
-        }); // simple trigger
+        particleCount: 100,
+        startVelocity: 30,
+        spread: 360,
+        origin: {
+            x: 0
+        }
+    }); // simple trigger
     </script>
     <video autoplay muted loop id="myVideo">
         <source src="photos/27669-365224683_small.mp4" type="video/mp4">
@@ -44,8 +44,7 @@ include("db.php");
         <h1 class="H1">THE WINNER IS</h1>
     </div>
     <div class="slide">
-        <div class="img_container"> <img class="img"  src="<?php echo $game_url; ?>"
-                alt=""></div>
+        <div class="img_container"> <img class="img" src="<?php echo $game_url; ?>" alt=""></div>
         <div class="slide-content">
             <h1><?php echo $game_name; ?></h1>
             <p><?php echo $game_info; ?></p>
@@ -55,12 +54,12 @@ include("db.php");
     </div>
 
     <script>
-        fetch('gameo.php')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('voteCount').innerText = data;
-            })
-            .catch(error => console.error('Error:', error));
+    fetch('gameo.php')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('voteCount').innerText = data;
+        })
+        .catch(error => console.error('Error:', error));
     </script>
 
 
