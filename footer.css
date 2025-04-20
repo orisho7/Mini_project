@@ -52,23 +52,26 @@
 .btn-W,
 .btn-X,
 .btn-E {
-    background-color: rgb(255, 94, 0);
-    border: 1px solid rgb(255, 94, 0);
-    color: #fff;
+    background: none;
+    border: none;
+    color: #ffffff;
     padding: 10px 20px;
     border-radius: 10px;
+    object-fit: fill;
+    font-size: 50px;
+    font-family: "Black Ops One", system-ui;
 }
 
 .btn-W:hover,
 .btn-X:hover,
 .btn-E:hover {
-    background-color: #fff;
-    color: rgb(255, 94, 0);
+    border: 0.5px solid rgb(255, 123, 0);
+    color: rgb(255, 115, 0);
+    padding: 10px 20px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
-.bi-whatsapp,
-.bi-twitter-x,
-.bi-envelope-plus {
-    font-size: 24px;
-}
+.btn-W,
+.btn-X,
+.btn-E {}

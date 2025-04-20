@@ -27,15 +27,7 @@ include("gameo.php");
     </script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
-    confetti(text: "🔥🔥🔥" {
-
-        particleCount: 100,
-        startVelocity: 30,
-        spread: 360,
-        origin: {
-            x: 0
-        }
-    }); // simple trigger
+    confetti(); // simple trigger
     </script>
     <video autoplay muted loop id="myVideo">
         <source src="photos/27669-365224683_small.mp4" type="video/mp4">
