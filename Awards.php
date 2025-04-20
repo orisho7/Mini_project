@@ -45,8 +45,8 @@ $num_rocket = ($result_rocket);
         <h1 class="H1">THE WINNER IS</h1>
     </div>
     <div class="slide">
-        <img class="img" width="100%" , height="100%"
-            src="photos/rocket_league__2015__folder_icon_v2_by_foldericonboy_djculhc-375w-2x_2.png" alt="">
+        <div class="img_container"> <img class="img"  src="https://m.media-amazon.com/images/I/81n0457tIgL._AC_UF894,1000_QL80_.jpg"
+                alt=""></div>
         <div class="slide-content">
             <h1>Rocket League</h1>
             <p>Rocket League is a fast-paced sports game that blends soccer with rocket-powered cars.
