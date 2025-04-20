@@ -1,7 +1,7 @@
 <?php session_start();
 include("db.php");
-include("gameo.php");
-$num_rocket = ($result_rocket);
+include("import_games.php");
+    include("gameo.php");
 ?>
 <html>
 
@@ -45,16 +45,12 @@ $num_rocket = ($result_rocket);
         <h1 class="H1">THE WINNER IS</h1>
     </div>
     <div class="slide">
-        <div class="img_container"> <img class="img"  src="https://m.media-amazon.com/images/I/81n0457tIgL._AC_UF894,1000_QL80_.jpg"
+        <div class="img_container"> <img class="img"  src="<?php echo $game_url; ?>"
                 alt=""></div>
         <div class="slide-content">
-            <h1>Rocket League</h1>
-            <p>Rocket League is a fast-paced sports game that blends soccer with rocket-powered cars.
-                Developed by Psyonix, it launched in 2015 and quickly gained worldwide popularity.
-                Players use customizable vehicles to hit a large ball into the opponent’s goal.
-                The game offers various multiplayer modes, from casual to competitive ranked matches.
-                Rocket League also thrives in esports through the Rocket League Championship Series (RLCS).</p>
-            <h2>👤 <span id="voteCount">0</span></h2>
+            <h1><?php echo $game_name; ?></h1>
+            <p><?php echo $game_info; ?></p>
+            <h2>👤 <?php echo $vote_count; ?></h2>
         </div>
 
     </div>

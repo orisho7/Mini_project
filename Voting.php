@@ -1,6 +1,7 @@
 <?php
 // Include the connection
 include("count.php");
+include("import_games.php");
 if (!isset($_SESSION['username'])) {
     header("Location: login.php"); // Redirect to login page
     exit();
@@ -8,16 +9,17 @@ if (!isset($_SESSION['username'])) {
 
 
 $username = $_SESSION['username'];
+$voted_games = [];
+$query_votes = "SELECT v.game_id, g.game_name FROM votes v JOIN games g ON v.game_id = g.game_id WHERE v.username = '$username'";
+$result_votes = mysqli_query($conn, $query_votes);
 
-$query_rocket = "SELECT * FROM votes WHERE username = '$username' AND game_name = 'Rocket League'";
-$result_rocket = mysqli_query($conn, $query_rocket);
-$voted_rocket = (mysqli_num_rows($result_rocket) > 0) ? 'true' : 'false';
+while ($row = mysqli_fetch_assoc($result_votes)) {
 
+    $voted_games[] = ['id' => $row['game_id'], 'name' => $row['game_name']];
+}
+$voted_games_json = json_encode($voted_games);
+?>
 
-// Check for Cyberpunk votes
-$query_cyber = "SELECT * FROM votes WHERE username = '$username' AND game_name = 'Cyberpunk'";
-$result_cyber = mysqli_query($conn, $query_cyber);
-$voted_cyber = (mysqli_num_rows($result_cyber) > 0) ? 'true' : 'false'; ?>
 <html>
 
 <head>
@@ -41,71 +43,61 @@ $voted_cyber = (mysqli_num_rows($result_cyber) > 0) ? 'true' : 'false'; ?>
     </script>
     <script>
         let score = 0;
-        let hasVoted_cyber = <?php echo ($voted_cyber === 'true') ? 'true' : 'false'; ?>;
-        let hasVoted_rocket = <?php echo ($voted_rocket === 'true') ? 'true' : 'false'; ?>;
+        let votedGames = <?php echo $voted_games_json; ?>;
+        let hasVoted = votedGames.length > 0;
 
-
-
-        function addScore(gameName, buttonElement) {
-            if (gameName == "Rocket League" && !hasVoted_rocket && !hasVoted_cyber) {
-                score += 1;
-                buttonElement.textContent = "✓ Voted";
-                buttonElement.disabled = true;
-
-
-                hasVoted_rocket = true;
-                fetch("count.php", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded"
-                    },
-                    body: "score=" + score + "&game_name=" + encodeURIComponent(gameName)
-                });
-
-            } else if (gameName == "Cyberpunk" && !hasVoted_cyber && !hasVoted_rocket) {
-                score += 1;
-                buttonElement.textContent = "✓ Voted";
-                buttonElement.disabled = true;
-                hasVoted_cyber = true;
-                fetch("count.php", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded"
-                    },
-                    body: "score=" + score + "&game_name=" + encodeURIComponent(gameName)
-                });
-
-            } else {
-                alert("You already voted!");
-            }
+        function hasVotedForGame(gameId) {
+            return votedGames.some(game => game.id === gameId);
         }
+
+
+        function addScore(gameId, gameName, buttonElement) {
+            if (hasVoted) {
+                alert("You already voted!");
+                return;
+            }
+            score += 1;
+            buttonElement.textContent = "✓ Voted";
+            buttonElement.disabled = true;
+            hasVoted = true;
+            votedGames.push({ id: gameId, name: gameName });
+
+            fetch("count.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "score=" + score + "&game_id=" + gameId + "&game_name=" + encodeURIComponent(gameName)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'error') {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while submitting your vote.');
+                });
+        }
+
     </script>
     <script>
         // Check if user has already voted when page loads
         window.onload = function () {
 
             // Disable all vote buttons and update their text
-            const rocketButtons = document.getElementById("btn-donate_R");
-            const cyberButtons = document.getElementById("vote");
 
-            if (hasVoted_rocket && rocketButtons) {
-                rocketButtons.disabled = true;
-                cyberButtons.disabled = true;
-                cyberButtons.textContent = "Didn't Vote";
-                rocketButtons.textContent = "✓ Voted";
-
-            }
-            if (hasVoted_cyber && cyberButtons) {
-                cyberButtons.disabled = true;
-                rocketButtons.disabled = true;
-
-                rocketButtons.textContent = "Didn't Vote";
-
-                cyberButtons.textContent = "✓ Voted";
+            if (hasVoted) {
+                const voteButtons = document.querySelectorAll('.btn-donate');
+                voteButtons.forEach(button => {
+                    button.disabled = true;
+                    button.textContent = "Already Voted";
+                });
             }
 
+        }
 
-        };
     </script>
 
 
@@ -121,33 +113,20 @@ $voted_cyber = (mysqli_num_rows($result_cyber) > 0) ? 'true' : 'false'; ?>
     </video>
     <div class="content">
 
-
-
-
         <div class="cards">
-            <div class="cardo">
-                <img class="photoG"
-                    src="photos/rocket_league__2015__folder_icon_v2_by_foldericonboy_djculhc-375w-2x_2.png" alt="">
-                <p class="name">Rocket League</p>
-                <div>
-                    <p class="catog">Sports</p>
-                    <p class="catog">Race</p>
-
+            <?php foreach ($games as $game): ?>
+                <div class="cardo">
+                    <img class="photoG" src="<?php echo $game['game_url']; ?>" alt="">
+                    <p class="name"><?php echo $game['game_name']; ?></p>
+                    <div>
+                        <p class="catog">Sports</p>
+                        <p class="catog">Race</p>
+                    </div>
+                    <button onclick="addScore('<?php echo $game['game_id']; ?>', '<?php echo $game['game_name']; ?>', this)"
+                        class="btn-donate">Vote
+                        now</button>
                 </div>
-                <button id="btn-donate_R" onclick=" addScore('Rocket League' , this)" class="btn-donate">Vote
-                    now</button>
-            </div>
-            <div class="cardo">
-                <img class="photoG"
-                    src="https://www.dolby.com/siteassets/xf-site/content-detail-pages/cyberpunk-2077.jpg" alt="">
-                <p class="name">Cyberpunk 2077</p>
-                <div>
-                    <p class="catog">Open-world</p>
-                    <p class="catog">RPG</p>
-                </div>
-                <button onclick="addScore('Cyberpunk' , this)" class="btn-donate" id="vote">Vote now</button>
-
-            </div>
+            <?php endforeach; ?>
         </div>
 
 
