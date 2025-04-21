@@ -26,15 +26,15 @@ include("../includes/gameo.php"); ?>
     <div id="navbar"></div>
 
     <script>
-        fetch('../includes/navbar.php')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar').innerHTML = data;
-            });
+    fetch('../includes/navbar.php')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar').innerHTML = data;
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
-        confetti(); // simple trigger
+    confetti(); // simple trigger
     </script>
     <video autoplay muted loop id="myVideo">
         <source src="../assets/photos/27669-365224683_small.mp4" type="video/mp4">
@@ -48,19 +48,19 @@ include("../includes/gameo.php"); ?>
         </div>
         <div class="slide-content">
             <h1><?php echo $game_name; ?></h1>
-            <p><?php echo $game_info; ?></p>
-            <h2>👤 <?php echo $vote_count; ?></h2>
+            <p><?php echo $game_info; ?> 👤 <?php echo $vote_count; ?></p>
         </div>
 
+        ou
     </div>
 
     <script>
-        fetch('../includes/gameo.php')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('voteCount').innerText = data;
-            })
-            .catch(error => console.error('Error:', error));
+    fetch('../includes/gameo.php')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('voteCount').innerText = data;
+        })
+        .catch(error => console.error('Error:', error));
     </script>
 
 

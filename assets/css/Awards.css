@@ -48,23 +48,16 @@ h1 {
 .slide {
     display: flex;
     flex-direction: row;
-    /* centers vertically */
-    /* spacing between items */
-    gap: 10px;
+    gap: 20px;
     background-color: rgba(48, 45, 45, 0.61);
     border: #ff8800 10px solid;
     border-radius: 20px;
     margin-top: 200px;
     width: 80%;
-    padding: auto;
+    padding: 20px;
     position: absolute;
     left: -600px;
-
     max-width: 1800px;
-    /* or fixed width like 800px */
-    min-height: 500px;
-
-
     -webkit-animation: slide 1s forwards;
     animation: slide 1s forwards;
 }
@@ -75,26 +68,35 @@ h1 {
     height: auto;
 }
 
+h2 {
+    padding: 0;
+    margin: 0;
+}
+
 .img_container {
-    min-height: 400px;
-    aspect-ratio: 3/4;
-    display: block;
-    contain: layout paint;
+    flex-shrink: 0;
+    border: #ff5e00 10px solid;
+    border-radius: 10px;
+    width: 300px;
+    height: 400px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .img {
-    width: 300px;
-    height: 400px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
 .slide-content {
-
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    width: 80%;
-    height: 80%;
+    gap: 20px;
+    padding: 10px;
 }
 
 .slide-content p {
