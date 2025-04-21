@@ -1,5 +1,6 @@
 <?php
 session_start();
+include('../auth/db.php');
 
 // Force the browser to not cache this page
 
@@ -11,7 +12,6 @@ if (isset($_SESSION['username'])) {
 ?>
 
 <?php
-include('../auth/db.php');
 
 $username = $_POST['username'];
 $password = $_POST['password'];

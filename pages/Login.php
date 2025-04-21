@@ -19,7 +19,6 @@ header("Expires: 0");
 
     <link rel="stylesheet" href="../assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 
 
@@ -36,20 +35,6 @@ header("Expires: 0");
         });
     </script>
 
-    <?php if (isset($_GET['error'])): ?>
-    <div style="color: red; text-align:center;">
-        <?php
-            if ($_GET['error'] == 'invalid_password')
-                echo "⚠️ Invalid password!";
-            elseif ($_GET['error'] == 'invalid_username')
-                echo "⚠️ Invalid username!";
-            elseif (isset($_GET["error"]) && str_contains($_GET["error"], "Duplicate entry")) {
-                echo "⚠️ This username is already taken.";
-            }
-
-            ?>
-    </div>
-    <?php endif; ?>
 
 
 
@@ -59,8 +44,11 @@ header("Expires: 0");
     </video>
 
     <div class="login-container">
+
+
         <form id="login-form" class="login-form" action="../auth/login_logic.php" method="post">
             <h1 class="Head" align="center">Login</h1>
+
             <input class="name" type="text" name="username" placeholder="👤 Username" required>
             <input type="password" name="password" placeholder="🛑 Password" required>
             <a class="signup" href="#" onclick="showSignup()">Signup</a>
@@ -73,6 +61,7 @@ header("Expires: 0");
             <a class="login" href="#" onclick="showLogin()">Login</a>
             <input class="submit" type="submit" value="Signup">
         </form>
+
     </div>
 
 </body>

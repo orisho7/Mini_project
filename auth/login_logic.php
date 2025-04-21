@@ -33,12 +33,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: ../pages/index.php");
             exit();
         } else {
-            header("Location: login.php?error=invalid_password");
+            header("Location: ../pages/login.php?error=invalid_password");
         }
     } else {
-        header("Location: login.php?error=invalid_username");
+        header("Location:  ../pages/login.php?error=invalid_username");
     }
 } else {
-    header("Location: login.php?error=invalid");
+    header("Location:  ../pages/login.php?error=invalid");
 }
 ?>

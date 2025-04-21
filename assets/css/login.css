@@ -7,6 +7,10 @@ body {
 
 }
 
+.login_error {
+    color: red;
+}
+
 #myVideo {
     position: fixed;
     right: 0;
