@@ -10,7 +10,6 @@ if (isset($_SESSION["username"])) {
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameRank</title>
@@ -21,10 +20,28 @@ if (isset($_SESSION["username"])) {
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/winners.css">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Optimized Google Fonts loading -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap"
+        media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" media="print"
+        onload="this.media='all'">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" media="print"
+        onload="this.media='all'">
+
+    <!-- Fallback in case JavaScript is disabled -->
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap">
+    </noscript>
 </head>
 
 <body>
@@ -37,11 +54,11 @@ if (isset($_SESSION["username"])) {
     <!-- Navigation Bar fetching -->
     <div id="navbar"></div>
     <script>
-    fetch('../includes/navbar.php')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('navbar').innerHTML = data;
-        });
+        fetch('../includes/navbar.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
     </script>
 
     <div class="content">
@@ -67,11 +84,11 @@ if (isset($_SESSION["username"])) {
         <!-- Winners fetching -->
         <div id="winners"></div>
         <script>
-        fetch('../includes/winners.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('winners').innerHTML = data;
-            });
+            fetch('../includes/winners.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('winners').innerHTML = data;
+                });
         </script>
 
         <footer class="footer">

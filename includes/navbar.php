@@ -1,7 +1,26 @@
+<!-- Preconnect to Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Optimized Google Fonts loading -->
+<link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap">
+
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" media="print"
+    onload="this.media='all'">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" media="print"
+    onload="this.media='all'">
+
+<!-- Fallback in case JavaScript is disabled -->
+<noscript>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap">
+</noscript>
+
 <link rel="stylesheet" href="../assets/css/navbar.css">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-    rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
 <div class="navcontainer">
     <nav class="navbar">
         <ul> <?php

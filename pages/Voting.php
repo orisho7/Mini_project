@@ -13,120 +13,24 @@ if (!isset($_SESSION['username'])) {
 <html>
 
 <head>
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Optimized Google Fonts loading -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" media="print"
+        onload="this.media='all'">
+
+    <!-- Fallback in case JavaScript is disabled -->
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap">
+    </noscript>
+
     <link rel="mark" href="">
     <link rel="stylesheet" href="../assets/css/voting.css">
     <link rel="stylesheet" href="../assets/css/footer.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-
-
-    <div id="navbar"></div>
-
-    <script>
-        fetch('../includes/navbar.php')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar').innerHTML = data;
-            });
-    </script>
-    <script>
-        let score = 0;
-        let votedGames = <?php echo $voted_games_json; ?>;
-        let hasVoted = votedGames.length > 0;
-
-        function hasVotedForGame(gameId) {
-            return votedGames.some(game => game.id === gameId);
-        }
-
-
-        function addScore(gameId, gameName, buttonElement) {
-            if (hasVoted) {
-                alert("You already voted!");
-                return;
-            }
-            score += 1;
-            buttonElement.textContent = "✓ Voted";
-            buttonElement.disabled = true;
-            hasVoted = true;
-            votedGames.push({
-                id: gameId,
-                name: gameName
-            });
-
-            fetch("../includes/count.php", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                body: "score=" + score + "&game_id=" + gameId + "&game_name=" + encodeURIComponent(gameName)
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'error') {
-                        alert(data.message);
-                    }
-                })
-
-        }
-    </script>
-    <script>
-        function reset() {
-            // Make an AJAX call to a PHP reset script
-            fetch("../includes/reset.php", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        // Reset the UI
-                        hasVoted = false;
-                        votedGames = [];
-
-                        // Re-enable all vote buttons
-                        const voteButtons = document.querySelectorAll('.btn-donate');
-                        voteButtons.forEach(button => {
-                            button.disabled = false;
-                            button.textContent = "Vote now";
-                        });
-
-                        alert("Your votes have been reset!");
-                        // Optionally refresh the page
-                        location.reload();
-                    } else {
-                        alert("Error resetting votes: " + data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Reset completed.');
-                });
-        }
-        // Check if user has already voted when page loads
-        window.onload = function () {
-
-            // Disable all vote buttons and update their text
-
-            if (hasVoted == true) {
-                const voteButtons = document.querySelectorAll('.btn-donate');
-                voteButtons.forEach(button => {
-                    button.disabled = true;
-                    button.textContent = "Already Voted";
-                });
-            }
-
-        }
-    </script>
-
-
-
-
-
-
 </head>
 
 <body>
@@ -191,3 +95,102 @@ if (!isset($_SESSION['username'])) {
 </body>
 
 </html>
+<div id="navbar"></div>
+
+<script>
+    fetch('../includes/navbar.php')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar').innerHTML = data;
+        });
+</script>
+<script>
+    let score = 0;
+    let votedGames = <?php echo $voted_games_json; ?>;
+    let hasVoted = votedGames.length > 0;
+
+    function hasVotedForGame(gameId) {
+        return votedGames.some(game => game.id === gameId);
+    }
+
+
+    function addScore(gameId, gameName, buttonElement) {
+        if (hasVoted) {
+            alert("You already voted!");
+            return;
+        }
+        score += 1;
+        buttonElement.textContent = "✓ Voted";
+        buttonElement.disabled = true;
+        hasVoted = true;
+        votedGames.push({
+            id: gameId,
+            name: gameName
+        });
+
+        fetch("../includes/count.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: "score=" + score + "&game_id=" + gameId + "&game_name=" + encodeURIComponent(gameName)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'error') {
+                    alert(data.message);
+                }
+            })
+
+    }
+</script>
+<script>
+    function reset() {
+        // Make an AJAX call to a PHP reset script
+        fetch("../includes/reset.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // Reset the UI
+                    hasVoted = false;
+                    votedGames = [];
+
+                    // Re-enable all vote buttons
+                    const voteButtons = document.querySelectorAll('.btn-donate');
+                    voteButtons.forEach(button => {
+                        button.disabled = false;
+                        button.textContent = "Vote now";
+                    });
+
+                    alert("Your votes have been reset!");
+                    // Optionally refresh the page
+                    location.reload();
+                } else {
+                    alert("Error resetting votes: " + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Reset completed.');
+            });
+    }
+    // Check if user has already voted when page loads
+    window.onload = function () {
+
+        // Disable all vote buttons and update their text
+
+        if (hasVoted == true) {
+            const voteButtons = document.querySelectorAll('.btn-donate');
+            voteButtons.forEach(button => {
+                button.disabled = true;
+                button.textContent = "Already Voted";
+            });
+        }
+
+    }
+</script>

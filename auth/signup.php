@@ -32,6 +32,6 @@ if ($result) {
     exit();
 } else {
     // Show error (you can improve this with better messages/logging)
-    header("Location: login.php?error=Signup failed: Duplicate entry '$username' for key 'username'");
+    header("Location: ../pages/login.php?error=Signup failed: Duplicate entry '$username' for key 'username'");
 }
 ?>

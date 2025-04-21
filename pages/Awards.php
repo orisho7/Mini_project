@@ -5,13 +5,21 @@ include("../includes/gameo.php"); ?>
 
 <head>
     <link rel="mark" href="">
-    <link rel="stylesheet" href="../assets/css/Awards.css">
+    <!-- Preload fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" as="style">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        as="style">
 
+    <!-- Add font-display: swap -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" media="print"
+        onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        media="print" onload="this.media='all'">
+
+    <link rel="stylesheet" href="../assets/css/Awards.css">
     <link rel="stylesheet" href="../assets/css/voting.css">
     <link rel="stylesheet" href="../assets/css/footer.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body>
@@ -35,7 +43,9 @@ include("../includes/gameo.php"); ?>
         <h1 class="H1">THE WINNER IS</h1>
     </div>
     <div class="slide">
-        <div class="img_container"> <img class="img" src="<?php echo $game_url; ?>" alt=""></div>
+        <div class="img_container">
+            <img class="img" src="<?php echo $game_url; ?>" alt="" width="300" height="400" loading="lazy">
+        </div>
         <div class="slide-content">
             <h1><?php echo $game_name; ?></h1>
             <p><?php echo $game_info; ?></p>

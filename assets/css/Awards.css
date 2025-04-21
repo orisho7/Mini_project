@@ -75,14 +75,21 @@ h1 {
     height: auto;
 }
 
+.img_container {
+    min-height: 400px;
+    aspect-ratio: 3/4;
+    display: block;
+    contain: layout paint;
+}
+
 .img {
-    width: 433px;
-    height: auto;
-    object-fit: contain;
-  }
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+}
 
 .slide-content {
-    
+
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -114,4 +121,14 @@ h1 {
     100% {
         left: 180px;
     }
+}
+
+.footer {
+    contain: layout style;
+    min-height: 200px;
+}
+
+/* Prevent layout shifts from font loading */
+html {
+    font-display: swap;
 }

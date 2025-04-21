@@ -18,22 +18,42 @@ header("Expires: 0");
     <link rel="stylesheet" href="../assets/css/login.css">
 
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+    <!-- Optimized Google Fonts loading -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" media="print"
+        onload="this.media='all'">
 
-
-
+    <!-- Fallback in case JavaScript is disabled -->
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap">
+    </noscript>
 </head>
 
 <body>
     <div id="navbar"></div>
     <script>
-    fetch('../includes/navbar.php')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('navbar').innerHTML = data;
-        });
+        fetch('../includes/navbar.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
     </script>
+    <script>
+        function showSignup() {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('signup-form').style.display = 'flex';
+        }
+
+        function showLogin() {
+            document.getElementById('signup-form').style.display = 'none';
+            document.getElementById('login-form').style.display = 'flex';
+        }
+    </script>
+
 
 
 
@@ -49,6 +69,20 @@ header("Expires: 0");
         <form id="login-form" class="login-form" action="../auth/login_logic.php" method="post">
             <h1 class="Head" align="center">Login</h1>
 
+            <?php if (isset($_GET['error'])): ?>
+                <div class="login_error">
+                    <?php
+                    if ($_GET['error'] == 'invalid_password')
+                        echo "⚠️ Invalid password!";
+                    elseif ($_GET['error'] == 'invalid_username')
+                        echo "⚠️ Invalid username!";
+                    elseif (isset($_GET["error"]) && str_contains($_GET["error"], "Duplicate entry")) {
+                        echo "⚠️ This username is already taken.";
+                    }
+
+                    ?>
+                </div>
+            <?php endif; ?>
             <input class="name" type="text" name="username" placeholder="👤 Username" required>
             <input type="password" name="password" placeholder="🛑 Password" required>
             <a class="signup" href="#" onclick="showSignup()">Signup</a>
