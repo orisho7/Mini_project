@@ -3,12 +3,13 @@
     border: none;
     padding: 0;
     cursor: pointer;
-    margin-top: 90px;
+    margin-top: 60px;
     font-size: 50px;
 }
 
 .cards {
     display: flex;
+    margin-top: 50px;
     gap: 20px;
     /* space between cards */
     justify-content: center;
@@ -20,14 +21,15 @@
 .cardo {
     position: relative;
     width: 250px;
-    height: 600px;
+    height: 550px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 12px;
     gap: 12px;
     border-radius: 8px;
-
+    margin-top: 20px;
+    margin-bottom: 20px;
     transform: translateY(-1000px);
     opacity: 0;
     animation: slideDown 2s ease-out forwards;
@@ -235,4 +237,5 @@
         inset 4px 4px 8px rgba(175, 230, 255, 0.5),
         inset -4px -4px 8px #df5708;
     margin-top: auto;
+    margin-left: 650px;
 }

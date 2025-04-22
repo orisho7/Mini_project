@@ -38,15 +38,16 @@ if (!isset($_SESSION['username'])) {
         <source src="../assets/photos/27669-365224683_small.mp4" type="video/mp4">
     </video>
     <div class="content">
-        <button class="btn-reset" onclick="reset()"> Reset</button>
+        <script>
+       </script>
+        <button id = "reset" class="btn-reset" onclick="reset()"> Reset</button>
         <div class="cards">
             <?php foreach ($games as $game): ?>
                 <div class="cardo">
                     <img loading="lazy" class="photoG" src="<?php echo $game['game_url']; ?>" alt="">
                     <p class="name"><?php echo $game['game_name']; ?></p>
                     <div>
-                        <p class="catog">Sports</p>
-                        <p class="catog">Race</p>
+                        
                     </div>
                     <button onclick="addScore('<?php echo $game['game_id']; ?>', '<?php echo $game['game_name']; ?>', this)"
                         class="btn-donate">Vote
@@ -145,6 +146,10 @@ if (!isset($_SESSION['username'])) {
     }
 </script>
 <script>
+      if (hasVoted){
+            document.getElementById('reset').style.display = 'none';
+
+        }
     function reset() {
         // Make an AJAX call to a PHP reset script
         fetch("../includes/reset.php", {
@@ -165,18 +170,20 @@ if (!isset($_SESSION['username'])) {
                     voteButtons.forEach(button => {
                         button.disabled = false;
                         button.textContent = "Vote now";
+                        location.reload();
+
                     });
 
-                    alert("Your votes have been reset!");
-                    // Optionally refresh the page
-                    location.reload();
                 } else {
                     alert("Error resetting votes: " + data.message);
+                    location.reload();
+
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Reset completed.');
+                location.reload();
+
             });
     }
     // Check if user has already voted when page loads
