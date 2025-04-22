@@ -42,12 +42,9 @@
    ';
         }
         ?>
-
-
+<script src="../assets/js/navbar.js"></script>
             <li>
-                <a href="file:///C:/Users/apood/Desktop/Mini_project/index.html" class="links">
-                    <b>About us</b>
-                </a>
+                <button class="btn" onclick="popup()">👤</button>
             </li>
             <li>
                 <a href="file:///C:/Users/apood/Desktop/Mini_project/index.html" class="links">
@@ -55,12 +52,12 @@
                 </a>
             </li>
             <li>
-                <a href="http://localhost/Mini_project/pages/Awards.php" class="links">
+                <a href="Awards.php" class="links">
                     <b>Most voted</b>
                 </a>
             </li>
             <li>
-                <a href="file:///C:/Users/apood/Desktop/Mini_project/index.php" class="links">
+                <a href="index.php" class="links">
                     <b>home</b>
                 </a>
             </li>
@@ -72,3 +69,4 @@
         </ul>
     </nav>
 </div>
+

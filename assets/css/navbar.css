@@ -10,6 +10,22 @@
     z-index: 2;
     margin-bottom: 200px;
 }
+.btn {
+    text-align: center;
+    text-decoration: none;
+    position: relative;
+    background-color: #f26135;
+    display: block;
+
+    font-size: 32px;
+    transition: all 0.5s;
+    margin: auto 10px;
+    padding-top: 12px;
+    margin-right: 50px;
+    border: none;
+    cursor: pointer;
+
+}
 
 .navbar ul {
     list-style-type: none;
@@ -18,10 +34,8 @@
     overflow: hidden;
     width: 100%;
     height: auto;
-    background-color: rgba(0, 0, 0, 0.014);
+    background-color: rgba(0, 0, 0, 0);
 }
-
-
 
 .navbar ul li text {
     color: #ffffff;
@@ -54,10 +68,7 @@
     color: #ffffffab;
     text-shadow: rgb(236, 128, 5) 0px 7px 1px;
 
-
 }
-
-
 
 .site-name {
     color: #ffffff;
@@ -66,8 +77,6 @@
     text-shadow: #ffb27b 5px 0 20px;
 
 }
-
-
 
 .navbar a.links:hover {
     color: #ffb27b;
@@ -93,3 +102,4 @@
 .navbar li {
     float: right;
 }
+

@@ -45,7 +45,7 @@ if (isset($_SESSION["username"])) {
 </head>
 
 <body>
-
+<div id="overlay" class="overlay" onclick="closePopup()"></div>
     <!-- Background Video -->
     <video autoplay muted loop id="myVideo">
         <source src="../assets/photos/27669-365224683_small.mp4" type="video/mp4">
@@ -80,7 +80,47 @@ if (isset($_SESSION["username"])) {
                 </button>
             </div>
         </div>
+        <script src="../assets/js/navbar.js">        popup(); closePopup();
+        </script>
 
+        <div id="overlay" class="overlay">
+
+            <style>
+                #overlay {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100vw;
+                    height: 100vh;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 3;
+                    pointer-events: none;
+
+                }
+            </style>
+            <div id="box" class="box">
+                
+                <h1>You have already voted</h1>
+                <h1>222</h1>
+                <style>
+                    .box {
+                        display: none;
+
+                        background-color: white;
+                        padding: 2rem;
+                        border-radius: 10px;
+                        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+                        pointer-events: auto;
+                        /* keeps this clickable */}
+                </style>
+
+            </div>
+
+        </div>
+       
         <!-- Winners fetching -->
         <div id="winners"></div>
         <script>
@@ -109,7 +149,6 @@ if (isset($_SESSION["username"])) {
                     </li>
                 </ul>
 
-
             </div>
     </div>
 
@@ -117,3 +156,4 @@ if (isset($_SESSION["username"])) {
 </body>
 
 </html>
+

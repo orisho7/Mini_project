@@ -7,7 +7,6 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-
 ?>
 
 <html>
@@ -39,26 +38,23 @@ if (!isset($_SESSION['username'])) {
     </video>
     <div class="content">
         <script>
-       </script>
-        <button id = "reset" class="btn-reset" onclick="reset()"> Reset</button>
+        </script>
+        <button id="reset" class="btn-reset" onclick="reset()"> Reset</button>
         <div class="cards">
             <?php foreach ($games as $game): ?>
-                <div class="cardo">
-                    <img loading="lazy" class="photoG" src="<?php echo $game['game_url']; ?>" alt="">
-                    <p class="name"><?php echo $game['game_name']; ?></p>
-                    <div>
-                        
-                    </div>
-                    <button onclick="addScore('<?php echo $game['game_id']; ?>', '<?php echo $game['game_name']; ?>', this)"
-                        class="btn-donate">Vote
-                        now</button>
+            <div class="cardo">
+                <img loading="lazy" class="photoG" src="<?php echo $game['game_url']; ?>" alt="">
+                <p class="name"><?php echo $game['game_name']; ?></p>
+                <div>
+
                 </div>
+                <button onclick="addScore('<?php echo $game['game_id']; ?>', '<?php echo $game['game_name']; ?>', this)"
+                    class="btn-donate">Vote
+                    now</button>
+            </div>
             <?php endforeach; ?>
         </div>
         <button class="btn-winner" onclick="window.location.href='../pages/Awards.php'">See the winner</button>
-
-
-
 
         <div class="footer_container">
             <footer class="footer">
@@ -86,7 +82,6 @@ if (!isset($_SESSION['username'])) {
                             </button></li>
                     </ul>
 
-
                 </div>
         </div>
 
@@ -99,105 +94,107 @@ if (!isset($_SESSION['username'])) {
 <div id="navbar"></div>
 
 <script>
-    fetch('../includes/navbar.php')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('navbar').innerHTML = data;
-        });
+fetch('../includes/navbar.php')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('navbar').innerHTML = data;
+    });
 </script>
 <script>
-    let score = 0;
-    let votedGames = <?php echo $voted_games_json; ?>;
-    let hasVoted = votedGames.length > 0;
+let score = 0;
+let votedGames = <?php echo $voted_games_json; ?>;
+let hasVoted = votedGames.length > 0;
 
-    function hasVotedForGame(gameId) {
-        return votedGames.some(game => game.id === gameId);
+function hasVotedForGame(gameId) {
+    return votedGames.some(game => game.id === gameId);
+}
+
+function addScore(gameId, gameName, buttonElement) {
+    if (hasVoted) {
+        alert("You already voted!");
+        return;
     }
+    score += 1;
+    buttonElement.textContent = "✓ Voted";
+    buttonElement.disabled = true;
+    hasVoted = true;
+    votedGames.push({
+        id: gameId,
+        name: gameName
+    });
 
-
-    function addScore(gameId, gameName, buttonElement) {
-        if (hasVoted) {
-            alert("You already voted!");
-            return;
-        }
-        score += 1;
-        buttonElement.textContent = "✓ Voted";
-        buttonElement.disabled = true;
-        hasVoted = true;
-        votedGames.push({
-            id: gameId,
-            name: gameName
-        });
-
-        fetch("../includes/count.php", {
+    fetch("../includes/count.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
             body: "score=" + score + "&game_id=" + gameId + "&game_name=" + encodeURIComponent(gameName)
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'error') {
-                    alert(data.message);
-                }
-            })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'error') {
+                alert(data.message);
+            }
+        })
 
-    }
+}
 </script>
 <script>
-      if (hasVoted){
-            document.getElementById('reset').style.display = 'none';
+if (hasVoted) {
+    document.getElementById('reset').style.display = 'none';
 
-        }
-    function reset() {
-        // Make an AJAX call to a PHP reset script
-        fetch("../includes/reset.php", {
+}
+
+
+function reset() {
+    // Make an AJAX call to a PHP reset script
+    fetch("../includes/reset.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
             }
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    // Reset the UI
-                    hasVoted = false;
-                    votedGames = [];
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                // Reset the UI
+                hasVoted = false;
+                votedGames = [];
 
-                    // Re-enable all vote buttons
-                    const voteButtons = document.querySelectorAll('.btn-donate');
-                    voteButtons.forEach(button => {
-                        button.disabled = false;
-                        button.textContent = "Vote now";
-                        location.reload();
-
-                    });
-
-                } else {
-                    alert("Error resetting votes: " + data.message);
+                // Re-enable all vote buttons
+                const voteButtons = document.querySelectorAll('.btn-donate');
+                voteButtons.forEach(button => {
+                    button.disabled = false;
+                    button.textContent = "Vote now";
                     location.reload();
 
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
+                });
+
+            } else {
+                alert("Error resetting votes: " + data.message);
                 location.reload();
 
-            });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            location.reload();
+
+        });
+}
+// Check if user has already voted when page loads
+window.onload = function() {
+
+    // Disable all vote buttons and update their text
+
+    if (hasVoted == true) {
+        const voteButtons = document.querySelectorAll('.btn-donate');
+        voteButtons.forEach(button => {
+            button.disabled = true;
+            button.textContent = "Already Voted";
+        });
     }
-    // Check if user has already voted when page loads
-    window.onload = function () {
 
-        // Disable all vote buttons and update their text
-
-        if (hasVoted == true) {
-            const voteButtons = document.querySelectorAll('.btn-donate');
-            voteButtons.forEach(button => {
-                button.disabled = true;
-                button.textContent = "Already Voted";
-            });
-        }
-
-    }
+}
 </script>
+

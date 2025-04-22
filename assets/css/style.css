@@ -1,24 +1,13 @@
 html,
 body {
-    height: 100%;
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    font-family: "Black Ops One", system-ui;
-    font-display: swap;
-    font-weight: 10;
-    font-style: normal;
-
+    padding: 0;
 
 }
 
 .content {
     flex: 1;
     /* pushes footer to bottom */
-
-
-
 
 }
 
@@ -72,8 +61,6 @@ body {
     padding-top: 30px;
     text-shadow: #ff0000 1px 0 10px;
 
-
-
 }
 
 #background-video {
@@ -88,10 +75,6 @@ body {
     /* Puts the video behind the text */
 
 }
-
-
-
-
 
 .mos {
     margin-top: 100px;
@@ -129,7 +112,6 @@ body {
     text-shadow: #111 1px 0 10px;
 }
 
-
 @keyframes typing {
     from {
         width: 0
@@ -139,7 +121,6 @@ body {
         width: 100%
     }
 }
-
 
 .button {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -159,7 +140,6 @@ body {
     font-family: "Silkscreen", sans-serif;
     font-weight: 300;
     font-style: normal;
-
 
 }
 
@@ -194,7 +174,6 @@ body {
     opacity: 1;
     right: 0;
 }
-
 
 @property --angle {
     syntax: "<angle>";
@@ -233,3 +212,4 @@ body {
     filter: blur(1.5rem);
     opacity: 0.8;
 }
+
