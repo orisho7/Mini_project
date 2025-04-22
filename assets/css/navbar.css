@@ -1,7 +1,6 @@
 /* Navigation bar */
 
 .navbar {
-    background: #f26135;
     border-bottom: #ffffff 5px solid;
     display: flex;
     position: fixed;
@@ -17,7 +16,7 @@
     text-align: center;
     text-decoration: none;
     position: relative;
-    background-color: #f26135;
+    background-color: #f2613500;
     color: white;
     display: block;
 align-self:center;
