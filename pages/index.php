@@ -19,6 +19,7 @@ if (isset($_SESSION["username"])) {
     <link rel="stylesheet" href="../assets/css/navbar.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/winners.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
 
     <!-- Preconnect to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,29 +45,32 @@ if (isset($_SESSION["username"])) {
     </noscript>
 
     <style>
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* This creates the dim effect */
-            z-index: 998; /* Just below the popup box */
-        }
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        /* This creates the dim effect */
+        z-index: 998;
+        /* Just below the popup box */
+    }
 
-        .box {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            z-index: 999; /* Above the overlay */
-        }
+    .box {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        z-index: 999;
+        /* Above the overlay */
+    }
     </style>
 </head>
 
@@ -79,11 +83,11 @@ if (isset($_SESSION["username"])) {
     <!-- Navigation Bar fetching -->
     <div id="navbar"></div>
     <script>
-        fetch('../includes/navbar.php')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar').innerHTML = data;
-            });
+    fetch('../includes/navbar.php')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar').innerHTML = data;
+        });
     </script>
 
     <div class="content">
@@ -105,7 +109,9 @@ if (isset($_SESSION["username"])) {
                 </button>
             </div>
         </div>
-        <script src="../assets/js/navbar.js">        popup(); closePopup();
+        <script src="../assets/js/navbar.js">
+        popup();
+        closePopup();
         </script>
 
         <div id="overlay" class="overlay" onclick="closePopup()"></div>
@@ -113,15 +119,30 @@ if (isset($_SESSION["username"])) {
             <h1>You have already voted</h1>
             <h1>222</h1>
         </div>
-       
+
         <!-- Winners fetching -->
-        <div id="winners"></div>
+        <div id="winners" class="winnerContainer"></div>
         <script>
-            fetch('../includes/winners.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('winners').innerHTML = data;
-                });
+        fetch('../includes/winners.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('winners').innerHTML = data;
+            });
+
+        // Scroll animation
+        const winnersSection = document.getElementById('winners');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        observer.observe(winnersSection);
         </script>
 
         <footer class="footer">
@@ -149,4 +170,3 @@ if (isset($_SESSION["username"])) {
 </body>
 
 </html>
-

@@ -38,6 +38,18 @@
     font-style: normal;
 }
 
+/* Scroll animation styles */
+#winners {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 5s ease-out, transform 5s ease-out;
+}
+
+#winners.visible {
+    opacity: 1;
+    transform: translateY(100px);
+}
+
 .winnerbox {
     box-shadow: white 0 15px 0px;
     background-color: rgba(255, 94, 0, 0.479);
@@ -49,6 +61,7 @@
     justify-content: center;
     align-items: center;
     margin: auto;
+    margin-top: 100px;
     /* Remove margin, as we are centering it with flexbox */
     font-family: "Black Ops One", system-ui;
 

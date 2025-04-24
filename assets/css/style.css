@@ -71,7 +71,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: fill;
     /* Ensures the video covers the whole container */
     z-index: -1;
     /* Puts the video behind the text */
@@ -79,7 +79,7 @@ body {
 }
 
 .mos {
-    margin-top: 100px;
+    margin-top: 150px;
     position: absolute;
     color: rgb(255, 255, 255);
     /* White color text for visibility */
@@ -112,6 +112,7 @@ body {
     font-weight: 100;
     font-style: normal;
     text-shadow: #111 1px 0 10px;
+    
 }
 
 @keyframes typing {
@@ -122,6 +123,8 @@ body {
     to {
         width: 100%
     }
+
+
 }
 
 .button {
@@ -214,4 +217,3 @@ body {
     filter: blur(1.5rem);
     opacity: 0.8;
 }
-

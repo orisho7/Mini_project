@@ -47,11 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo json_encode(['status' => 'error', 'message' => 'Failed to record vote: ' . mysqli_error($conn)]);
         }
     }
-} else {
-    // Only output the error message if this file is being accessed directly
-    // and not being included by another file
-    if (basename($_SERVER['SCRIPT_FILENAME']) === basename(__FILE__)) {
-        echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
-    }
-}
+} 
+
 ?>
