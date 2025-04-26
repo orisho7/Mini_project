@@ -1,5 +1,6 @@
 <?php
 session_start();
+include("../includes/gameo.php");
 if (isset($_SESSION["username"])) {
     $username = $_SESSION["username"];
 } else {
@@ -42,35 +43,10 @@ if (isset($_SESSION["username"])) {
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap">
     </noscript>
-
-    <style>
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* This creates the dim effect */
-            z-index: 998; /* Just below the popup box */
-        }
-
-        .box {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            z-index: 999; /* Above the overlay */
-        }
-    </style>
 </head>
 
 <body>
+    <div id="overlay" class="overlay" onclick="closePopup()"></div>
     <!-- Background Video -->
     <video autoplay muted loop id="myVideo">
         <source src="../assets/photos/27669-365224683_small.mp4" type="video/mp4">
@@ -108,12 +84,46 @@ if (isset($_SESSION["username"])) {
         <script src="../assets/js/navbar.js">        popup(); closePopup();
         </script>
 
-        <div id="overlay" class="overlay" onclick="closePopup()"></div>
-        <div id="box" class="box">
-            <h1>You have already voted</h1>
-            <h1>222</h1>
+        <div id="overlay" class="overlay">
+
+            <style>
+                #overlay {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100vw;
+                    height: 100vh;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 3;
+                    pointer-events: none;
+
+                }
+            </style>
+            <div id="box" class="box">
+
+                <h1 style="color: white;">Username: <?php echo $username; ?></h1>
+                <h1 style="color: white;">You have already voted for</h1>
+                <img style="border-radius: 10px;" width="30%" src="<?php echo $game_urlvoted; ?>" alt="">
+                <style>
+                    .box {
+                        display: none;
+                        max-width: 600px;
+                        background-color: black;
+                        padding: 2rem;
+                        border-radius: 10px;
+                        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+                        pointer-events: auto;
+                        /* keeps this clickable */
+                    }
+                </style>
+
+            </div>
+
         </div>
-       
+
         <!-- Winners fetching -->
         <div id="winners"></div>
         <script>
@@ -149,4 +159,3 @@ if (isset($_SESSION["username"])) {
 </body>
 
 </html>
-
