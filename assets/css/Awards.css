@@ -1,5 +1,21 @@
 html, body {
-    overflow-x: hidden;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+
+    min-height: 100px; /* 100px = height of your footer */
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    
+}
+
+.footer {
+    margin-top: 900px;
+
 }
 
 .Head {
@@ -55,7 +71,7 @@ h1 {
     background-color: rgba(48, 45, 45, 0.61);
     border: #ff8800 10px solid;
     border-radius: 20px;
-    margin-top: 200px;
+    margin-top: 250px;
     width: 80%;
     padding: 20px;
     position: absolute;
@@ -63,6 +79,8 @@ h1 {
     max-width: 1800px;
     -webkit-animation: slide 1s forwards;
     animation: slide 1s forwards;
+        margin-bottom: 500px;
+
 }
 
 .slide.img_container.img {

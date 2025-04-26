@@ -18,6 +18,8 @@ body {
     /* Ensures it covers the whole page */
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
     /* Makes sure it stretches to the bottom */
     object-fit: cover;
     /* Ensures the video fills the space without distortion */
@@ -29,7 +31,8 @@ body {
 .container {
     /* Border width is already included */
     width: 100%;
-    height: 80vh;
+    top: 0;
+    height: 90vh;
     /* Adjust as needed */
     /* Centering */
     display: flex;
@@ -91,7 +94,7 @@ body {
     /* Adjust text size */
     /* Makes sure the text stays on top of the video */
     text-shadow: rgb(129, 63, 32) 0px 0 10px;
-
+    width: 100%;
 }
 
 .mos pre {
@@ -99,14 +102,13 @@ body {
     /* Ensures the content is not revealed until the animation */
     border-right: .15em solid orange;
     /* The typwriter cursor */
-    white-space: nowrap;
-    /* Keeps the content on a single line */
+    white-space: pre-wrap;    /* Keeps the content on a single line */
     margin: 0 auto;
     /* Gives that scrolling effect as the typing happens */
     letter-spacing: .15em;
     /* Adjust as needed */
     animation:
-        typing 3.5s steps(40, end),
+        typing 3.5s steps(100, end),
         blink-caret .75s step-end infinite;
     font-family: "Silkscreen", sans-serif !important;
     font-weight: 100;

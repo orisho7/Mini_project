@@ -1,20 +1,234 @@
 /* Navigation bar */
-body {
+
+
+/* Navbar container styles */
+.navbar {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-bottom: #ffffff 5px solid;
+    font-family: "Black Ops One", system-ui;
+}
+
+/* Logo container styles */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Logo image styles */
+.logo {
+    height: 40px;
+    width: auto;
+}
+
+/* Navigation links container */
+
+ .nav-links-mobile {
+    display: flex;
+    gap: 6rem;
+    list-style: none;
+    margin-top: 100px;
+
+
+   
+}
+
+/* Navigation link styles */
+.nav-links a, .nav-links-mobile a {
+    color: white;
+    text-decoration: none;
+    font-size: 2.1rem;
+    transition: color 0.3s ease;
+}
+
+/* Navigation link hover effect */
+.nav-links a:hover {
+    color: #ff7300;
+}
+
+/* User profile section styles */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Username display styles */
+.username {
+    color: white;
+    font-size: 1.1rem;
+}
+
+/* Profile button styles */
+.profile-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+/* Profile button hover effect */
+.profile-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Mobile menu button styles */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    
+}
+
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -1200px; /* Start off-screen */
+    width: 350px;
+    height: 100vh;
+    background-color: #111;
+    padding: 2rem;
+    transition: right 0.3s ease;
+    z-index: 999;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
     margin-top: 100px;
 }
 
-.navbar {
-    border-bottom: #ffffff 5px solid;
-    display: flex;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 2;
- 
-    font-family: "Black Ops One", system-ui;
-
+/* Sidebar when active */
+.sidebar.active {
+    right: 0;
 }
 
+/* Sidebar navigation links */
+.sidebar .nav-links {
+    flex-direction: column;
+    margin-top: 21rem;
+}
+
+/* Sidebar close button */
+.sidebar-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Overlay for sidebar */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+/* Smartphones (small) — up to 480px */
+@media (max-width: 480px) {
+    .nav-links {
+        display: none;
+    }
+
+    .nav-links-mobile {
+        display: block;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .sidebar {
+        display: block;
+    }
+}
+
+/* Smartphones (medium) — up to 576px */
+@media (max-width: 576px) {
+    .nav-links {
+        display: none;
+    }
+
+    .nav-links-mobile {
+        display: block;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .sidebar {
+        display: block;
+    }
+}
+
+/* Tablets (portrait) — up to 768px */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .nav-links-mobile {
+        display: block;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .sidebar {
+        display: block;
+    }
+}
+
+/* Tablets (landscape) / Small laptops — up to 992px */
+@media (max-width: 992px) {
+    .nav-links {
+        display: none;
+    }
+
+    .nav-links-mobile {
+        display: block;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .sidebar {
+        display: block;
+    }
+}
+
+/* Existing styles below */
 .btn {
     text-align: center;
     text-decoration: none;
@@ -32,7 +246,6 @@ body {
     margin-right: 50px;
     border: none;
     cursor: pointer;
-
 }
 
 .btn:hover {
@@ -44,7 +257,6 @@ body {
     padding: auto;
     margin-bottom: 20px;
     overflow: hidden;
-    width: 100%;
     height: auto;
     background-color: rgba(0, 0, 0, 0);
 }
@@ -75,11 +287,9 @@ body {
 }
 
 .navbar a.icon:hover {
-
     text-decoration: none;
     color: #ffffffab;
     text-shadow: rgb(236, 128, 5) 0px 7px 1px;
-
 }
 
 .site-name {
@@ -87,7 +297,7 @@ body {
     font-size: 55px;
     font-family: "Pixelify Sans", sans-serif;
     text-shadow: #ffb27b 5px 0 20px;
-
+    margin-right:auto;
 }
 
 .navbar a.links:hover {
@@ -112,10 +322,10 @@ body {
 }
 
 .navbar li {
-    float: right;
+    float: left;
 }
 
 .navbar.scrolled {
-    background-color: rgb(255, 98, 0); /* or any color you want */
+    background-color: rgb(255, 98, 0);
     transition: background-color 0.3s;
 }

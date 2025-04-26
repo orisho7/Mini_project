@@ -63,6 +63,18 @@ if (!isset($_SESSION['username'])) {
         <button class="btn-winner" onclick="window.location.href='../pages/Awards.php'">See the winner</button>
 
         <?php include("../includes/footer.php"); ?>
+
+<?php include("../includes/navbar.php"); ?>
+<script>
+
+    fetch('../includes/navbar.php')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar').innerHTML = data;
+        });
+
+</script>
+
     <script>  document.addEventListener('DOMContentLoaded', function () {
         // Wait a bit if navbar is loaded via fetch
         setTimeout(function () {
@@ -81,17 +93,7 @@ if (!isset($_SESSION['username'])) {
 
 
 </html>
-<div id="navbar"></div>
 
-<script>
-
-    fetch('../includes/navbar.php')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('navbar').innerHTML = data;
-        });
-
-</script>
 
 <script>
     let score = 0;
@@ -175,6 +177,7 @@ if (!isset($_SESSION['username'])) {
 
             });
     }
+    
     // Check if user has already voted when page loads
     window.onload = function () {
 

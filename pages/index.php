@@ -59,15 +59,7 @@ if (isset($_SESSION["username"])) {
     </video>
 
     <!-- Navigation Bar fetching -->
-    <div id="navbar"></div>
-    <script>
-    fetch('../includes/navbar.php')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('navbar').innerHTML = data;
-        });
-        
-    </script>
+    <?php include("../includes/navbar.php"); ?>
 
     <div class="content">
         <!-- Main Container -->
@@ -79,7 +71,7 @@ if (isset($_SESSION["username"])) {
             </video>
 
             <div class="mos">
-                <pre>Welcome <?php echo $username; ?> to  </pre>
+                <pre>Welcome <?php echo $username; ?> to  </pre> 
 
                 <pre>GameRank</pre>
                 <pre>A ranking website for gamers</pre>
@@ -91,9 +83,7 @@ if (isset($_SESSION["username"])) {
        
        
         
-            
-
-        </div>
+       
 
         <!-- Winners fetching -->
         <div id="winners" class="winnerContainer"></div>
@@ -122,7 +112,13 @@ if (isset($_SESSION["username"])) {
 
       
 <?php include("../includes/footer.php"); ?>
-<script>
+<script> 
+  function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
+    sidebar.classList.toggle('active');
+    overlay.classList.toggle('active');
+}
 document.addEventListener('DOMContentLoaded', function() {
             // Wait a bit if navbar is loaded via fetch
             setTimeout(function() {
