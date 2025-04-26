@@ -79,7 +79,11 @@ body {
 }
 
 .mos {
+<<<<<<< HEAD
     margin-top: 150px;
+=======
+    margin-top: 120px;
+>>>>>>> 3168b1ccb801ecab00250f785be62ebae8e95033
     position: absolute;
     color: rgb(255, 255, 255);
     /* White color text for visibility */

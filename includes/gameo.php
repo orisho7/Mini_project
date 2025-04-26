@@ -23,6 +23,11 @@ if ($row) {
 } else {
     echo "No votes found yet!";
 }
+// Get the username voted
+$queryvoted = "SELECT g.game_url FROM votes v JOIN games g ON g.game_id = v.game_id WHERE v.username = '$username' LIMIT 1";
+$resultvoted = mysqli_query($conn, $queryvoted);
+$rowvoted = mysqli_fetch_assoc($resultvoted);
+$game_urlvoted = $rowvoted ? $rowvoted['game_url'] : null;
 
 
 
