@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("../includes/gameo.php");
+include("../includes/profile_popup.php");
 if (isset($_SESSION["username"])) {
     $username = $_SESSION["username"];
 } else {
@@ -45,38 +46,10 @@ if (isset($_SESSION["username"])) {
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap">
     </noscript>
 
-    <style>
-    .overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        /* This creates the dim effect */
-        z-index: 998;
-        /* Just below the popup box */
-    }
 
-    .box {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: white;
-        padding: 2rem;
-        border-radius: 10px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        z-index: 999;
-        /* Above the overlay */
-    }
-    </style>
 </head>
 
 <body>
-    <div id="overlay" class="overlay" onclick="closePopup()"></div>
     <!-- Background Video -->
     <video autoplay muted loop id="myVideo">
         <source src="../assets/photos/27669-365224683_small.mp4" type="video/mp4">
@@ -111,33 +84,11 @@ if (isset($_SESSION["username"])) {
                 </button>
             </div>
         </div>
-        <script src="../assets/js/navbar.js">
-        popup();
-        closePopup();
-        </script>
-
+       
        
 
         
-            <div id="box" class="box">
-
-                <h1 style="color: white;">Username: <?php echo $username; ?></h1>
-                <h1 style="color: white;">You have already voted for</h1>
-                <img style="border-radius: 10px;" width="30%" src="<?php echo $game_urlvoted; ?>" alt="">
-                <style>
-                    .box {
-                        display: none;
-                        max-width: 600px;
-                        background-color: black;
-                        padding: 2rem;
-                        border-radius: 10px;
-                        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-                        pointer-events: auto;
-                        /* keeps this clickable */
-                    }
-                </style>
-
-            </div>
+            
 
         </div>
 
@@ -165,29 +116,7 @@ if (isset($_SESSION["username"])) {
 
         observer.observe(winnersSection);
         </script>
-
-        <footer class="footer">
-
-            <h2>Connect with Us </h2>
-            <p>GameRank is your go-to destination for ranking, rating, and awarding the best video games of the year.
-                Discover
-                top-rated games, vote for your favorites, and explore the winners of the annual GameRank Awards. Whether
-                you're a casual
-                gamer or a hardcore fan, GameRank celebrates the creativity, gameplay, and impact of the gaming world.
-            </p>
-            <div class="box">
-
-                <ul>
-                    <li><button class="btn-W" on onclick="window.location.href='ContactUs.html'">Mail us! 📧</button>
-                    </li>
-
-                    </li>
-                </ul>
-
-            </div>
-    </div>
-
-    </footer>
+<?php include("../includes/footer.php"); ?>
 </body>
 
 </html>

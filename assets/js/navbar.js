@@ -10,6 +10,14 @@ function closePopup() {
     document.body.style.overflow = ''; // Restore scrolling
 }
 
+function deleteAccount() {
+    if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) { 
+        window.location.href = '../auth/delete_account.php';
+    } else {
+        alert("Account deletion cancelled.");
+    }
+}
+
 // Close popup when clicking outside (on the overlay)
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('overlay').addEventListener('click', function(e) {

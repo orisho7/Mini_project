@@ -13,8 +13,8 @@ if (isset($_SESSION['username'])) {
 
 <?php
 
-$username = $_POST['username'];
-$password = $_POST['password'];
+$username = trim($_POST['username']);
+$password = trim($_POST['password']);
 
 // Hash the password
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
