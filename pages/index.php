@@ -44,7 +44,6 @@ if (isset($_SESSION["username"])) {
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap">
     </noscript>
-<<<<<<< HEAD
 
     <style>
     .overlay {
@@ -74,8 +73,6 @@ if (isset($_SESSION["username"])) {
         /* Above the overlay */
     }
     </style>
-=======
->>>>>>> 3168b1ccb801ecab00250f785be62ebae8e95033
 </head>
 
 <body>
@@ -119,24 +116,9 @@ if (isset($_SESSION["username"])) {
         closePopup();
         </script>
 
-        <div id="overlay" class="overlay">
+       
 
-            <style>
-                #overlay {
-                    display: none;
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100vw;
-                    height: 100vh;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    z-index: 3;
-                    pointer-events: none;
-
-                }
-            </style>
+        
             <div id="box" class="box">
 
                 <h1 style="color: white;">Username: <?php echo $username; ?></h1>
@@ -157,7 +139,7 @@ if (isset($_SESSION["username"])) {
 
             </div>
 
-        </div>
+      
 
         <!-- Winners fetching -->
         <div id="winners" class="winnerContainer"></div>
