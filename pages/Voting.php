@@ -2,6 +2,9 @@
 // Include the connection
 include("../includes/count.php");
 include("../includes/import_games.php");
+include("../includes/gameo.php");
+include("../includes/profile_popup.php");
+
 if (!isset($_SESSION['username'])) {
     header("Location: ../pages/login.php"); // Redirect to login page
     exit();

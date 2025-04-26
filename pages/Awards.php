@@ -1,6 +1,9 @@
-<?php session_start();
+<?php
 include("../auth/db.php");
-include("../includes/gameo.php"); ?>
+include("../includes/gameo.php"); 
+include("../includes/profile_popup.php");
+?>
+
 <script> </script>
 <html>
 
@@ -22,6 +25,8 @@ include("../includes/gameo.php"); ?>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/navbar.css">
     <link rel="stylesheet" href="../assets/css/responsive.css">
+    <script src="../assets/js/navbar.js"></script>
+
 </head>
 
 <body>
@@ -29,15 +34,10 @@ include("../includes/gameo.php"); ?>
         <video autoplay muted loop id="myVideo">
             <source src="../assets/photos/27669-365224683_small.mp4" type="video/mp4">
         </video>
-        <div id="navbar"></div>
+     
+        <?php include("../includes/navbar.php"); ?>
 
-        <script>
-            fetch('../includes/navbar.php')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('navbar').innerHTML = data;
-                });
-        </script>
+        
         <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
         <script>
             confetti(); // simple trigger

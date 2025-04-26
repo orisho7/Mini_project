@@ -1,5 +1,4 @@
 <?php
-session_start();
 include("../includes/gameo.php");
 include("../includes/profile_popup.php");
 if (isset($_SESSION["username"])) {
