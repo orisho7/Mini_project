@@ -22,6 +22,8 @@ if (isset($_SESSION["username"])) {
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/winners.css">
     <link rel="stylesheet" href="../assets/css/responsive.css">
+    <script src="../assets/js/navbar.js"></script>
+
 
     <!-- Preconnect to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,6 +52,7 @@ if (isset($_SESSION["username"])) {
 </head>
 
 <body>
+
     <!-- Background Video -->
     <video autoplay muted loop id="myVideo">
         <source src="../assets/photos/27669-365224683_small.mp4" type="video/mp4">
@@ -63,6 +66,7 @@ if (isset($_SESSION["username"])) {
         .then(data => {
             document.getElementById('navbar').innerHTML = data;
         });
+        
     </script>
 
     <div class="content">
@@ -86,7 +90,6 @@ if (isset($_SESSION["username"])) {
         </div>
        
        
-
         
             
 
@@ -116,7 +119,25 @@ if (isset($_SESSION["username"])) {
 
         observer.observe(winnersSection);
         </script>
+
+      
 <?php include("../includes/footer.php"); ?>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+            // Wait a bit if navbar is loaded via fetch
+            setTimeout(function() {
+                var navbar = document.querySelector('.navbar');
+                if (!navbar) return; // If navbar not found, exit
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 10) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                });
+            }, 300); // Adjust delay if needed
+        });
+</script>
 </body>
 
 </html>

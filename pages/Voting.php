@@ -33,6 +33,7 @@ if (!isset($_SESSION['username'])) {
     <link rel="stylesheet" href="../assets/css/footer.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/responsive.css">
+    <script src="../assets/js/navbar.js"></script>
 </head>
 
 <body>
@@ -47,62 +48,51 @@ if (!isset($_SESSION['username'])) {
             <?php foreach ($games as $game): ?>
                 <div class="cardo">
                     <img loading="lazy" class="photoG" src="<?php echo $game['game_url']; ?>" alt="">
-                    <p class="name"><?php echo $game['game_name']; ?></p>
-                    <div>
-
+                    <div class="card-content">
+                        <p class="name"><?php echo $game['game_name']; ?></p>
+                        <!-- Add description here if you have one -->
                     </div>
-                    <button onclick="addScore('<?php echo $game['game_id']; ?>', '<?php echo $game['game_name']; ?>', this)"
-                        class="btn-donate">Vote
-                        now</button>
+                    <div class="btn-container">
+                        <button
+                            onclick="addScore('<?php echo $game['game_id']; ?>', '<?php echo $game['game_name']; ?>', this)"
+                            class="btn-donate">Vote now</button>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>
         <button class="btn-winner" onclick="window.location.href='../pages/Awards.php'">See the winner</button>
 
-        <div class="footer_container">
-            <footer class="footer">
-
-                <h2>Connect with Us </h2>
-                <p>GameRank is your go-to destination for ranking, rating, and awarding the best video games of the
-                    year.
-                    Discover
-                    top-rated games, vote for your favorites, and explore the winners of the annual GameRank Awards.
-                    Whether
-                    you're a casual
-                    gamer or a hardcore fan, GameRank celebrates the creativity, gameplay, and impact of the gaming
-                    world.
-                </p>
-                <div class="box">
-
-                    <ul>
-                        <li><button class="btn-W" on onclick="window.location.href='ContactUs.html'"><b><i
-                                        class="bi bi-whatsapp"></i></b> </button></li>
-                        <li><button class="btn-X" on onclick="window.location.href='ContactUs.html'"><b><i
-                                        class="bi bi-twitter-x"></i></b>
-                            </button></li>
-                        <li><button class="btn-E" on onclick="window.location.href='ContactUs.html'"><b><i
-                                        class="bi bi-envelope-plus"></i></b>
-                            </button></li>
-                    </ul>
-
-                </div>
-        </div>
-
-        </footer>
-    </div>
-    </div>
+        <?php include("../includes/footer.php"); ?>
+    <script>  document.addEventListener('DOMContentLoaded', function () {
+        // Wait a bit if navbar is loaded via fetch
+        setTimeout(function () {
+            var navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 10) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }, 300); // Adjust delay if needed
+    });
+</script>
 </body>
+
 
 </html>
 <div id="navbar"></div>
 
 <script>
+
     fetch('../includes/navbar.php')
         .then(response => response.text())
         .then(data => {
             document.getElementById('navbar').innerHTML = data;
         });
+
 </script>
+
 <script>
     let score = 0;
     let votedGames = <?php echo $voted_games_json; ?>;
@@ -199,4 +189,5 @@ if (!isset($_SESSION['username'])) {
         }
 
     }
+
 </script>

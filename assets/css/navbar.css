@@ -1,4 +1,7 @@
 /* Navigation bar */
+body {
+    margin-top: 100px;
+}
 
 .navbar {
     border-bottom: #ffffff 5px solid;
@@ -7,9 +10,8 @@
     top: 0;
     width: 100%;
     z-index: 2;
-    margin-bottom: 200px;
+ 
     font-family: "Black Ops One", system-ui;
-    margin-bottom: 50px;
 
 }
 
@@ -111,4 +113,9 @@
 
 .navbar li {
     float: right;
+}
+
+.navbar.scrolled {
+    background-color: rgb(255, 98, 0); /* or any color you want */
+    transition: background-color 0.3s;
 }

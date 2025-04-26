@@ -49,11 +49,7 @@ include("../includes/gameo.php"); ?>
         <div class="slide-content">
             <h1><?php echo $game_name; ?></h1>
             <p><?php echo $game_info; ?> 👤 <?php echo $vote_count; ?></p>
-        </div>
-
-        ou
-    </div>
-
+      
     <script>
     fetch('../includes/gameo.php')
         .then(response => response.text())
@@ -67,7 +63,22 @@ include("../includes/gameo.php"); ?>
 
 
     </div>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait a bit if navbar is loaded via fetch
+            setTimeout(function() {
+                var navbar = document.querySelector('.navbar');
+                if (!navbar) return; // If navbar not found, exit
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 10) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                });
+            }, 300); // Adjust delay if needed
+        });
+        </script>
 </body>
 
 </html>

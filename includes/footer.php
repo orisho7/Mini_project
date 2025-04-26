@@ -8,15 +8,15 @@
             you're a casual
             gamer or a hardcore fan, GameRank celebrates the creativity, gameplay, and impact of the gaming world.
         </p>
-        <div class="box">
+      
 
             <ul>
-                <li><button class="btn-W" on onclick="window.location.href='ContactUs.html'">📧</button>
+                <li><button class="btn-W" on onclick="window.location.href='ContactUs.html'"> Mail us 📧</button>
                 </li>
             </ul>
 
 
-        </div>
+       
 </div>
 
 </footer>

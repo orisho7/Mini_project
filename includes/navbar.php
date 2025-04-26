@@ -21,6 +21,8 @@
 </noscript>
 
 <link rel="stylesheet" href="../assets/css/navbar.css">
+<script src="../assets/js/navbar.js"></script>
+
 <div class="navcontainer">
     <nav class="navbar">
         <ul> <?php
@@ -77,3 +79,19 @@
         </ul>
     </nav>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+            // Wait a bit if navbar is loaded via fetch
+            setTimeout(function() {
+                var navbar = document.querySelector('.navbar');
+                if (!navbar) return; // If navbar not found, exit
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 10) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                });
+            }, 300); // Adjust delay if needed
+        });
+</script>

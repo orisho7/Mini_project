@@ -217,3 +217,47 @@ body {
     filter: blur(1.5rem);
     opacity: 0.8;
 }
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+}
+.box {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(0, 0, 0);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+}
+.user_voted {
+    border: 1px solid white;
+    border-radius: 10px;
+    width: 30%;
+}
+.close_button {
+    background-color: #d54d48;
+    border-radius: 25px;
+    color: #ffffff;
+    padding: 15px 32px;
+    cursor: pointer;
+    margin-left: 170px;
+}
+.delete_account {
+    background-color: #d54d48;
+    border-radius: 25px;
+    color: #ffffff;
+    padding: 15px 32px;
+    cursor: pointer;
+    margin-left: 10px;
+
+}
