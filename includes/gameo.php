@@ -1,11 +1,11 @@
 <?php
 include("../auth/db.php");
 
-// Get the most voted game with its URL
-$query = "SELECT g.game_name, g.game_url,g.info, COUNT(*) as vote_count 
+// Get the most voted game with its URL and info
+$query = "SELECT g.game_name, g.game_url, g.info, COUNT(*) as vote_count 
           FROM votes v 
           JOIN games g ON g.game_id = v.game_id 
-          GROUP BY g.game_id, g.game_name, g.game_url ,g.info
+          GROUP BY g.game_id, g.game_name, g.game_url, g.info
           ORDER BY vote_count DESC 
           LIMIT 1";
 
@@ -17,19 +17,35 @@ if ($row) {
     $game_url = $row['game_url'];
     $game_name = $row['game_name'];
     $vote_count = $row['vote_count'];
-
-    // Add htmlspecialchars for security
-
 } else {
-    echo "No votes found yet!";
+    $game_info = null;
+    $game_url = null;
+    $game_name = null;
+    $vote_count = 0;
 }
-// Get the username voted
-$queryvoted = "SELECT g.game_url FROM votes v JOIN games g ON g.game_id = v.game_id WHERE v.username = '$username' LIMIT 1";
-$resultvoted = mysqli_query($conn, $queryvoted);
-$rowvoted = mysqli_fetch_assoc($resultvoted);
-$game_urlvoted = $rowvoted ? $rowvoted['game_url'] : null;
 
+// Get the username from session
+$username = isset($_SESSION['username']) ? trim(string: $_SESSION['username']) : null;
 
+// Get the game the current user voted for (one vote per user)
+$game_urlvoted = null;
+$game_namevoted = null;
 
+if ($username) {
+    $queryvoted = "SELECT g.game_url, g.game_name 
+                   FROM votes v 
+                   JOIN games g ON g.game_id = v.game_id 
+                   WHERE v.username = ? 
+                   LIMIT 1";
+    $stmt = mysqli_prepare($conn, $queryvoted);
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
+    $resultvoted = mysqli_stmt_get_result($stmt);
+    $rowvoted = mysqli_fetch_assoc($resultvoted);
 
+    if ($rowvoted) {
+        $game_urlvoted = $rowvoted['game_url'];
+        $game_namevoted = $rowvoted['game_name'];
+    }
+}
 ?>

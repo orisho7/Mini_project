@@ -139,7 +139,7 @@ if (isset($_SESSION["username"])) {
 
             </div>
 
-      
+        </div>
 
         <!-- Winners fetching -->
         <div id="winners" class="winnerContainer"></div>
