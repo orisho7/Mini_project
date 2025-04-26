@@ -16,6 +16,7 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     border-bottom: #ffffff 5px solid;
     font-family: "Black Ops One", system-ui;
+    font-weight: 100;
 }
 
 /* Logo container styles */

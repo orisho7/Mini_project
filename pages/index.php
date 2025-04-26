@@ -1,11 +1,10 @@
 <?php
+session_start();
 include("../includes/gameo.php");
 include("../includes/profile_popup.php");
 if (isset($_SESSION["username"])) {
     $username = $_SESSION["username"];
-} else {
-    $username = "Newcomer";
-}
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +69,7 @@ if (isset($_SESSION["username"])) {
             </video>
 
             <div class="mos">
-                <pre>Welcome <?php echo $username; ?> to  </pre> 
+                <pre>Welcome <?php echo $username; ?> to  </pre>
 
                 <pre>GameRank</pre>
                 <pre>A ranking website for gamers</pre>
@@ -79,10 +78,10 @@ if (isset($_SESSION["username"])) {
                 </button>
             </div>
         </div>
-       
-       
-        
-       
+
+
+
+
 
         <!-- Winners fetching -->
         <div id="winners" class="winnerContainer"></div>
@@ -109,16 +108,16 @@ if (isset($_SESSION["username"])) {
         observer.observe(winnersSection);
         </script>
 
-      
-<?php include("../includes/footer.php"); ?>
-<script> 
-  function toggleSidebar() {
-    const sidebar = document.querySelector('.sidebar');
-    const overlay = document.querySelector('.sidebar-overlay');
-    sidebar.classList.toggle('active');
-    overlay.classList.toggle('active');
-}
-document.addEventListener('DOMContentLoaded', function() {
+
+        <?php include("../includes/footer.php"); ?>
+        <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+        document.addEventListener('DOMContentLoaded', function() {
             // Wait a bit if navbar is loaded via fetch
             setTimeout(function() {
                 var navbar = document.querySelector('.navbar');
@@ -132,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }, 300); // Adjust delay if needed
         });
-</script>
+        </script>
 </body>
 
 </html>

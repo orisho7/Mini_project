@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("../auth/db.php");
 include("../includes/gameo.php"); 
 include("../includes/profile_popup.php");
@@ -34,13 +35,13 @@ include("../includes/profile_popup.php");
         <video autoplay muted loop id="myVideo">
             <source src="../assets/photos/27669-365224683_small.mp4" type="video/mp4">
         </video>
-     
+
         <?php include("../includes/navbar.php"); ?>
 
-        
+
         <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
         <script>
-            confetti(); // simple trigger
+        confetti(); // simple trigger
         </script>
 
         <div class="Head">
@@ -55,52 +56,53 @@ include("../includes/profile_popup.php");
                 <p><?php echo $game_info; ?> 👤 <?php echo $vote_count; ?></p>
 
                 <script>
-                    fetch('../includes/gameo.php')
-                        .then(response => response.text())
-                        .then(data => {
-                            document.getElementById('voteCount').innerText = data;
-                        })
-                        .catch(error => console.error('Error:', error));
+                fetch('../includes/gameo.php')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('voteCount').innerText = data;
+                    })
+                    .catch(error => console.error('Error:', error));
                 </script>
 
 
 
 
                 <script>
-                    function toggleSidebar() {
-                        const sidebar = document.querySelector('.sidebar');
-                        const overlay = document.querySelector('.sidebar-overlay');
-                        sidebar.classList.toggle('active');
-                        overlay.classList.toggle('active');
-                    }
-                    document.addEventListener('DOMContentLoaded', function () {
-                        // Wait a bit if navbar is loaded via fetch
-                        setTimeout(function () {
-                            var navbar = document.querySelector('.navbar');
-                            if (!navbar) return; // If navbar not found, exit
-                            window.addEventListener('scroll', function () {
-                                if (window.scrollY > 10) {
-                                    navbar.classList.add('scrolled');
-                                } else {
-                                    navbar.classList.remove('scrolled');
-                                }
-                            });
-                        }, 300); // Adjust delay if needed
-                    });
+                function toggleSidebar() {
+                    const sidebar = document.querySelector('.sidebar');
+                    const overlay = document.querySelector('.sidebar-overlay');
+                    sidebar.classList.toggle('active');
+                    overlay.classList.toggle('active');
+                }
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Wait a bit if navbar is loaded via fetch
+                    setTimeout(function() {
+                        var navbar = document.querySelector('.navbar');
+                        if (!navbar) return; // If navbar not found, exit
+                        window.addEventListener('scroll', function() {
+                            if (window.scrollY > 10) {
+                                navbar.classList.add('scrolled');
+                            } else {
+                                navbar.classList.remove('scrolled');
+                            }
+                        });
+                    }, 300); // Adjust delay if needed
+                });
                 </script>
             </div>
 
         </div>
-        
+
         <?php include("../includes/footer.php"); ?>
-        
+
     </div>
 
-    <script>  document.addEventListener('DOMContentLoaded', function () {
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
         // Wait a bit if navbar is loaded via fetch
-        setTimeout(function () {
+        setTimeout(function() {
             var navbar = document.querySelector('.navbar');
-            window.addEventListener('scroll', function () {
+            window.addEventListener('scroll', function() {
                 if (window.scrollY > 10) {
                     navbar.classList.add('scrolled');
                 } else {
@@ -109,7 +111,7 @@ include("../includes/profile_popup.php");
             });
         }, 300); // Adjust delay if needed
     });
-</script>
+    </script>
 
 
 </body>
