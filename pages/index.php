@@ -4,7 +4,7 @@ include("../includes/gameo.php");
 include("../includes/profile_popup.php");
 if (isset($_SESSION["username"])) {
     $username = $_SESSION["username"];
-} 
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,8 +69,9 @@ if (isset($_SESSION["username"])) {
             </video>
 
             <div class="mos">
-                <pre>Welcome <?php echo $username; ?> to  </pre>
-
+                <pre>Welcome <?php if ($username) {
+                                    echo $username;
+                                } else echo "Newcomer"; ?> to  </pre>
                 <pre>GameRank</pre>
                 <pre>A ranking website for gamers</pre>
                 <button class="button" onclick="window.location.href='../pages/Voting.php'">
@@ -86,51 +87,51 @@ if (isset($_SESSION["username"])) {
         <!-- Winners fetching -->
         <div id="winners" class="winnerContainer"></div>
         <script>
-        fetch('../includes/winners.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('winners').innerHTML = data;
+            fetch('../includes/winners.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('winners').innerHTML = data;
+                });
+
+            // Scroll animation
+            const winnersSection = document.getElementById('winners');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
             });
 
-        // Scroll animation
-        const winnersSection = document.getElementById('winners');
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-
-        observer.observe(winnersSection);
+            observer.observe(winnersSection);
         </script>
 
 
         <?php include("../includes/footer.php"); ?>
         <script>
-        function toggleSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            const overlay = document.querySelector('.sidebar-overlay');
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-        }
-        document.addEventListener('DOMContentLoaded', function() {
-            // Wait a bit if navbar is loaded via fetch
-            setTimeout(function() {
-                var navbar = document.querySelector('.navbar');
-                if (!navbar) return; // If navbar not found, exit
-                window.addEventListener('scroll', function() {
-                    if (window.scrollY > 10) {
-                        navbar.classList.add('scrolled');
-                    } else {
-                        navbar.classList.remove('scrolled');
-                    }
-                });
-            }, 300); // Adjust delay if needed
-        });
+            function toggleSidebar() {
+                const sidebar = document.querySelector('.sidebar');
+                const overlay = document.querySelector('.sidebar-overlay');
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+            }
+            document.addEventListener('DOMContentLoaded', function() {
+                // Wait a bit if navbar is loaded via fetch
+                setTimeout(function() {
+                    var navbar = document.querySelector('.navbar');
+                    if (!navbar) return; // If navbar not found, exit
+                    window.addEventListener('scroll', function() {
+                        if (window.scrollY > 10) {
+                            navbar.classList.add('scrolled');
+                        } else {
+                            navbar.classList.remove('scrolled');
+                        }
+                    });
+                }, 300); // Adjust delay if needed
+            });
         </script>
 </body>
 
