@@ -43,7 +43,7 @@
                 </a>
             </li>
             <li>
-                <a href="contact.php" class="links">
+                <a href="#footer" class="links">
                     <b>Contact</b>
                 </a>
             </li>

@@ -1,5 +1,5 @@
 <div class="footer-container">
-    <footer class="footer">
+    <footer id = "footer" class="footer">
 
         <h2>Connect with Us </h2>
         <p>GameRank is your go-to destination for ranking, rating, and awarding the best video games of the year.
