@@ -21,7 +21,7 @@ html, body {
 .Head {
     text-align: center;
     position: absolute;
-    top: -50px;
+    top: 100px;
     left: 35%;
     -webkit-animation: Head 1s;
     animation: Head 1s forwards;
