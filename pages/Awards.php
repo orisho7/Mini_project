@@ -52,7 +52,7 @@ include("../includes/profile_popup.php");
                 <img class="img" src="<?php echo $game_url; ?>" alt="" width="300" height="400" loading="lazy">
             </div>
             <div class="slide-content">
-                <h1><?php echo $game_name; ?></h1>
+                <h1 class="H1"><?php echo $game_name; ?></h1>
                 <p><?php echo $game_info; ?> 👤 <?php echo $vote_count; ?></p>
 
                 <script>

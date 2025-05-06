@@ -47,12 +47,7 @@ html, body {
 
 }
 
-h1 {
-    font-size: 4rem;
-    color: #fff;
-    text-shadow: 0 0 5px #ff8800, 0 0 10px #ff8800, 0 0 20px #ff8800, 0 0 40px #ff8800, 0 0 80px #ff8800;
-    animation: glow 1.5s infinite alternate;
-}
+
 
 @keyframes glow {
     0% {
