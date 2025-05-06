@@ -15,6 +15,9 @@ html, body {
     padding-left: 0;
     padding-right: 0;
 }
+.Vcontent{
+    margin-top: 217px;
+}
 
 .cardo {
     position: relative;
@@ -209,7 +212,6 @@ html, body {
 }
 
 .btn-reset {
-  margin-top: 150px;
         margin-bottom: 20px;
 z-index: 2;
     /* Same button styles as .btn-donate */

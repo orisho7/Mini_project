@@ -43,9 +43,8 @@ if (!isset($_SESSION['username'])) {
     <video autoplay muted loop id="myVideo">
         <source src="../assets/photos/27669-365224683_small.mp4" type="video/mp4">
     </video>
-    <div class="content">
-        <script>
-        </script>
+    <div class="Vcontent">
+      
         <button id="reset" class="btn-reset" onclick="reset()"> Reset</button>
         <div class="cards">
             <?php foreach ($games as $game): ?>
@@ -62,6 +61,7 @@ if (!isset($_SESSION['username'])) {
                     </div>
                 </div>
             <?php endforeach; ?>
+        </div>
         </div>
         <button class="btn-winner" onclick="window.location.href='../pages/Awards.php'">See the winner</button>
 
