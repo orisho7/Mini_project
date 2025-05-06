@@ -75,7 +75,7 @@ h1 {
     width: 80%;
     padding: 20px;
     position: absolute;
-    left: -600px;
+    right: 200px;
     max-width: 1800px;
     -webkit-animation: slide 1s forwards;
     animation: slide 1s forwards;
