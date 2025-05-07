@@ -1,5 +1,5 @@
 <div class="footer-container">
-    <footer id = "footer" class="footer">
+    <footer id="footer" class="footer">
 
         <h2>Connect with Us </h2>
         <p>GameRank is your go-to destination for ranking, rating, and awarding the best video games of the year.
@@ -8,15 +8,15 @@
             you're a casual
             gamer or a hardcore fan, GameRank celebrates the creativity, gameplay, and impact of the gaming world.
         </p>
-      
-
-            <ul>
-                <li><button class="btn-W" on onclick="window.location.href='ContactUs.html'"> Mail us 📧</button>
-                </li>
-            </ul>
 
 
-       
+        <ul>
+            <li><button class="btn-W" on onclick="window.location.href='ContactUs.html'"> Mail us 📧</button>
+            </li>
+        </ul>
+
+
+
 </div>
 
 </footer>
