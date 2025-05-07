@@ -59,7 +59,7 @@ html {
 @media screen and (max-width: 1200px) {
     .slide {
         width: 90%;
-        margin: 20px auto;
+        margin: 200px auto;
         padding: 15px;
         flex-direction: column;
         position: relative;
@@ -72,7 +72,6 @@ html {
 
     .slide {
         width: 90%;
-        margin: 150px auto;
     }
 
     .mos {
@@ -83,7 +82,7 @@ html {
 @media screen and (max-width: 768px) {
     .slide {
         width: 90%;
-        margin: 20px auto;
+        margin: 200px auto;
         padding: 15px;
         flex-direction: column;
         position: relative;
@@ -111,6 +110,10 @@ html {
 
 /* Responsive styles for mobile devices */
 @media (max-width: 768px) {
+    .slide{
+        margin: 170px auto;
+
+    }
     .nav-links {
         display: none;
     }

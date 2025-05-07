@@ -36,12 +36,16 @@
 
  .nav-links-mobile {
     display: flex;
-    gap: 6rem;
+    gap: 7rem;
     list-style: none;
     margin-top: 100px;
 
 
    
+}
+.nav-links-mobile li {
+    padding-top: 50px;
+
 }
 
 /* Navigation link styles */

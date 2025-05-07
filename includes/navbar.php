@@ -105,7 +105,8 @@
                 </a>
             </li>
             <li>
-                <a href="contact.php" class="links" onclick="toggleSidebar()">
+
+                <a href="#footer" class="links" onclick="toggleSidebar()">
                     <b>Contact</b>
                 </a>
             </li>
