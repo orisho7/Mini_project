@@ -1,14 +1,16 @@
-html,
-body {
-
-    font-family: "Black Ops One", system-ui;
-
-
-
+.submit,
+body,
+html {
+    font-family: "Black Ops One", system-ui
 }
 
 .login_error {
-    color: red;
+    color: red
+}
+
+.Head,
+.submit {
+    color: #fff
 }
 
 #myVideo {
@@ -17,51 +19,46 @@ body {
     bottom: 0;
     min-width: 100%;
     min-height: 100%;
-    z-index: -1;
+    z-index: -1
 }
 
 .login-container {
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center
 }
 
 .login-form,
 .signup-form {
     display: flex;
     flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, .7);
     padding: 50px;
     border-radius: 10px;
     gap: 15px;
     width: 400px;
-
-    height: 400px;
+    height: 400px
 }
 
 .name,
-input[type="password"] {
+input[type=password] {
     font-size: 18px;
     padding: 20px;
-    border: 2px solid rgb(0, 0, 0);
+    border: 2px solid #000;
     border-radius: 8px;
     background-color: #1e0f00;
-    color: white;
-    caret-color: white;
-
+    color: #fff;
+    caret-color: white
 }
 
 input::placeholder {
-    color: rgb(255, 255, 255);
-    /* Placeholder color */
+    color: #fff
 }
 
 .submit {
-    background-color: rgb(255, 115, 0);
+    background-color: #ff7300;
     border: none;
-    color: white;
-    font-family: "Black Ops One", system-ui;
     font-display: swap;
     font-weight: 70;
     font-style: bold;
@@ -70,20 +67,16 @@ input::placeholder {
     cursor: pointer;
     border-radius: 8px;
     align-self: center;
-    width: 100%;
+    width: 100%
 }
 
 .submit:hover {
-    background-color: rgba(255, 115, 0, 0.73);
+    background-color: rgba(255, 115, 0, .73)
 }
 
-.Head {
-    color: white;
-}
-
-.signup,
-.login {
-    color: rgb(255, 136, 0);
+.login,
+.signup {
+    color: #f80;
     text-decoration: none;
-    align-self: flex-end;
+    align-self: flex-end
 }

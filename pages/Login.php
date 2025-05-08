@@ -38,22 +38,22 @@ include("../includes/profile_popup.php");
 <body>
     <div id="navbar"></div>
     <script>
-        fetch('../includes/navbar.php')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar').innerHTML = data;
-            });
+    fetch('../includes/navbar.php')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar').innerHTML = data;
+        });
     </script>
     <script>
-        function showSignup() {
-            document.getElementById('login-form').style.display = 'none';
-            document.getElementById('signup-form').style.display = 'flex';
-        }
+    function showSignup() {
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('signup-form').style.display = 'flex';
+    }
 
-        function showLogin() {
-            document.getElementById('signup-form').style.display = 'none';
-            document.getElementById('login-form').style.display = 'flex';
-        }
+    function showLogin() {
+        document.getElementById('signup-form').style.display = 'none';
+        document.getElementById('login-form').style.display = 'flex';
+    }
     </script>
 
 
@@ -72,18 +72,18 @@ include("../includes/profile_popup.php");
             <h1 class="Head" align="center">Login</h1>
 
             <?php if (isset($_GET['error'])): ?>
-                <div class="login_error">
-                    <?php
+            <div class="login_error">
+                <?php
                     if ($_GET['error'] == 'invalid_password')
                         echo "⚠️ Invalid password!";
                     elseif ($_GET['error'] == 'invalid_username')
                         echo "⚠️ Invalid username!";
-                    elseif (isset($_GET["error"]) && str_contains($_GET["error"], "Duplicate entry")) {
+                    elseif (isset($_GET["error"]) && str_contains($_GET["error"], "username_taken")) {
                         echo "⚠️ This username is already taken.";
                     }
 
                     ?>
-                </div>
+            </div>
             <?php endif; ?>
             <input class="name" type="text" name="username" placeholder="👤 Username" required>
             <input type="password" name="password" placeholder="🛑 Password" minlength="8" required>
@@ -99,7 +99,7 @@ include("../includes/profile_popup.php");
         </form>
 
     </div>
-    
+
 
 </body>
 

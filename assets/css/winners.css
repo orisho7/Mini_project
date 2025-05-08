@@ -1,12 +1,16 @@
+.winnerbox,
+.winners {
+    font-family: "Black Ops One", system-ui
+}
+
 :root {
     --card-height: 300px;
-    --card-width: calc(var(--card-height) / 1.5);
+    --card-width: calc(var(--card-height) / 1.5)
 }
 
 * {
-    box-sizing: border-box;
+    box-sizing: border-box
 }
-
 
 .winnerContainer {
     display: flex;
@@ -14,45 +18,40 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin: 50px 50px;
+    margin: 50px;
     transform: translateY(-80px);
     opacity: 0;
-    animation: slideDown 5s ease-out forwards;
-
+    animation: 5s ease-out forwards slideDown
 }
 
 @keyframes slideDown {
     to {
         transform: translateY(0);
-        opacity: 1;
+        opacity: 1
     }
 }
 
 .winners {
-
-    text-align: center;
-    color: white;
-
-    font-family: "Black Ops One", system-ui;
     font-weight: 400;
     font-style: normal;
+    text-align: center;
+    color: #fff
 }
 
-/* Scroll animation styles */
 #winners {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 5s ease-out, transform 5s ease-out;
+    transition: opacity 5s ease-out, transform 5s ease-out
 }
 
 #winners.visible {
     opacity: 1;
-    transform: translateY(100px);
+    transform: translateY(100px)
 }
 
 .winnerbox {
-    box-shadow: white 0 15px 0px;
-    background-color: rgba(255, 94, 0, 0.479);
+    box-shadow: #fff 0 15px 0;
+    background-color: rgba(255, 94, 0, .479);
     border-radius: 40px;
     width: 40%;
     display: flex;
@@ -60,23 +59,10 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin: auto;
-    margin-top: 100px;
-    /* Remove margin, as we are centering it with flexbox */
-    font-family: "Black Ops One", system-ui;
-
-}
-
-.winners {
-
-    text-align: center;
-    color: white;
-
-    font-family: "Black Ops One", system-ui;
+    margin: 100px auto auto
 }
 
 .card {
-
     width: var(--card-width);
     height: var(--card-height);
     position: relative;
@@ -85,86 +71,80 @@
     align-items: flex-end;
     padding: 0 36px;
     perspective: 2500px;
-    margin: 10px 10px;
+    margin: 10px
+}
 
+.character,
+.wrapper {
+    width: 100%;
+    position: absolute
 }
 
 .cover-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover
 }
 
 .wrapper {
-    transition: all 0.5s;
-    position: absolute;
-    width: 100%;
-    z-index: -1;
+    transition: .5s;
+    z-index: -1
 }
 
 .card:hover .wrapper {
     transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
-    box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, .75);
+    -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, .75);
+    -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, .75)
 }
 
-.wrapper::before,
-.wrapper::after {
+.wrapper::after,
+.wrapper::before {
     content: "";
     opacity: 0;
     width: 100%;
     height: 80px;
-    transition: all 0.5s;
+    transition: .5s;
     position: absolute;
-    left: 0;
+    left: 0
 }
 
 .wrapper::before {
     top: 0;
     height: 100%;
-    background-image: linear-gradient(to top,
-            transparent 46%,
-            rgba(12, 13, 19, 0.5) 68%,
-            rgba(12, 13, 19) 97%);
+    background-image: linear-gradient(to top, transparent 46%, rgba(12, 13, 19, .5) 68%, rgba(12, 13, 19) 97%)
 }
 
 .wrapper::after {
     bottom: 0;
-    opacity: 1;
-    background-image: linear-gradient(to bottom,
-            transparent 46%,
-            rgba(12, 13, 19, 0.5) 68%,
-            rgba(12, 13, 19) 97%);
+    background-image: linear-gradient(to bottom, transparent 46%, rgba(12, 13, 19, .5) 68%, rgba(12, 13, 19) 97%)
 }
 
 .card:hover .wrapper::before,
 .wrapper::after {
-    opacity: 1;
+    opacity: 1
 }
 
 .card:hover .wrapper::after {
-    height: 120px;
+    height: 120px
 }
 
 .title {
     width: 100%;
-    transition: transform 0.5s;
+    transition: transform .5s
 }
 
 .card:hover .title {
-    transform: translate3d(0%, -50px, 100px);
+    transform: translate3d(0, -50px, 100px)
 }
 
 .character {
-    width: 100%;
     opacity: 0;
-    transition: all 0.5s;
-    position: absolute;
-    z-index: -1;
+    transition: .5s;
+    z-index: -1
 }
 
 .card:hover .character {
     opacity: 1;
-    transform: translate3d(0%, -30%, 100px);
+    transform: translate3d(0, -30%, 100px)
 }

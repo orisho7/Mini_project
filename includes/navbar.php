@@ -33,12 +33,12 @@
         <!-- Desktop Navigation -->
         <ul class="nav-links">
             <li>
-                <a href="index.php" class="links">
+                <a href="/pages/index.php" class="links">
                     <b>Home</b>
                 </a>
             </li>
             <li>
-                <a href="Awards.php" class="links">
+                <a href="/pages/Awards.php" class="links">
                     <b>Most Voted</b>
                 </a>
             </li>
@@ -95,12 +95,12 @@
         </button>
         <ul class="nav-links-mobile">
             <li>
-                <a href="index.php" class="links" onclick="toggleSidebar()">
+                <a href="pages/index.php" class="links" onclick="toggleSidebar()">
                     <b>Home</b>
                 </a>
             </li>
             <li>
-                <a href="Awards.php" class="links" onclick="toggleSidebar()">
+                <a href="pages/Awards.php" class="links" onclick="toggleSidebar()">
                     <b>Most Voted</b>
                 </a>
             </li>

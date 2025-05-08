@@ -1,148 +1,128 @@
-/* Navigation bar */
+.profile-btn,
+.username {
+    font-size: 1.1rem;
+    color: #fff
+}
 
+.navbar,
+.sidebar {
+    position: fixed;
+    top: 0
+}
 
-/* Navbar container styles */
+.navbar,
+.sidebar.active {
+    right: 0
+}
+
+.navbar.scrolled,
+.profile-btn {
+    transition: background-color .3s
+}
+
 .navbar {
-    color: white;
+    color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    position: fixed;
-    top: 0;
     left: 0;
-    right: 0;
     z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    border-bottom: #ffffff 5px solid;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+    border-bottom: 5px solid #fff;
     font-family: "Black Ops One", system-ui;
-    font-weight: 100;
+    font-weight: 100
 }
 
-/* Logo container styles */
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-/* Logo image styles */
-.logo {
-    height: 40px;
-    width: auto;
-}
-
-/* Navigation links container */
-
- .nav-links-mobile {
-    display: flex;
-    gap: 7rem;
-    list-style: none;
-    margin-top: 100px;
-
-
-   
-}
-.nav-links-mobile li {
-    padding-top: 50px;
-
-}
-
-/* Navigation link styles */
-.nav-links a, .nav-links-mobile a {
-    color: white;
-    text-decoration: none;
-    font-size: 2.1rem;
-    transition: color 0.3s ease;
-}
-
-/* Navigation link hover effect */
-.nav-links a:hover {
-    color: #ff7300;
-}
-
-/* User profile section styles */
+.logo-container,
 .user-profile {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1rem
 }
 
-/* Username display styles */
-.username {
-    color: white;
-    font-size: 1.1rem;
+.logo {
+    height: 40px;
+    width: auto
 }
 
-/* Profile button styles */
+.nav-links-mobile {
+    display: flex;
+    gap: 7rem;
+    list-style: none;
+    margin-top: 100px
+}
+
+.nav-links-mobile li {
+    padding-top: 50px
+}
+
+.nav-links a,
+.nav-links-mobile a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 2.1rem;
+    transition: color .3s
+}
+
+.nav-links a:hover {
+    color: #ff7300
+}
+
 .profile-btn {
-    background: none;
+    background: 0 0;
     border: none;
-    color: white;
     cursor: pointer;
-    font-size: 1.1rem;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    padding: .5rem 1rem;
+    border-radius: 5px
 }
 
-/* Profile button hover effect */
+.btn,
+.mobile-menu-btn,
+.sidebar-close {
+    border: none;
+    cursor: pointer
+}
+
 .profile-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, .1)
 }
 
-/* Mobile menu button styles */
 .mobile-menu-btn {
     display: none;
-    background: none;
-    border: none;
-    color: white;
+    background: 0 0;
+    color: #fff;
     font-size: 1.5rem;
-    cursor: pointer;
     padding: 0;
-    margin: 0;
-    
+    margin: 0
 }
 
-/* Sidebar styles */
 .sidebar {
-    position: fixed;
-    top: 0;
-    right: -1200px; /* Start off-screen */
+    right: -1200px;
     width: 350px;
     height: 100vh;
     background-color: #111;
     padding: 2rem;
-    transition: right 0.3s ease;
+    transition: right .3s;
     z-index: 999;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-    margin-top: 100px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, .2);
+    margin-top: 100px
 }
 
-/* Sidebar when active */
-.sidebar.active {
-    right: 0;
-}
-
-/* Sidebar navigation links */
 .sidebar .nav-links {
     flex-direction: column;
-    margin-top: 21rem;
+    margin-top: 21rem
 }
 
-/* Sidebar close button */
 .sidebar-close {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
+    background: 0 0;
+    color: #fff;
+    font-size: 1.5rem
 }
 
-/* Overlay for sidebar */
 .sidebar-overlay {
     display: none;
     position: fixed;
@@ -150,111 +130,85 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 998;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 998
 }
 
 .sidebar-overlay.active {
-    display: block;
+    display: block
 }
-/* Smartphones (small) — up to 480px */
-@media (max-width: 480px) {
+
+@media (max-width:480px) {
     .nav-links {
-        display: none;
+        display: none
     }
 
-    .nav-links-mobile {
-        display: block;
-    }
-
-    .mobile-menu-btn {
-        display: block;
-    }
-
+    .mobile-menu-btn,
+    .nav-links-mobile,
     .sidebar {
-        display: block;
+        display: block
     }
 }
 
-/* Smartphones (medium) — up to 576px */
-@media (max-width: 576px) {
+@media (max-width:576px) {
     .nav-links {
-        display: none;
+        display: none
     }
 
-    .nav-links-mobile {
-        display: block;
-    }
-
-    .mobile-menu-btn {
-        display: block;
-    }
-
+    .mobile-menu-btn,
+    .nav-links-mobile,
     .sidebar {
-        display: block;
+        display: block
     }
 }
 
-/* Tablets (portrait) — up to 768px */
-@media (max-width: 768px) {
+@media (max-width:768px) {
     .nav-links {
-        display: none;
+        display: none
     }
 
-    .nav-links-mobile {
-        display: block;
-    }
-
-    .mobile-menu-btn {
-        display: block;
-    }
-
+    .mobile-menu-btn,
+    .nav-links-mobile,
     .sidebar {
-        display: block;
+        display: block
     }
 }
 
-/* Tablets (landscape) / Small laptops — up to 992px */
-@media (max-width: 992px) {
+@media (max-width:992px) {
     .nav-links {
-        display: none;
+        display: none
     }
 
-    .nav-links-mobile {
-        display: block;
-    }
-
-    .mobile-menu-btn {
-        display: block;
-    }
-
+    .mobile-menu-btn,
+    .nav-links-mobile,
     .sidebar {
-        display: block;
+        display: block
     }
 }
 
-/* Existing styles below */
-.btn {
+.btn,
+.navbar a.links {
     text-align: center;
-    text-decoration: none;
     position: relative;
-    background-color: #f2613500;
-    color: white;
     display: block;
+    margin: 10px 50px 10px 10px;
+    text-decoration: none;
+    color: #fff;
+    transition: .5s
+}
+
+.btn {
+    background-color: #f2613500;
     align-self: center;
     align-content: center;
     font-size: 30px;
-    transition: all 0.5s;
-    margin: 10px 10px;
     padding-top: 6px;
-    padding-bottom: 6px;
-    margin-right: 50px;
-    border: none;
-    cursor: pointer;
+    padding-bottom: 6px
 }
 
-.btn:hover {
-    color: #ffb27b;
+.btn:hover,
+.navbar a.links:hover {
+    color: #ffb27b
 }
 
 .navbar ul {
@@ -263,74 +217,61 @@
     margin-bottom: 20px;
     overflow: hidden;
     height: auto;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0)
 }
 
 .navbar ul li text {
-    color: #ffffff;
+    color: #fff
 }
 
 .navbar a.links {
-    text-align: center;
-    text-decoration: none;
-    position: relative;
-    color: white;
-    display: block;
     font-size: 20px;
-    transition: all 0.5s;
-    margin: 10px;
     padding-top: 12px;
-    margin-right: 50px;
-    text-transform: capitalize;
+    text-transform: capitalize
 }
 
 .navbar a.icon {
     text-decoration: none;
     opacity: 100;
-    color: #ffffff;
-    text-shadow: rgb(236, 128, 5) 0px 7px 1px;
+    color: #fff;
+    text-shadow: #ec8005 0 7px 1px
 }
 
 .navbar a.icon:hover {
     text-decoration: none;
     color: #ffffffab;
-    text-shadow: rgb(236, 128, 5) 0px 7px 1px;
+    text-shadow: #ec8005 0 7px 1px
 }
 
 .site-name {
-    color: #ffffff;
+    color: #fff;
     font-size: 55px;
     font-family: "Pixelify Sans", sans-serif;
     text-shadow: #ffb27b 5px 0 20px;
-    margin-right:auto;
-}
-
-.navbar a.links:hover {
-    color: #ffb27b;
+    margin-right: auto
 }
 
 .navbar a.links::after {
     content: '';
     height: 2px;
     width: 100%;
-    background-color: white;
+    background-color: #fff;
     position: absolute;
     left: 0;
     bottom: -10px;
     opacity: 0;
-    transition: all 0.5s;
-    pointer-events: none;
+    transition: .5s;
+    pointer-events: none
 }
 
 .navbar a.links:hover::after {
-    opacity: 1;
+    opacity: 1
 }
 
 .navbar li {
-    float: left;
+    float: left
 }
 
 .navbar.scrolled {
-    background-color: rgb(255, 98, 0);
-    transition: background-color 0.3s;
+    background-color: #ff6200
 }

@@ -1,5 +1,35 @@
-html, body {
-    overflow-x: hidden;
+.cardo,
+.cards {
+    width: 100%;
+    box-sizing: border-box
+}
+
+.cardo,
+.photoG {
+    position: relative;
+    max-width: 100%;
+    height: auto
+}
+
+.cardo::before,
+.photoG {
+    transition: .5s cubic-bezier(.175, .885, .32, 1.275)
+}
+
+.cardo::after,
+.cardo::before {
+    z-index: -1;
+    width: 300px;
+    height: 700px;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(-45deg, #000 0, #a35918 100%)
+}
+
+body,
+html {
+    overflow-x: hidden
 }
 
 .cards {
@@ -8,23 +38,17 @@ html, body {
     gap: 40px;
     margin-top: auto;
     justify-content: center;
-    width: 100%;
-    box-sizing: border-box;
     margin-left: 0;
     margin-right: 0;
     padding-left: 0;
-    padding-right: 0;
+    padding-right: 0
 }
-.Vcontent{
-    margin-top: 217px;
+
+.Vcontent {
+    margin-top: 217px
 }
 
 .cardo {
-    position: relative;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    height: auto;
     min-height: 550px;
     display: flex;
     flex-direction: column;
@@ -34,102 +58,84 @@ html, body {
     border-radius: 8px;
     transform: translateY(-1000px);
     opacity: 0;
-    animation: slideDown 2s ease-out forwards;
+    animation: 2s ease-out forwards slideDown;
     overflow: hidden;
-    z-index: 1;
+    z-index: 1
 }
 
 .cardo:nth-child(2) {
-    animation-delay: 0.2s;
+    animation-delay: .2s
 }
 
 .cardo:nth-child(3) {
-    animation-delay: 0.4s;
+    animation-delay: .4s
 }
 
 @keyframes slideDown {
     to {
         transform: translateY(0);
-        opacity: 1;
+        opacity: 1
     }
 }
 
 .photoG {
-    position: relative;
-    max-width: 100%;
-    height: auto;
     display: block;
     object-fit: cover;
     border: 6px solid transparent;
-    border-image: linear-gradient(to right, #000000e7, #a35918) 1;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-image: linear-gradient(to right, #000000e7, #a35918) 1
+}
+
+.btn-donate,
+.btn-winner {
+    width: 100%;
+    max-width: 200px
 }
 
 .cardo::before {
-    content: "";
-    position: absolute;
-    inset: 0;
     left: -3px;
     margin: auto;
-    width: 300px;
-    height: 700px;
     border-radius: 10px;
-    background: linear-gradient(-45deg, #000000 0%, #a35918 100%);
-    pointer-events: none;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
-    z-index: -1;
+    pointer-events: none
 }
 
 .cardo::after {
-    z-index: -1;
-    width: 300px;
-    height: 700px;
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(-45deg, #000000 0%, #a35918 100%);
-    transform: translate3d(0, 0, 0) scale(0.95);
-    filter: blur(20px);
+    transform: translate3d(0, 0, 0) scale(.95);
+    filter: blur(20px)
 }
 
 .heading_ {
     font-size: 0px;
     text-transform: capitalize;
-    font-weight: 500;
-
+    font-weight: 500
 }
 
 .name {
     font-size: clamp(1.2rem, 2vw, 1.5rem);
-    color: rgb(255, 255, 255);
+    color: #fff;
     margin: 0;
-    text-align: center;
-
-
+    text-align: center
 }
 
 .cardo:hover::after {
     filter: blur(30px);
     transform: rotate(-180deg);
-    transition: all 0.5s;
+    transition: .5s
 }
 
 .cardo:hover::before {
     transform: rotate(-180deg);
-    transition: all 0.1s;
+    transition: .1s
 }
 
 .catog {
-
     font-size: 16px;
-    color: #ffffff;
+    color: #fff;
     font-weight: 400;
-    border: 2px solid #ffffff;
+    border: 2px solid #fff;
     padding: 2px 6px;
     border-radius: 20px;
     display: inline-block;
-    margin-right: auto;
+    margin-right: auto
 }
 
 .card-content {
@@ -140,17 +146,16 @@ html, body {
     justify-content: center;
     text-align: center;
     overflow: hidden;
-    margin-bottom: 10px;
+    margin-bottom: 10px
 }
 
 .btn-container {
     margin-top: auto;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center
 }
 
-/* From Uiverse.io by Allyhere */
 .btn-donate {
     --clr-font-main: hsla(0 0% 20% / 100);
     --btn-bg-1: #fa9b4e;
@@ -158,163 +163,119 @@ html, body {
     --btn-bg-color: hsla(360 100% 100% / 1);
     --radii: 0.5em;
     cursor: pointer;
-    padding: 0.9em 1.4em;
-    width: 100%;
-    max-width: 200px;
+    padding: .9em 1.4em;
     min-height: 44px;
     font-size: clamp(1rem, 1.5vw, 1.2rem);
     font-family: "Black Ops One", system-ui;
     font-weight: 500;
-    transition: 0.8s;
+    transition: .8s;
     background-size: 280% auto;
-    background-image: linear-gradient(325deg,
-            var(--btn-bg-2) 0%,
-            var(--btn-bg-1) 55%,
-            var(--btn-bg-2) 90%);
+    background-image: linear-gradient(325deg, var(--btn-bg-2) 0, var(--btn-bg-1) 55%, var(--btn-bg-2) 90%);
     border: none;
     border-radius: var(--radii);
     color: var(--btn-bg-color);
-    box-shadow:
-        0px 0px 20px #ff821c,
-        0px 5px 5px -1px rgba(58, 125, 233, 0.25),
-        inset 4px 4px 8px rgba(175, 230, 255, 0.5),
-        inset -4px -4px 8px #df5708;
-    margin: auto auto;
-    z-index: 100;
+    box-shadow: 0 0 20px #ff821c, 0 5px 5px -1px rgba(58, 125, 233, .25), inset 4px 4px 8px rgba(175, 230, 255, .5), inset -4px -4px 8px #df5708;
+    margin: auto;
+    z-index: 100
 }
 
 .btn-donate:hover {
-    background-position: right top;
+    background-position: right top
 }
 
 .btn-donate:is(:focus, :focus-visible, :active) {
-    outline: none;
-    box-shadow:
-        0 0 0 3px var(--btn-bg-color),
-        0 0 0 6px var(--btn-bg-2);
+    outline: 0;
+    box-shadow: 0 0 0 3px var(--btn-bg-color), 0 0 0 6px var(--btn-bg-2)
 }
 
-
-
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion:reduce) {
 
     .btn-donate,
     .btn-reset,
     .btn-winner {
-        transition: none;
+        transition: none
     }
 
     .cardo {
         animation: none;
         transform: none;
-        opacity: 1;
+        opacity: 1
     }
 }
 
-.btn-reset {
-        margin-bottom: 20px;
-z-index: 2;
-    /* Same button styles as .btn-donate */
+.btn-reset,
+.btn-winner {
     --clr-font-main: hsla(0 0% 20% / 100);
     --btn-bg-1: #fa9b4e;
     --btn-bg-2: #f35c05;
     --btn-bg-color: hsla(360 100% 100% / 1);
     --radii: 0.5em;
     cursor: pointer;
-    padding: 0.9em 1.4em;
-    min-width: 120px;
+    padding: .9em 1.4em;
     min-height: 44px;
     font-size: clamp(1rem, 1.5vw, 1.2rem);
     font-family: "Black Ops One", system-ui;
     font-weight: 500;
-    transition: 0.8s;
+    transition: .8s;
     background-size: 280% auto;
-    background-image: linear-gradient(325deg,
-            var(--btn-bg-2) 0%,
-            var(--btn-bg-1) 55%,
-            var(--btn-bg-2) 90%);
-    border: none;
-    border-radius: var(--radii);
+    background-image: linear-gradient(325deg, var(--btn-bg-2) 0, var(--btn-bg-1) 55%, var(--btn-bg-2) 90%);
     color: var(--btn-bg-color);
-    box-shadow:
-        0px 0px 20px #ff821c,
-        0px 5px 5px -1px rgba(58, 125, 233, 0.25),
-        inset 4px 4px 8px rgba(175, 230, 255, 0.5),
-        inset -4px -4px 8px #df5708;
+    box-shadow: 0 0 20px #ff821c, 0 5px 5px -1px rgba(58, 125, 233, .25), inset 4px 4px 8px rgba(175, 230, 255, .5), inset -4px -4px 8px #df5708
+}
+
+.btn-reset {
+    margin-bottom: 20px;
+    z-index: 2;
+    min-width: 120px;
+    border: none;
+    border-radius: var(--radii)
 }
 
 .btn-winner {
     display: block;
     margin: 20px auto;
-    width: 100%;
-    max-width: 200px;
-    /* Same button styles as .btn-donate */
-    --clr-font-main: hsla(0 0% 20% / 100);
-    --btn-bg-1: #fa9b4e;
-    --btn-bg-2: #f35c05;
-    --btn-bg-color: hsla(360 100% 100% / 1);
-    --radii: 0.5em;
-    cursor: pointer;
-    padding: 0.9em 1.4em;
-    min-height: 44px;
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
-    font-family: "Black Ops One", system-ui;
-    font-weight: 500;
-    transition: 0.8s;
-    background-size: 280% auto;
-    background-image: linear-gradient(325deg,
-            var(--btn-bg-2) 0%,
-            var(--btn-bg-1) 55%,
-            var(--btn-bg-2) 90%);
     border: none;
-    border-radius: var(--radii);
-    color: var(--btn-bg-color);
-    box-shadow:
-        0px 0px 20px #ff821c,
-        0px 5px 5px -1px rgba(58, 125, 233, 0.25),
-        inset 4px 4px 8px rgba(175, 230, 255, 0.5),
-        inset -4px -4px 8px #df5708;
+    border-radius: var(--radii)
 }
 
-/* Media Queries */
-@media screen and (max-width: 1200px) {
+@media screen and (max-width:1200px) {
     .cards {
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width:768px) {
     .cards {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 15px;
-        padding: 15px;
+        padding: 15px
     }
 
     .cardo {
-        min-height: 500px;
+        min-height: 500px
     }
 
     .btn-reset {
         top: 10px;
         right: 10px;
-        padding: 0.7em 1.2em;
+        padding: .7em 1.2em
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width:480px) {
     .cards {
         grid-template-columns: 1fr;
         gap: 10px;
-        padding: 10px;
+        padding: 10px
     }
 
     .cardo {
-        min-height: 450px;
+        min-height: 450px
     }
 
     .btn-donate,
     .btn-winner {
-        padding: 0.7em 1.2em;
-        font-size: 1rem;
+        padding: .7em 1.2em;
+        font-size: 1rem
     }
 }

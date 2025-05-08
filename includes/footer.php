@@ -11,7 +11,8 @@
 
 
         <ul>
-            <li><button class="btn-W" on onclick="window.location.href='ContactUs.html'"> Mail us 📧</button>
+            <li><button class="btn-W" on onclick="window.location.href='mailto:abdullrazaq.naqsho13@gmail.com'">
+                    Mailus📧</button>
             </li>
         </ul>
 

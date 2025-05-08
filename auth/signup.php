@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 include('../auth/db.php');
 
@@ -24,7 +25,7 @@ $query = "INSERT INTO users (username, password) VALUES ('$username', '$hashed_p
 $result = mysqli_query($conn, $query);
 
 if ($result) {
-    // Set session for the new user
+    // Set session for the new usera
     $_SESSION['username'] = $username;
 
     // Redirect to homepage or index page
@@ -32,6 +33,5 @@ if ($result) {
     exit();
 } else {
     // Show error (you can improve this with better messages/logging)
-    header("Location: ../pages/login.php?error=Signup failed: Duplicate entry '$username' for key 'username'");
-}
+    header("Location: ../pages/login.php?error=username_taken");}
 ?>

@@ -1,39 +1,35 @@
+.footer,
+.footer p {
+    text-align: center
+}
 
 .footer {
     background-color: #111;
-    color: white;
-    text-align: center;
-
+    color: #fff
 }
 
 .icon2 {
     width: 25px;
-    height: auto;
+    height: auto
 }
 
-
 .footer ul {
-    list-style: none;
-
+    list-style: none
 }
 
 .footer ul li {
-    margin-top: 20px;
-
+    margin-top: 20px
 }
 
 .footer ul li a {
-    color: #ffffff;
-    text-decoration: none;
-
+    color: #fff;
+    text-decoration: none
 }
 
 .footer p {
-    text-align: center;
     font-size: 20px;
     width: 50%;
-    margin: auto;
-
+    margin: auto
 }
 
 .box ul {
@@ -42,30 +38,28 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    padding: 10px;
-
+    padding: 10px
 }
 
+.btn-E,
 .btn-W,
-.btn-X,
-.btn-E {
-    background: none;
+.btn-X {
+    background: 0 0;
     border: none;
-    color: #ffffff;
+    color: #fff;
     padding: 10px 20px;
     border-radius: 10px;
     object-fit: fill;
     font-size: 50px;
-    font-family: "Black Ops One", system-ui;
+    font-family: "Black Ops One", system-ui
 }
 
+.btn-E:hover,
 .btn-W:hover,
-.btn-X:hover,
-.btn-E:hover {
-    border: 0.5px solid rgb(255, 123, 0);
-    color: rgb(255, 115, 0);
+.btn-X:hover {
+    border: .5px solid #ff7b00;
+    color: #ff7300;
     padding: 10px 20px;
     border-radius: 10px;
-    cursor: pointer;
+    cursor: pointer
 }
-

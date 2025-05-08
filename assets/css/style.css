@@ -1,72 +1,56 @@
-html,
-body {
+.mos,
+.mos pre {
+    font-family: Silkscreen, sans-serif !important
+}
+
+body,
+html {
     margin: 0;
     padding: 0;
     font-family: "Black Ops One", system-ui;
-        font-weight: 100;
-
-
+    font-weight: 100
 }
 
 .content {
-    flex: 1;
-    /* pushes footer to bottom */
-
+    flex: 1
 }
 
 #myVideo {
     position: fixed;
-    /* Ensures it covers the whole page */
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    /* Makes sure it stretches to the bottom */
     object-fit: cover;
-    /* Ensures the video fills the space without distortion */
-    z-index: -1;
-    /* Keeps it behind the content */
-
+    z-index: -1
 }
 
 .container {
-    /* Border width is already included */
     width: 100%;
     top: 0;
     height: 90vh;
-    /* Adjust as needed */
-    /* Centering */
     display: flex;
     justify-content: center;
-    /* Centers horizontally */
     align-items: top;
-    /* Centers vertically */
-    margin: 0 auto;
-    /* Centers the container itself horizontally */
-
-    /* Centers the container itself */
+    margin: 0 auto 50px;
     text-align: center;
-    /* Ensures text is centered */
     flex-direction: row;
-    /* Ensure the container is row-based (default) */
-
     background-size: cover;
-    /* Ensure the image covers the whole container */
     overflow: hidden;
-    margin-bottom: 50px;
-    box-shadow: #ff5e00 1px 20px 8px;
-    /* Prevents the video from overflowing the container */
-
+    box-shadow: #ff5e00 1px 20px 8px
 }
 
-/* Create the semi-transparent overlay */
-
 .title {
-    color: #ff0000;
+    color: red;
     font-size: 60px;
     padding-top: 30px;
-    text-shadow: #ff0000 1px 0 10px;
+    text-shadow: red 1px 0 10px
+}
 
+.button,
+.mos {
+    color: #fff;
+    font-style: normal
 }
 
 #background-video {
@@ -76,46 +60,36 @@ body {
     width: 100%;
     height: 100%;
     object-fit: fill;
-    /* Ensures the video covers the whole container */
-    z-index: -1;
-    /* Puts the video behind the text */
-
+    z-index: -1
 }
 
 .mos {
     margin-top: 150px;
     position: absolute;
-    color: rgb(255, 255, 255);
-    /* White color text for visibility */
-    text-shadow: #111 1px 0 10px;
-    font-family: "Silkscreen", sans-serif !important;
     font-weight: 600;
-    font-style: normal;
     font-size: 3rem;
-    /* Adjust text size */
-    /* Makes sure the text stays on top of the video */
-    text-shadow: rgb(129, 63, 32) 0px 0 10px;
-    width: 100%;
+    text-shadow: #813f20 0 0 10px;
+    width: 100%
+}
+
+.button,
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: .5s
 }
 
 .mos pre {
     overflow: hidden;
-    /* Ensures the content is not revealed until the animation */
     border-right: .15em solid orange;
-    /* The typwriter cursor */
-    white-space: pre-wrap;    /* Keeps the content on a single line */
+    white-space: pre-wrap;
     margin: 0 auto;
-    /* Gives that scrolling effect as the typing happens */
     letter-spacing: .15em;
-    /* Adjust as needed */
-    animation:
-        typing 3.5s steps(100, end),
-        blink-caret .75s step-end infinite;
-    font-family: "Silkscreen", sans-serif !important;
+    animation: 3.5s steps(100, end) typing, .75s step-end infinite blink-caret;
     font-weight: 100;
     font-style: normal;
-    text-shadow: #111 1px 0 10px;
-    
+    text-shadow: #111 1px 0 10px
 }
 
 @keyframes typing {
@@ -126,36 +100,25 @@ body {
     to {
         width: 100%
     }
-
-
 }
 
 .button {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19);
     background-color: #d54d48;
     border-radius: 25px;
-    color: #ffffff;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 32px;
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-    transition: all 0.5s;
     margin: 300px;
-    font-family: "Silkscreen", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-
+    font-family: Silkscreen, sans-serif;
+    font-weight: 300
 }
 
-.button span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
+.box,
+.overlay {
+    display: none;
+    position: fixed
 }
 
 .button span:after {
@@ -164,29 +127,28 @@ body {
     opacity: 0;
     top: 0;
     right: -20px;
-    transition: 0.5s;
+    transition: .5s
 }
 
 .border-text {
-    border: 2px solid #ffffff;
+    border: 2px solid #fff;
     padding: 5px 30px;
-    border-radius: 3px;
-
+    border-radius: 3px
 }
 
 .button:hover span {
-    padding-right: 30px;
+    padding-right: 30px
 }
 
 .button:hover span:after {
     opacity: 1;
-    right: 0;
+    right: 0
 }
 
 @property --angle {
     syntax: "<angle>";
     initial-value: 0deg;
-    inherits: false;
+    inherits: false
 }
 
 .button::after,
@@ -195,7 +157,7 @@ body {
     content: '';
     height: 100%;
     width: 100%;
-    background-image: conic-gradient(from var(--angle), transparent 50%, #ffffff);
+    background-image: conic-gradient(from var(--angle), transparent 50%, #fff);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -203,64 +165,63 @@ body {
     z-index: -1;
     padding: 3px;
     border-radius: 25px;
-    animation: 3s spin linear infinite;
+    animation: 3s linear infinite spin
 }
 
 @keyframes spin {
     from {
-        --angle: 0deg;
+        --angle: 0deg
     }
 
     to {
-        --angle: 360deg;
+        --angle: 360deg
     }
 }
 
 .button::before {
     filter: blur(1.5rem);
-    opacity: 0.8;
+    opacity: .8
 }
+
 .overlay {
-    display: none;
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 998;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 998
 }
+
 .box {
-    display: none;
-    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgb(0, 0, 0);
+    background-color: #000;
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    z-index: 999;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+    z-index: 999
 }
+
 .user_voted {
-    border: 1px solid white;
+    border: 1px solid #fff;
     border-radius: 10px;
-    width: 30%;
+    width: 30%
 }
-.close_button {
-    background-color: #d54d48;
-    border-radius: 25px;
-    color: #ffffff;
-    padding: 15px 32px;
-    cursor: pointer;
-    margin-left: 170px;
-}
+
+.close_button,
 .delete_account {
     background-color: #d54d48;
     border-radius: 25px;
-    color: #ffffff;
+    color: #fff;
     padding: 15px 32px;
-    cursor: pointer;
-    margin-left: 10px;
+    cursor: pointer
+}
 
+.close_button {
+    margin-left: 170px
+}
+
+.delete_account {
+    margin-left: 10px
 }
