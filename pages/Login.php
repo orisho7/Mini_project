@@ -80,8 +80,9 @@ include("../includes/profile_popup.php");
                         echo "⚠️ Invalid username!";
                     elseif (isset($_GET["error"]) && str_contains($_GET["error"], "username_taken")) {
                         echo "⚠️ This username is already taken.";
+                    } elseif ($_GET['error'] == 'signup_error' && isset($_GET['message'])) {
+                        echo "⚠️ " . htmlspecialchars(urldecode($_GET['message']));
                     }
-
                     ?>
             </div>
             <?php endif; ?>
