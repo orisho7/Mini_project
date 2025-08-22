@@ -32,6 +32,7 @@
 }
 
 .winners {
+    font-size: 50px;
     font-weight: 400;
     font-style: normal;
     text-align: center;
@@ -52,8 +53,7 @@
 .winnerbox {
     box-shadow: #fff 0 15px 0;
     background-color: rgba(255, 94, 0, .479);
-    border-radius: 40px;
-    width: 40%;
+    border-radius: 20px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
