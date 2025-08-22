@@ -63,7 +63,7 @@ if (!isset($_SESSION['username'])) {
             <?php endforeach; ?>
         </div>
         </div>
-        <button class="btn-winner" onclick="window.location.href='../pages/Awards.php'">See the winner</button>
+        <button class="btn-winner" onclick="window.location.href='../pages/Awards'">See the winner</button>
 
         <?php include("../includes/footer.php"); ?>
 

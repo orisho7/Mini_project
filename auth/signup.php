@@ -9,7 +9,7 @@ header("Expires: 0");
 
 // If already logged in, redirect to index
 if (isset($_SESSION['username'])) {
-    header("Location: ../pages/index.php");
+    header("Location: ../pages/index");
     exit();
 }
 
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['user_id'] = mysqli_insert_id($conn);
                     
                     // Redirect to homepage
-                    header("Location: ../pages/index.php");
+                    header("Location: ../pages/index");
                     exit();
                 } else {
                     $errors[] = "Failed to create account. Please try again.";
@@ -97,12 +97,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // If there are errors, redirect back with error messages
     if (!empty($errors)) {
         $error_string = urlencode(implode(", ", $errors));
-        header("Location: ../pages/Login.php?error=signup_error&message=" . $error_string);
+        header("Location: ../pages/Login?error=signup_error&message=" . $error_string);
         exit();
     }
 } else {
     // If not POST request, redirect to login page
-    header("Location: ../pages/Login.php");
+    header("Location: ../pages/Login");
     exit();
 }
 ?>

@@ -4,7 +4,7 @@ include("../auth/db.php");
 
 // Check if user is logged in
 if (!isset($_SESSION['username'])) {
-    header("Location: ../pages/Login.php");
+    header("Location: ../pages/Login");
     exit();
 }
 
@@ -32,6 +32,6 @@ if ($stmt_user) {
 
 // Destroy session and redirect
 session_destroy();
-header("Location: ../pages/index.php");
+header("Location: ../pages/index");
 exit();
 ?>

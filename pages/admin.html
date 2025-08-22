@@ -24,7 +24,7 @@
 
     <div id="navbar"></div>
     <script>
-        fetch('navbar.php')
+        fetch('navbar')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('navbar').innerHTML = data;

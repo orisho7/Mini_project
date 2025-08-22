@@ -9,7 +9,7 @@ header("Pragma: no-cache");
 header("Expires: 0");
 
 if (isset($_SESSION['username'])) {
-    header("Location: ../pages/index.php");
+    header("Location: ../pages/index");
     exit();
 }
 
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     // Basic validation
     if (empty($username) || empty($password)) {
-        header("Location: ../pages/Login.php?error=invalid_username");
+        header("Location: ../pages/Login?error=invalid_username");
         exit();
     }
     
@@ -40,23 +40,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['user_id'] = $user['id'];
                 mysqli_stmt_close($stmt);
-                header("Location: ../pages/index.php");
+                header("Location: ../pages/index");
                 exit();
             } else {
                 mysqli_stmt_close($stmt);
-                header("Location: ../pages/Login.php?error=invalid_password");
+                header("Location: ../pages/Login?error=invalid_password");
                 exit();
             }
         } else {
             mysqli_stmt_close($stmt);
-            header("Location: ../pages/Login.php?error=invalid_username");
+            header("Location: ../pages/Login?error=invalid_username");
             exit();
         }
     } else {
-        header("Location: ../pages/Login.php?error=invalid");
+        header("Location: ../pages/Login?error=invalid");
         exit();
     }
 } else {
-    header("Location: ../pages/Login.php?error=invalid");
+    header("Location: ../pages/Login?error=invalid");
     exit();
 }

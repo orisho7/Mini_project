@@ -26,7 +26,7 @@ function closePopup() {
 
 function deleteAccount() {
     if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
-        window.location.href = '../auth/delete_account.php';
+        window.location.href = '../auth/delete_account';
     } else {
         alert("Account deletion cancelled.");
     }
