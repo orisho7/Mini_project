@@ -1,7 +1,9 @@
  <?php
 session_start();
-include("../includes/gameo.php");
-include("../includes/profile_popup.php");
+include("includes/profile_popup.php");
+include("includes/gameo.php");
+
+
 if (isset($_SESSION["username"])) {
     $username = $_SESSION["username"];
 }
@@ -53,7 +55,7 @@ if (isset($_SESSION["username"])) {
 
     <!-- Background Video -->
     <video autoplay muted loop id="myVideo">
-        <source src="../assets/photos/27669-365224683_small.mp4" type="video/mp4">
+        <source src="assets/photos/27669-365224683_small.mp4" type="video/mp4">
     </video>
 
     <!-- Navigation Bar fetching -->
@@ -63,7 +65,7 @@ if (isset($_SESSION["username"])) {
         <!-- Main Container -->
         <div class="container">
             <video autoplay muted loop id="background-video">
-                <source src="../assets/photos/90346-619556734_small.mp4" type="video/mp4">
+                <source src="assets/photos/90346-619556734_small.mp4" type="video/mp4">
                 <source src="" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -74,7 +76,7 @@ if (isset($_SESSION["username"])) {
                                 } else echo "Newcomer"; ?> to  </pre>
                 <pre>GameRank</pre>
                 <pre>A ranking website for gamers</pre>
-                <button class="button" onclick="window.location.href='Voting.php'">
+                <button class="button" onclick="window.location.href='/pages/Voting'">
                     <span>Vote Now</span>
                 </button>
             </div>
@@ -87,7 +89,7 @@ if (isset($_SESSION["username"])) {
         <!-- Winners fetching -->
         <div id="winners" class="winnerContainer"></div>
         <script>
-            fetch('../includes/winners.html')
+            fetch('includes/winners.html')
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('winners').innerHTML = data;

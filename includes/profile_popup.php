@@ -1,4 +1,7 @@
-<?php if (isset($_SESSION['username'])): ?>
+<?php if (isset($_SESSION['username'])):
+include("includes/gameo.php");
+
+ ?>
     <script src="../assets/js/navbar.js">
         popup();
         closePopup();

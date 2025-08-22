@@ -1,5 +1,7 @@
 <?php
 include("../auth/db.php");
+include("auth/db.php");
+
 
 // Get the most voted game with its URL and info
 $query = "SELECT g.game_name, g.game_url, g.info, COUNT(*) as vote_count 

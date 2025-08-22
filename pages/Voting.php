@@ -6,7 +6,7 @@ include("../includes/gameo.php");
 include("../includes/profile_popup.php");
 
 if (!isset($_SESSION['username'])) {
-    header("Location: ../pages/login.php"); // Redirect to login page
+    header("Location: ../pages/Login"); // Redirect to login page
     exit();
 }
 
@@ -40,18 +40,19 @@ if (!isset($_SESSION['username'])) {
 </head>
 
 <body>
+
     <video autoplay muted loop id="myVideo">
         <source src="../assets/photos/27669-365224683_small.mp4" type="video/mp4">
     </video>
     <div class="Vcontent">
-      
+
         <button id="reset" class="btn-reset" onclick="reset()"> Reset</button>
         <div class="cards">
             <?php foreach ($games as $game): ?>
                 <div class="cardo">
                     <img loading="lazy" class="photoG" src="<?php echo $game['game_url']; ?>" alt="">
                     <div class="card-content">
-                        <p class="name"><?php echo $game['game_name']; ?></p>
+                            <h4 class="name"><?php echo $game['game_name']; ?></h4>
                         <!-- Add description here if you have one -->
                     </div>
                     <div class="btn-container">
@@ -62,36 +63,36 @@ if (!isset($_SESSION['username'])) {
                 </div>
             <?php endforeach; ?>
         </div>
-        </div>
-        <button class="btn-winner" onclick="window.location.href='../pages/Awards.php'">See the winner</button>
+    </div>
+    <button class="btn-winner" onclick="window.location.href='../pages/Awards'">See the winner</button>
 
-        <?php include("../includes/footer.php"); ?>
+    <?php include("../includes/footer.php"); ?>
 
-<?php include("../includes/navbar.php"); ?>
-<script>
+    <?php include("../includes/navbar.php"); ?>
+    <script>
 
-    fetch('../includes/navbar.php')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('navbar').innerHTML = data;
-        });
+        fetch('../includes/navbar.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
 
-</script>
+    </script>
 
     <script>  document.addEventListener('DOMContentLoaded', function () {
-        // Wait a bit if navbar is loaded via fetch
-        setTimeout(function () {
-            var navbar = document.querySelector('.navbar');
-            window.addEventListener('scroll', function () {
-                if (window.scrollY > 10) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            });
-        }, 300); // Adjust delay if needed
-    });
-</script>
+            // Wait a bit if navbar is loaded via fetch
+            setTimeout(function () {
+                var navbar = document.querySelector('.navbar');
+                window.addEventListener('scroll', function () {
+                    if (window.scrollY > 10) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                });
+            }, 300); // Adjust delay if needed
+        });
+    </script>
 </body>
 
 
@@ -180,7 +181,7 @@ if (!isset($_SESSION['username'])) {
 
             });
     }
-    
+
     // Check if user has already voted when page loads
     window.onload = function () {
 

@@ -2,7 +2,7 @@
 session_start();
 // Prevent going to login page if already logged in
 if (isset($_SESSION['username'])) {
-    header("Location: ../pages/index.php");
+    header("Location: /index.php");
     exit();
 }
 
@@ -72,16 +72,32 @@ include("../includes/profile_popup.php");
             <h1 class="Head" align="center">Login</h1>
 
             <?php if (isset($_GET['error'])): ?>
-            <div class="login_error">
+       <div class="login_error">
                 <?php
-                    if ($_GET['error'] == 'invalid_password')
-                        echo "⚠️ Invalid password!";
-                    elseif ($_GET['error'] == 'invalid_username')
-                        echo "⚠️ Invalid username!";
-                    elseif (isset($_GET["error"]) && str_contains($_GET["error"], "username_taken")) {
-                        echo "⚠️ This username is already taken.";
+                    $error = $_GET['error'];
+                    switch($error) {
+                        case 'invalid_password':
+                            echo "⚠️ Invalid password!";
+                            break;
+                        case 'invalid_username':
+                            echo "⚠️ Invalid username!";
+                            break;
+                        case 'username_taken':
+                        case 'Username+already+exists':
+                            echo "⚠️ This username is already taken.";
+                            break;
+                        case 'password_too_short':
+                            echo "⚠️ Password must be at least 8 characters long.";
+                            break;
+                        case 'username_too_short':
+                            echo "⚠️ Username must be at least 3 characters long.";
+                            break;
+                        case 'invalid_characters':
+                            echo "⚠️ Username can only contain letters, numbers, and underscores.";
+                            break;
+                        default:
+                            echo "⚠️ " . htmlspecialchars(str_replace('+', ' ', $error));
                     }
-
                     ?>
             </div>
             <?php endif; ?>
