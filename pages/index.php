@@ -74,7 +74,7 @@ if (isset($_SESSION["username"])) {
                                 } else echo "Newcomer"; ?> to  </pre>
                 <pre>GameRank</pre>
                 <pre>A ranking website for gamers</pre>
-                <button class="button" onclick="window.location.href='../pages/Voting.php'">
+                <button class="button" onclick="window.location.href='voting.php'">
                     <span>Vote Now</span>
                 </button>
             </div>
