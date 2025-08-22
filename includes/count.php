@@ -5,7 +5,7 @@ include("../auth/db.php"); // Including the database connection file
 // Check if the user is logged in
 if (!isset($_SESSION['username'])) {
     // If not logged in, show an error message
-    header("Location: ../pages/login.php"); // Redirect to login page
+    header("Location: ../pages/Login"); // Redirect to login page
 }
 
 // Check if the form was submitted (POST method)

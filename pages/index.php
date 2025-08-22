@@ -57,7 +57,7 @@ if (isset($_SESSION["username"])) {
     </video>
 
     <!-- Navigation Bar fetching -->
-    <?php include("../includes/navbar.php"); ?>
+    <?php include("../includes/navbar"); ?>
 
     <div class="content">
         <!-- Main Container -->
@@ -74,7 +74,11 @@ if (isset($_SESSION["username"])) {
                                 } else echo "Newcomer"; ?> to  </pre>
                 <pre>GameRank</pre>
                 <pre>A ranking website for gamers</pre>
+<<<<<<< HEAD
                 <button class="button" onclick="window.location.href='voting.php'">
+=======
+                <button class="button" onclick="window.location.href='../pages/Voting'">
+>>>>>>> 3a8dd2cd54d179857f05f9161b70c018fd33f2ad
                     <span>Vote Now</span>
                 </button>
             </div>
