@@ -37,9 +37,31 @@ if ($db_url) {
     $port = $url["port"] ?? $port;
 }
 
-$conn = mysqli_connect($servername, $username, $password, $dbname, (int)$port);
+$servername_env = $_ENV['DB_HOST'] ?? null;
+$conn = @mysqli_connect($servername, $username, $password, $dbname, (int)$port);
 
 if (!$conn) {
+    // Detect Vercel context
+    $is_vercel = isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL']) || (strpos($http_host, 'vercel.app') !== false);
+    if ($is_vercel && !$servername_env) {
+        http_response_code(503);
+        echo "<html><head><title>Database Configuration Required</title><style>body{font-family:sans-serif;background:#121212;color:#fff;padding:40px;text-align:center;}div{max-width:600px;margin:auto;background:#1e1e1e;padding:20px;border-radius:8px;border:1px solid #333;}h1{color:#ff4444;}pre{text-align:left;background:#2d2d2d;padding:15px;border-radius:4px;overflow-x:auto;color:#a9b7c6;}</style></head><body>";
+        echo "<div>";
+        echo "<h1>Database Configuration Required</h1>";
+        echo "<p>Your GameRank application has been deployed on Vercel. However, it cannot connect to the default database (InfinityFree blocks external requests).</p>";
+        echo "<p>Please configure your production database credentials in your Vercel Project Dashboard (<strong>Settings &gt; Environment Variables</strong>):</p>";
+        echo "<pre>";
+        echo "DB_HOST = (your-cloud-database-hostname)\n";
+        echo "DB_USER = (your-database-username)\n";
+        echo "DB_PASSWORD = (your-database-password)\n";
+        echo "DB_NAME = (your-database-name)\n";
+        echo "DB_PORT = (usually 3306)\n";
+        echo "</pre>";
+        echo "<p>Ensure your MySQL server allows remote access (e.g. Aiven, Neon, or Clever Cloud free tiers).</p>";
+        echo "</div>";
+        echo "</body></html>";
+        exit();
+    }
     die("Database connection failed: " . mysqli_connect_error());
 }
 

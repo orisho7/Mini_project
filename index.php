@@ -1,4 +1,4 @@
- <?php
+<?php
 session_start();
 include(__DIR__ . "/includes/gameo.php");
 include(__DIR__ . "/includes/profile_popup.php");
