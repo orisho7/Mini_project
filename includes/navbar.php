@@ -27,18 +27,18 @@
     <nav class="navbar">
         <!-- Logo and site name -->
         <div class="logo-container">
-            <a href="index.php" class="icon site-name">GameRank</a>
+            <a href="../index" class="icon site-name">GameRank</a>
         </div>
 
         <!-- Desktop Navigation -->
         <ul class="nav-links">
             <li>
-                <a href="/pages/index.php" class="links">
+                <a href="../index" class="links">
                     <b>Home</b>
                 </a>
             </li>
             <li>
-                <a href="/pages/Awards.php" class="links">
+                <a href="/pages/Awards" class="links">
                     <b>Most Voted</b>
                 </a>
             </li>
@@ -59,7 +59,7 @@
                     </button>
                 </li>
                 <li class="login">
-                    <a href="../auth/logout.php" class="links">
+                    <a href="../auth/logout" class="links">
                         <b><span class="border-text">Sign Out</span></b>
                     </a>
                 </li>';
@@ -130,6 +130,7 @@
             } else {
                 echo '
                 <li class="login">
+                    <a href="/pages/Login.php" class="links" onclick="toggleSidebar()">
                     <a href="/pages/Login.php" class="links" onclick="toggleSidebar()">
                         <b><span class="border-text">Login</span></b>
                     </a>

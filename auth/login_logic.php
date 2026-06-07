@@ -51,6 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mysqli_stmt_close($stmt);
             header("Location: ../pages/Login?error=invalid_username");
             exit();
+        } else {
+            header("Location: ../pages/Login.php?error=invalid_password");
         }
     } else {
         header("Location: ../pages/Login?error=invalid");

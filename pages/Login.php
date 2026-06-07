@@ -2,7 +2,7 @@
 session_start();
 // Prevent going to login page if already logged in
 if (isset($_SESSION['username'])) {
-    header("Location: ../pages/index.php");
+    header("Location: /index.php");
     exit();
 }
 
@@ -72,7 +72,7 @@ include(dirname(__DIR__) . "/includes/profile_popup.php");
             <h1 class="Head" align="center">Login</h1>
 
             <?php if (isset($_GET['error'])): ?>
-            <div class="login_error">
+       <div class="login_error">
                 <?php
                     if ($_GET['error'] == 'invalid_password')
                         echo "⚠️ Invalid password!";
