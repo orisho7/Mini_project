@@ -1,4 +1,4 @@
-<?PHP
+<?php
 session_start();
 include(__DIR__ . "/db.php");
 
@@ -10,11 +10,26 @@ if (!isset($_SESSION['username'])) {
 
 $username = $_SESSION['username'];
 
-$query = "DELETE FROM users WHERE username = '$username'";
+try {
+    $conn->beginTransaction();
+    
+    // Delete dependent votes first
+    $query_votes = "DELETE FROM votes WHERE username = :username";
+    $stmt_votes = $conn->prepare($query_votes);
+    $stmt_votes->execute([':username' => $username]);
+    
+    // Delete user account
+    $query_user = "DELETE FROM users WHERE username = :username";
+    $stmt_user = $conn->prepare($query_user);
+    $stmt_user->execute([':username' => $username]);
+    
+    $conn->commit();
+} catch (PDOException $e) {
+    if ($conn->inTransaction()) {
+        $conn->rollBack();
+    }
+}
 
-$result = mysqli_query($conn, $query);
-$query2 = "DELETE FROM votes WHERE username = '$username'";
-$result2 = mysqli_query($conn, $query2);
 session_destroy();
 header("Location: ../pages/index");
 exit();

@@ -2,8 +2,6 @@
 session_start();
 include(__DIR__ . '/db.php');
 
-session_start();
-include('db.php');
 // Prevent caching
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Pragma: no-cache");
@@ -47,52 +45,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     // If no validation errors, proceed with registration
     if (empty($errors)) {
-        
-        // Check if username already exists
-        $check_query = "SELECT id FROM users WHERE username = ?";
-        $check_stmt = mysqli_prepare($conn, $check_query);
-        
-        if ($check_stmt) {
-            mysqli_stmt_bind_param($check_stmt, "s", $username);
-            mysqli_stmt_execute($check_stmt);
-            mysqli_stmt_store_result($check_stmt);
+        try {
+            // Check if username already exists
+            $check_query = "SELECT id FROM users WHERE username = :username";
+            $check_stmt = $conn->prepare($check_query);
+            $check_stmt->execute([':username' => $username]);
             
-            if (mysqli_stmt_num_rows($check_stmt) > 0) {
+            if ($check_stmt->fetch()) {
                 $errors[] = "Username already exists";
             }
-            mysqli_stmt_close($check_stmt);
-        } else {
-            $errors[] = "Database error occurred";
-        }
-        
-        // If username is available, create the account
-        if (empty($errors)) {
             
-            // Hash the password
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            
-            // Insert user into database using prepared statement
-            $insert_query = "INSERT INTO users (username, password) VALUES (?, ?)";
-            $insert_stmt = mysqli_prepare($conn, $insert_query);
-            
-            if ($insert_stmt) {
-                mysqli_stmt_bind_param($insert_stmt, "ss", $username, $hashed_password);
+            // If username is available, create the account
+            if (empty($errors)) {
+                // Hash the password
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
                 
-                if (mysqli_stmt_execute($insert_stmt)) {
-                    // Set session for the new user
-                    $_SESSION['username'] = $username;
-                    $_SESSION['user_id'] = mysqli_insert_id($conn);
-                    
-                    // Redirect to homepage
-                    header("Location: ../pages/index");
-                    exit();
-                } else {
-                    $errors[] = "Failed to create account. Please try again.";
-                }
-                mysqli_stmt_close($insert_stmt);
-            } else {
-                $errors[] = "Database error occurred";
+                // Insert user into database using prepared statement
+                $insert_query = "INSERT INTO users (username, password) VALUES (:username, :password)";
+                $insert_stmt = $conn->prepare($insert_query);
+                $insert_stmt->execute([
+                    ':username' => $username,
+                    ':password' => $hashed_password
+                ]);
+                
+                // Set session for the new user
+                $_SESSION['username'] = $username;
+                $_SESSION['user_id'] = $conn->lastInsertId();
+                
+                // Redirect to homepage
+                header("Location: ../pages/index");
+                exit();
             }
+        } catch (PDOException $e) {
+            $errors[] = "Database error occurred";
         }
     }
     

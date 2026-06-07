@@ -24,37 +24,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
     
-    // Use prepared statement to prevent SQL injection
-    $query = "SELECT id, username, password FROM users WHERE username = ?";
-    $stmt = mysqli_prepare($conn, $query);
-    
-    if ($stmt) {
-        mysqli_stmt_bind_param($stmt, "s", $username);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
+    try {
+        // Use prepared statement to prevent SQL injection
+        $query = "SELECT id, username, password FROM users WHERE username = :username";
+        $stmt = $conn->prepare($query);
+        $stmt->execute([':username' => $username]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        if (mysqli_num_rows($result) === 1) {
-            $user = mysqli_fetch_assoc($result);
-            
+        if ($user) {
             if (password_verify($password, $user['password'])) {
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['user_id'] = $user['id'];
-                mysqli_stmt_close($stmt);
                 header("Location: ../pages/index");
                 exit();
             } else {
-                mysqli_stmt_close($stmt);
                 header("Location: ../pages/Login?error=invalid_password");
                 exit();
             }
         } else {
-            mysqli_stmt_close($stmt);
             header("Location: ../pages/Login?error=invalid_username");
             exit();
-        } else {
-            header("Location: ../pages/Login.php?error=invalid_password");
         }
-    } else {
+    } catch (PDOException $e) {
         header("Location: ../pages/Login?error=invalid");
         exit();
     }
@@ -62,3 +53,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: ../pages/Login?error=invalid");
     exit();
 }
+?>
