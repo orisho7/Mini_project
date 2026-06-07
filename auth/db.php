@@ -2,7 +2,15 @@
 
 // Detect running environment (local dev vs. shared hosting)
 $http_host = $_SERVER['HTTP_HOST'] ?? '';
-$is_local = (strpos($http_host, 'localhost') !== false || strpos($http_host, '127.0.0.1') !== false || php_sapi_name() === 'cli');
+$server_addr = $_SERVER['SERVER_ADDR'] ?? '';
+$is_local = (strpos($http_host, 'localhost') !== false || 
+             strpos($http_host, '127.0.0.1') !== false || 
+             $server_addr === '127.0.0.1' || 
+             $server_addr === '::1' || 
+             strpos($server_addr, '192.168.') === 0 || 
+             strpos($server_addr, '10.') === 0 || 
+             strpos($server_addr, '172.') === 0 || 
+             php_sapi_name() === 'cli');
 
 // Check environment variables first (primarily for Vercel/production configurations)
 $servername = $_ENV['DB_HOST'] ?? null;
@@ -47,7 +55,11 @@ try {
 
 if (!$conn) {
     // Detect Vercel context
-    $is_vercel = isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL']) || (strpos($http_host, 'vercel.app') !== false);
+    $is_vercel = isset($_ENV['VERCEL']) || 
+                 isset($_SERVER['VERCEL']) || 
+                 isset($_SERVER['VERCEL_URL']) || 
+                 (strpos($http_host, '.vercel.app') !== false) || 
+                 (strpos(__FILE__, '/var/task') === 0);
     if ($is_vercel && !$servername_env) {
         http_response_code(503);
         echo "<html><head><title>Database Configuration Required</title><style>body{font-family:sans-serif;background:#121212;color:#fff;padding:40px;text-align:center;}div{max-width:600px;margin:auto;background:#1e1e1e;padding:20px;border-radius:8px;border:1px solid #333;}h1{color:#ff4444;}pre{text-align:left;background:#2d2d2d;padding:15px;border-radius:4px;overflow-x:auto;color:#a9b7c6;}</style></head><body>";
