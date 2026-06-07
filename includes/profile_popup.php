@@ -1,5 +1,5 @@
 <?php if (isset($_SESSION['username'])):
-include("includes/gameo.php");
+include_once(__DIR__ . "/gameo.php");
 
  ?>
     <script src="../assets/js/navbar.js">
