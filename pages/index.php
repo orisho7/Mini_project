@@ -1,7 +1,7 @@
 <?php
 session_start();
-include("../includes/gameo.php");
-include("../includes/profile_popup.php");
+include(dirname(__DIR__) . "/includes/gameo.php");
+include(dirname(__DIR__) . "/includes/profile_popup.php");
 if (isset($_SESSION["username"])) {
     $username = $_SESSION["username"];
 }
@@ -57,7 +57,7 @@ if (isset($_SESSION["username"])) {
     </video>
 
     <!-- Navigation Bar fetching -->
-    <?php include("../includes/navbar.php"); ?>
+    <?php include(dirname(__DIR__) . "/includes/navbar.php"); ?>
 
     <div class="content">
         <!-- Main Container -->
@@ -74,7 +74,7 @@ if (isset($_SESSION["username"])) {
                                 } else echo "Newcomer"; ?> to  </pre>
                 <pre>GameRank</pre>
                 <pre>A ranking website for gamers</pre>
-                <button class="button" onclick="window.location.href='../pages/Voting.php'">
+                <button class="button" onclick="window.location.href='voting.php'">
                     <span>Vote Now</span>
                 </button>
             </div>
@@ -110,7 +110,7 @@ if (isset($_SESSION["username"])) {
         </script>
 
 
-        <?php include("../includes/footer.php"); ?>
+        <?php include(dirname(__DIR__) . "/includes/footer.php"); ?>
         <script>
             function toggleSidebar() {
                 const sidebar = document.querySelector('.sidebar');

@@ -11,7 +11,7 @@ header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Pragma: no-cache");
 header("Expires: 0");
 
-include("../includes/profile_popup.php");
+include(dirname(__DIR__) . "/includes/profile_popup.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,9 +80,8 @@ include("../includes/profile_popup.php");
                         echo "⚠️ Invalid username!";
                     elseif (isset($_GET["error"]) && str_contains($_GET["error"], "username_taken")) {
                         echo "⚠️ This username is already taken.";
-                    } elseif ($_GET['error'] == 'signup_error' && isset($_GET['message'])) {
-                        echo "⚠️ " . htmlspecialchars(urldecode($_GET['message']));
                     }
+
                     ?>
             </div>
             <?php endif; ?>

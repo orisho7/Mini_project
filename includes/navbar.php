@@ -66,7 +66,7 @@
             } else {
                 echo '
                 <li class="login">
-                    <a href="Login.php" class="links">
+                    <a href="/pages/Login.php" class="links">
                         <b><span class="border-text">Login</span></b>
                     </a>
                 </li>';
@@ -130,7 +130,7 @@
             } else {
                 echo '
                 <li class="login">
-                    <a href="Login.php" class="links" onclick="toggleSidebar()">
+                    <a href="/pages/Login.php" class="links" onclick="toggleSidebar()">
                         <b><span class="border-text">Login</span></b>
                     </a>
                 </li>';

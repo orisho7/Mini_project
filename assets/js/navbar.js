@@ -26,7 +26,7 @@ function closePopup() {
 
 function deleteAccount() {
     if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
-        window.location.href = '../auth/delete_account.php';
+        window.location.href = '../auth/delete_account';
     } else {
         alert("Account deletion cancelled.");
     }
@@ -34,11 +34,14 @@ function deleteAccount() {
 
 // Close popup when clicking outside (on the overlay)
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('overlay').addEventListener('click', function (e) {
-        if (e.target === this) {
-            closePopup();
-        }
-    });
+    var overlay = document.getElementById('overlay');
+    if (overlay) {
+        overlay.addEventListener('click', function (e) {
+            if (e.target === this) {
+                closePopup();
+            }
+        });
+    }
 
    
 });

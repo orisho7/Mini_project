@@ -1,5 +1,5 @@
 <?php
-include("../auth/db.php");
+include(dirname(__DIR__) . "/auth/db.php");
 
 // Query 1: Get all game information (id, name, url, etc.) for displaying game cards
 $query_game = "SELECT * FROM games";

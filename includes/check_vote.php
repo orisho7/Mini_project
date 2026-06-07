@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../auth/db.php");
+include(dirname(__DIR__) . "/auth/db.php");
 $username = $_SESSION['username'];
 $check_sql = "SELECT game_name FROM votes WHERE username = '$username'";
 $result = mysqli_query($conn, $check_sql);

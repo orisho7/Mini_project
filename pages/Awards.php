@@ -1,8 +1,8 @@
 <?php
 session_start();
-include("../auth/db.php");
-include("../includes/gameo.php"); 
-include("../includes/profile_popup.php");
+include(dirname(__DIR__) . "/auth/db.php");
+include(dirname(__DIR__) . "/includes/gameo.php"); 
+include(dirname(__DIR__) . "/includes/profile_popup.php");
 ?>
 
 <script> </script>
@@ -36,7 +36,7 @@ include("../includes/profile_popup.php");
             <source src="../assets/photos/27669-365224683_small.mp4" type="video/mp4">
         </video>
 
-        <?php include("../includes/navbar.php"); ?>
+        <?php include(dirname(__DIR__) . "/includes/navbar.php"); ?>
 
 
         <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -93,7 +93,7 @@ include("../includes/profile_popup.php");
 
         </div>
 
-        <?php include("../includes/footer.php"); ?>
+        <?php include(dirname(__DIR__) . "/includes/footer.php"); ?>
 
     </div>
 

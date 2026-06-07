@@ -1,9 +1,9 @@
 <?php
 // Include the connection
-include("../includes/count.php");
-include("../includes/import_games.php");
-include("../includes/gameo.php");
-include("../includes/profile_popup.php");
+include(dirname(__DIR__) . "/includes/count.php");
+include(dirname(__DIR__) . "/includes/import_games.php");
+include(dirname(__DIR__) . "/includes/gameo.php");
+include(dirname(__DIR__) . "/includes/profile_popup.php");
 
 if (!isset($_SESSION['username'])) {
     header("Location: ../pages/login.php"); // Redirect to login page
@@ -65,9 +65,9 @@ if (!isset($_SESSION['username'])) {
         </div>
         <button class="btn-winner" onclick="window.location.href='../pages/Awards.php'">See the winner</button>
 
-        <?php include("../includes/footer.php"); ?>
+        <?php include(dirname(__DIR__) . "/includes/footer.php"); ?>
 
-<?php include("../includes/navbar.php"); ?>
+<?php include(dirname(__DIR__) . "/includes/navbar.php"); ?>
 <script>
 
     fetch('../includes/navbar.php')

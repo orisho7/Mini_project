@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../auth/db.php"); // Including the database connection file
+include(dirname(__DIR__) . "/auth/db.php"); // Including the database connection file
 
 // Check if the user is logged in
 if (!isset($_SESSION['username'])) {
