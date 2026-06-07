@@ -21,7 +21,7 @@ if (!$servername) {
     } else {
         $servername = "sql302.infinityfree.com";
         $username = "if0_38924002";
-        $password = ""; // Specify hosting password here or configure via env
+        $password = "BCrRNmpwlaMR";
         $dbname = "if0_38924002_login_db2";
     }
 }
@@ -38,7 +38,12 @@ if ($db_url) {
 }
 
 $servername_env = $_ENV['DB_HOST'] ?? null;
-$conn = @mysqli_connect($servername, $username, $password, $dbname, (int)$port);
+$conn = null;
+try {
+    $conn = @mysqli_connect($servername, $username, $password, $dbname, (int)$port);
+} catch (mysqli_sql_exception $e) {
+    // Connection failed; error is caught and handled below
+}
 
 if (!$conn) {
     // Detect Vercel context
