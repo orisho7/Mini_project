@@ -60,21 +60,41 @@ if (!$conn) {
                  isset($_SERVER['VERCEL_URL']) || 
                  (strpos($http_host, '.vercel.app') !== false) || 
                  (strpos(__FILE__, '/var/task') === 0);
-    if ($is_vercel && !$servername_env) {
+
+    if ($is_vercel) {
         http_response_code(503);
-        echo "<html><head><title>Database Configuration Required</title><style>body{font-family:sans-serif;background:#121212;color:#fff;padding:40px;text-align:center;}div{max-width:600px;margin:auto;background:#1e1e1e;padding:20px;border-radius:8px;border:1px solid #333;}h1{color:#ff4444;}pre{text-align:left;background:#2d2d2d;padding:15px;border-radius:4px;overflow-x:auto;color:#a9b7c6;}</style></head><body>";
+        echo "<html><head><title>Database Connection Failed</title><style>body{font-family:sans-serif;background:#121212;color:#fff;padding:40px;text-align:center;}div{max-width:600px;margin:auto;background:#1e1e1e;padding:20px;border-radius:8px;border:1px solid #333;text-align:left;}h1{color:#ff4444;text-align:center;}pre{background:#2d2d2d;padding:15px;border-radius:4px;overflow-x:auto;color:#ff6b6b;}table{width:100%;border-collapse:collapse;margin:20px 0;}td{padding:10px;border-bottom:1px solid #333;}</style></head><body>";
         echo "<div>";
-        echo "<h1>Database Configuration Required</h1>";
-        echo "<p>Your GameRank application has been deployed on Vercel. However, it cannot connect to the default database (InfinityFree blocks external requests).</p>";
-        echo "<p>Please configure your production database credentials in your Vercel Project Dashboard (<strong>Settings &gt; Environment Variables</strong>):</p>";
-        echo "<pre>";
-        echo "DB_HOST = (your-cloud-database-hostname)\n";
-        echo "DB_USER = (your-database-username)\n";
-        echo "DB_PASSWORD = (your-database-password)\n";
-        echo "DB_NAME = (your-database-name)\n";
-        echo "DB_PORT = (usually 3306)\n";
-        echo "</pre>";
-        echo "<p>Ensure your MySQL server allows remote access (e.g. Aiven, Neon, or Clever Cloud free tiers).</p>";
+        if (!$servername_env) {
+            echo "<h1>Database Configuration Required</h1>";
+            echo "<p>Your GameRank application is running on Vercel, but environment variables for the database are missing.</p>";
+            echo "<p>Please configure these environment variables in your Vercel Project Dashboard (<strong>Settings &gt; Environment Variables</strong>):</p>";
+            echo "<pre style='color:#a9b7c6;'>";
+            echo "DB_HOST = (your-cloud-database-hostname)\n";
+            echo "DB_USER = (your-database-username)\n";
+            echo "DB_PASSWORD = (your-database-password)\n";
+            echo "DB_NAME = (your-database-name)\n";
+            echo "DB_PORT = (usually 3306)\n";
+            echo "</pre>";
+        } else {
+            echo "<h1>Database Connection Failed</h1>";
+            echo "<p>The application attempted to connect to your configured database server but failed.</p>";
+            echo "<p><strong>Error Message:</strong></p>";
+            echo "<pre>" . htmlspecialchars(mysqli_connect_error()) . "</pre>";
+            echo "<table>";
+            echo "<tr><td><strong>DB_HOST</strong></td><td>" . htmlspecialchars($servername) . "</td></tr>";
+            echo "<tr><td><strong>DB_USER</strong></td><td>" . htmlspecialchars($username) . "</td></tr>";
+            echo "<tr><td><strong>DB_NAME</strong></td><td>" . htmlspecialchars($dbname) . "</td></tr>";
+            echo "<tr><td><strong>DB_PORT</strong></td><td>" . htmlspecialchars($port) . "</td></tr>";
+            echo "</table>";
+        }
+
+        if (strpos($servername, 'infinityfree.com') !== false) {
+            echo "<div style='margin-top:20px;padding:15px;background:#3a2500;border:1px solid #ffaa00;border-radius:4px;color:#ffaa00;'>";
+            echo "<strong>Network Access Restriction Alert:</strong><br>";
+            echo "You are pointing to an InfinityFree database. InfinityFree strictly blocks external MySQL connections. Vercel cannot reach this database. You must use a database hosting provider that allows remote external connections (e.g. Aiven, Clever Cloud, alwaysdata, etc.) and configure it in Vercel's Environment Variables.";
+            echo "</div>";
+        }
         echo "</div>";
         echo "</body></html>";
         exit();
